@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "container:SuperBank.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Features/Common/Common.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Features/Router/Router.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Features/Login/Login.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Features/Registration/Registration.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Features/Home/Home.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Features/Cards/Cards.xcodeproj">
+   </FileRef>
+</Workspace>

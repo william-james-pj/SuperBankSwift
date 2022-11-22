@@ -13,7 +13,23 @@
 		E0E20CC0292D0A7D00AB9A84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0E20CBE292D0A7D00AB9A84 /* Main.storyboard */; };
 		E0E20CC2292D0A7E00AB9A84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0E20CC1292D0A7E00AB9A84 /* Assets.xcassets */; };
 		E0E20CC5292D0A7E00AB9A84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0E20CC3292D0A7E00AB9A84 /* LaunchScreen.storyboard */; };
+		E0E20D51292D0DC100AB9A84 /* Router.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20D50292D0DC100AB9A84 /* Router.framework */; };
+		E0E20D52292D0DC100AB9A84 /* Router.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20D50292D0DC100AB9A84 /* Router.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E0E20D53292D0DC100AB9A84 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E0E20D52292D0DC100AB9A84 /* Router.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E0E20CB5292D0A7D00AB9A84 /* SuperBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,6 +40,7 @@
 		E0E20CC1292D0A7E00AB9A84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0E20CC4292D0A7E00AB9A84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E0E20CC6292D0A7E00AB9A84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0E20D50292D0DC100AB9A84 /* Router.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Router.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0E20D51292D0DC100AB9A84 /* Router.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +60,7 @@
 			children = (
 				E0E20CB7292D0A7D00AB9A84 /* SuperBank */,
 				E0E20CB6292D0A7D00AB9A84 /* Products */,
+				E0E20D4F292D0DC100AB9A84 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +86,14 @@
 			path = SuperBank;
 			sourceTree = "<group>";
 		};
+		E0E20D4F292D0DC100AB9A84 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E0E20D50292D0DC100AB9A84 /* Router.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,6 +104,7 @@
 				E0E20CB1292D0A7D00AB9A84 /* Sources */,
 				E0E20CB2292D0A7D00AB9A84 /* Frameworks */,
 				E0E20CB3292D0A7D00AB9A84 /* Resources */,
+				E0E20D53292D0DC100AB9A84 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -306,7 +334,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -334,7 +362,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
