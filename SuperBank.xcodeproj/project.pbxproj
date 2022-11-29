@@ -15,6 +15,9 @@
 		E0E20CC5292D0A7E00AB9A84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0E20CC3292D0A7E00AB9A84 /* LaunchScreen.storyboard */; };
 		E0E20D51292D0DC100AB9A84 /* Router.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20D50292D0DC100AB9A84 /* Router.framework */; };
 		E0E20D52292D0DC100AB9A84 /* Router.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20D50292D0DC100AB9A84 /* Router.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E0E20E1A292D483200AB9A84 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E0E20E19292D483200AB9A84 /* GoogleService-Info.plist */; };
+		E0E20E1C292D485800AB9A84 /* FirebaseService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20E1B292D485800AB9A84 /* FirebaseService.framework */; };
+		E0E20E1D292D485800AB9A84 /* FirebaseService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20E1B292D485800AB9A84 /* FirebaseService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E0E20D52292D0DC100AB9A84 /* Router.framework in Embed Frameworks */,
+				E0E20E1D292D485800AB9A84 /* FirebaseService.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -41,6 +45,8 @@
 		E0E20CC4292D0A7E00AB9A84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E0E20CC6292D0A7E00AB9A84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0E20D50292D0DC100AB9A84 /* Router.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Router.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0E20E19292D483200AB9A84 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E0E20E1B292D485800AB9A84 /* FirebaseService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +55,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0E20D51292D0DC100AB9A84 /* Router.framework in Frameworks */,
+				E0E20E1C292D485800AB9A84 /* FirebaseService.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +89,7 @@
 				E0E20CC1292D0A7E00AB9A84 /* Assets.xcassets */,
 				E0E20CC3292D0A7E00AB9A84 /* LaunchScreen.storyboard */,
 				E0E20CC6292D0A7E00AB9A84 /* Info.plist */,
+				E0E20E19292D483200AB9A84 /* GoogleService-Info.plist */,
 			);
 			path = SuperBank;
 			sourceTree = "<group>";
@@ -89,6 +97,7 @@
 		E0E20D4F292D0DC100AB9A84 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E0E20E1B292D485800AB9A84 /* FirebaseService.framework */,
 				E0E20D50292D0DC100AB9A84 /* Router.framework */,
 			);
 			name = Frameworks;
@@ -154,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0E20CC5292D0A7E00AB9A84 /* LaunchScreen.storyboard in Resources */,
+				E0E20E1A292D483200AB9A84 /* GoogleService-Info.plist in Resources */,
 				E0E20CC2292D0A7E00AB9A84 /* Assets.xcassets in Resources */,
 				E0E20CC0292D0A7D00AB9A84 /* Main.storyboard in Resources */,
 			);

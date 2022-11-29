@@ -236,7 +236,7 @@ public class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil);
     }
     
-    // MARK: - Methods
+    // MARK: - Actions
     @IBAction func RegistrationButtonTapped(_ sender: UIButton) {
         self.coordinatorDelegate?.goToRegistration()
     }
@@ -249,6 +249,7 @@ public class LoginViewController: UIViewController {
         self.viewPasswordButtons.isHidden = false
     }
     
+    // MARK: - Methods
     fileprivate func getPasswordText() {
         let gp = GeneratePasswordButtonText()
         self.viewPasswordButtons.settingTitles(gp.generationText())

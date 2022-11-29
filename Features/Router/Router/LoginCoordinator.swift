@@ -9,6 +9,7 @@ import UIKit
 import Login
 
 class LoginCoordinator: Coordinator {
+    weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
@@ -23,7 +24,6 @@ class LoginCoordinator: Coordinator {
         self.navigationController.pushViewController(initialViewController, animated: false)
     }
     
-    
     fileprivate func settingNav() {
         navigationController.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "Text") ?? .label]
         navigationController.navigationBar.tintColor = UIColor(named: "Text")
@@ -33,6 +33,7 @@ class LoginCoordinator: Coordinator {
 extension LoginCoordinator: LoginCoordinatorDelegate {
     func goToRegistration() {
         let coordinator = RegistrationCoordinator(navigationController: navigationController)
+        coordinator.parentCoordinator = self
         childCoordinators.append(coordinator)
         coordinator.start()
     }

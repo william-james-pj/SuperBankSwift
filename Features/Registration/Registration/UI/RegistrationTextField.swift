@@ -26,12 +26,10 @@ class RegistrationTextField: UITextField {
     
     // MARK: - Setup
     fileprivate func setupTextField() {
-        self.font = UIFont.systemFont(ofSize: 14)
+        self.font = UIFont.systemFont(ofSize: 16)
+        self.textColor = UIColor(named: "Text")
         self.autocorrectionType = UITextAutocorrectionType.no
         self.keyboardType = UIKeyboardType.default
-        self.backgroundColor = UIColor(named: "Disabled")
-        self.setLeftPaddingPoints(16)
-        self.setRightPaddingPoints(16)
     }
 }
 

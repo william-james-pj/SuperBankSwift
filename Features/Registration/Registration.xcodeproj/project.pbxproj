@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E0C2C94B292E3E59008249F4 /* FullNameRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C2C94A292E3E59008249F4 /* FullNameRegistrationViewController.swift */; };
+		E0C2C94D292E426E008249F4 /* RegistrationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C2C94C292E426E008249F4 /* RegistrationButton.swift */; };
+		E0C2C951292E5075008249F4 /* CPFRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C2C950292E5075008249F4 /* CPFRegistrationViewController.swift */; };
+		E0C2C955292E5FE0008249F4 /* BirthDateRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C2C954292E5FE0008249F4 /* BirthDateRegistrationViewController.swift */; };
+		E0C2C95A292E696F008249F4 /* PhoneNumberRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C2C959292E696F008249F4 /* PhoneNumberRegistrationViewController.swift */; };
+		E0C464D4292F8A39006B9B47 /* EmailRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C464D3292F8A39006B9B47 /* EmailRegistrationViewController.swift */; };
+		E0C464D8292F92F7006B9B47 /* RepeatEmailRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C464D7292F92F7006B9B47 /* RepeatEmailRegistrationViewController.swift */; };
+		E0C464DC292F99A1006B9B47 /* CompletedRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C464DB292F99A1006B9B47 /* CompletedRegistrationViewController.swift */; };
+		E0C464DF292F9CE7006B9B47 /* InfoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C464DE292F9CE7006B9B47 /* InfoBox.swift */; };
+		E0C4CEBE2931065F006BAE89 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E0C4CEBD2931065F006BAE89 /* RxSwift */; };
 		E0E20D67292D0F5D00AB9A84 /* Registration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20D5E292D0F5C00AB9A84 /* Registration.framework */; };
 		E0E20D6C292D0F5E00AB9A84 /* RegistrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20D6B292D0F5E00AB9A84 /* RegistrationTests.swift */; };
 		E0E20D6D292D0F5E00AB9A84 /* Registration.h in Headers */ = {isa = PBXBuildFile; fileRef = E0E20D61292D0F5C00AB9A84 /* Registration.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -15,7 +25,9 @@
 		E0E20D7D292D0FB400AB9A84 /* RegistrationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20D7C292D0FB400AB9A84 /* RegistrationTextField.swift */; };
 		E0E20D80292D0FDE00AB9A84 /* RegistrationCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20D7F292D0FDE00AB9A84 /* RegistrationCoordinatorDelegate.swift */; };
 		E0E20D84292D101800AB9A84 /* FirstInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20D83292D101800AB9A84 /* FirstInfoViewController.swift */; };
-		E0E20D88292D104A00AB9A84 /* FirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20D87292D104A00AB9A84 /* FirstStepViewController.swift */; };
+		E0E20DF3292D44E600AB9A84 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20DF2292D44E600AB9A84 /* RegistrationViewModel.swift */; };
+		E0E20E21292D539200AB9A84 /* FirebaseService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20E20292D539200AB9A84 /* FirebaseService.framework */; };
+		E0E20E22292D539200AB9A84 /* FirebaseService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20E20292D539200AB9A84 /* FirebaseService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +48,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E0E20D79292D0F8500AB9A84 /* Common.framework in Embed Frameworks */,
+				E0E20E22292D539200AB9A84 /* FirebaseService.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,6 +56,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E0C2C94A292E3E59008249F4 /* FullNameRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullNameRegistrationViewController.swift; sourceTree = "<group>"; };
+		E0C2C94C292E426E008249F4 /* RegistrationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationButton.swift; sourceTree = "<group>"; };
+		E0C2C950292E5075008249F4 /* CPFRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPFRegistrationViewController.swift; sourceTree = "<group>"; };
+		E0C2C954292E5FE0008249F4 /* BirthDateRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDateRegistrationViewController.swift; sourceTree = "<group>"; };
+		E0C2C959292E696F008249F4 /* PhoneNumberRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberRegistrationViewController.swift; sourceTree = "<group>"; };
+		E0C464D3292F8A39006B9B47 /* EmailRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailRegistrationViewController.swift; sourceTree = "<group>"; };
+		E0C464D7292F92F7006B9B47 /* RepeatEmailRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatEmailRegistrationViewController.swift; sourceTree = "<group>"; };
+		E0C464DB292F99A1006B9B47 /* CompletedRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedRegistrationViewController.swift; sourceTree = "<group>"; };
+		E0C464DE292F9CE7006B9B47 /* InfoBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBox.swift; sourceTree = "<group>"; };
 		E0E20D5E292D0F5C00AB9A84 /* Registration.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Registration.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20D61292D0F5C00AB9A84 /* Registration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Registration.h; sourceTree = "<group>"; };
 		E0E20D66292D0F5D00AB9A84 /* RegistrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RegistrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,7 +73,8 @@
 		E0E20D7C292D0FB400AB9A84 /* RegistrationTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTextField.swift; sourceTree = "<group>"; };
 		E0E20D7F292D0FDE00AB9A84 /* RegistrationCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		E0E20D83292D101800AB9A84 /* FirstInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstInfoViewController.swift; sourceTree = "<group>"; };
-		E0E20D87292D104A00AB9A84 /* FirstStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstStepViewController.swift; sourceTree = "<group>"; };
+		E0E20DF2292D44E600AB9A84 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		E0E20E20292D539200AB9A84 /* FirebaseService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +82,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0C4CEBE2931065F006BAE89 /* RxSwift in Frameworks */,
 				E0E20D78292D0F8500AB9A84 /* Common.framework in Frameworks */,
+				E0E20E21292D539200AB9A84 /* FirebaseService.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +99,140 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E0C2C948292E3E30008249F4 /* FullName */ = {
+			isa = PBXGroup;
+			children = (
+				E0C2C949292E3E40008249F4 /* View */,
+			);
+			path = FullName;
+			sourceTree = "<group>";
+		};
+		E0C2C949292E3E40008249F4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E0C2C94A292E3E59008249F4 /* FullNameRegistrationViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E0C2C94E292E5055008249F4 /* CPF */ = {
+			isa = PBXGroup;
+			children = (
+				E0C2C94F292E505F008249F4 /* View */,
+			);
+			path = CPF;
+			sourceTree = "<group>";
+		};
+		E0C2C94F292E505F008249F4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E0C2C950292E5075008249F4 /* CPFRegistrationViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E0C2C952292E5FCB008249F4 /* BirthDate */ = {
+			isa = PBXGroup;
+			children = (
+				E0C2C953292E5FCF008249F4 /* View */,
+			);
+			path = BirthDate;
+			sourceTree = "<group>";
+		};
+		E0C2C953292E5FCF008249F4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E0C2C954292E5FE0008249F4 /* BirthDateRegistrationViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E0C2C956292E68DA008249F4 /* PhoneNumber */ = {
+			isa = PBXGroup;
+			children = (
+				E0C2C958292E6941008249F4 /* View */,
+			);
+			path = PhoneNumber;
+			sourceTree = "<group>";
+		};
+		E0C2C957292E68FC008249F4 /* Steps */ = {
+			isa = PBXGroup;
+			children = (
+				E0C2C948292E3E30008249F4 /* FullName */,
+				E0C2C94E292E5055008249F4 /* CPF */,
+				E0C2C952292E5FCB008249F4 /* BirthDate */,
+				E0C2C956292E68DA008249F4 /* PhoneNumber */,
+				E0C464D1292F8A12006B9B47 /* Email */,
+				E0C464D5292F92DE006B9B47 /* RepeatEmail */,
+			);
+			path = Steps;
+			sourceTree = "<group>";
+		};
+		E0C2C958292E6941008249F4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E0C2C959292E696F008249F4 /* PhoneNumberRegistrationViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E0C464D1292F8A12006B9B47 /* Email */ = {
+			isa = PBXGroup;
+			children = (
+				E0C464D2292F8A20006B9B47 /* View */,
+			);
+			path = Email;
+			sourceTree = "<group>";
+		};
+		E0C464D2292F8A20006B9B47 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E0C464D3292F8A39006B9B47 /* EmailRegistrationViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E0C464D5292F92DE006B9B47 /* RepeatEmail */ = {
+			isa = PBXGroup;
+			children = (
+				E0C464D6292F92E4006B9B47 /* View */,
+			);
+			path = RepeatEmail;
+			sourceTree = "<group>";
+		};
+		E0C464D6292F92E4006B9B47 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E0C464D7292F92F7006B9B47 /* RepeatEmailRegistrationViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E0C464D9292F996F006B9B47 /* CompletedRegistration */ = {
+			isa = PBXGroup;
+			children = (
+				E0C464DD292F9CD5006B9B47 /* UI */,
+				E0C464DA292F9980006B9B47 /* View */,
+			);
+			path = CompletedRegistration;
+			sourceTree = "<group>";
+		};
+		E0C464DA292F9980006B9B47 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E0C464DB292F99A1006B9B47 /* CompletedRegistrationViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E0C464DD292F9CD5006B9B47 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E0C464DE292F9CE7006B9B47 /* InfoBox.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		E0E20D54292D0F5C00AB9A84 = {
 			isa = PBXGroup;
 			children = (
@@ -98,8 +257,10 @@
 			children = (
 				E0E20D7E292D0FCD00AB9A84 /* Protocol */,
 				E0E20D7B292D0FA300AB9A84 /* UI */,
+				E0E20DF1292D44C500AB9A84 /* ViewModel */,
 				E0E20D81292D0FF800AB9A84 /* FirstInfo */,
-				E0E20D85292D103300AB9A84 /* FirstStep */,
+				E0C2C957292E68FC008249F4 /* Steps */,
+				E0C464D9292F996F006B9B47 /* CompletedRegistration */,
 				E0E20D61292D0F5C00AB9A84 /* Registration.h */,
 			);
 			path = Registration;
@@ -116,6 +277,7 @@
 		E0E20D76292D0F8500AB9A84 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E0E20E20292D539200AB9A84 /* FirebaseService.framework */,
 				E0E20D77292D0F8500AB9A84 /* Common.framework */,
 			);
 			name = Frameworks;
@@ -125,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				E0E20D7C292D0FB400AB9A84 /* RegistrationTextField.swift */,
+				E0C2C94C292E426E008249F4 /* RegistrationButton.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -153,20 +316,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		E0E20D85292D103300AB9A84 /* FirstStep */ = {
+		E0E20DF1292D44C500AB9A84 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E0E20D86292D103E00AB9A84 /* View */,
+				E0E20DF2292D44E600AB9A84 /* RegistrationViewModel.swift */,
 			);
-			path = FirstStep;
-			sourceTree = "<group>";
-		};
-		E0E20D86292D103E00AB9A84 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				E0E20D87292D104A00AB9A84 /* FirstStepViewController.swift */,
-			);
-			path = View;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +353,9 @@
 			dependencies = (
 			);
 			name = Registration;
+			packageProductDependencies = (
+				E0C4CEBD2931065F006BAE89 /* RxSwift */,
+			);
 			productName = Registration;
 			productReference = E0E20D5E292D0F5C00AB9A84 /* Registration.framework */;
 			productType = "com.apple.product-type.framework";
@@ -248,6 +406,9 @@
 				Base,
 			);
 			mainGroup = E0E20D54292D0F5C00AB9A84;
+			packageReferences = (
+				E0C4CEBC2931065F006BAE89 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = E0E20D5F292D0F5C00AB9A84 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -280,10 +441,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0C464DF292F9CE7006B9B47 /* InfoBox.swift in Sources */,
+				E0C464D8292F92F7006B9B47 /* RepeatEmailRegistrationViewController.swift in Sources */,
 				E0E20D80292D0FDE00AB9A84 /* RegistrationCoordinatorDelegate.swift in Sources */,
 				E0E20D7D292D0FB400AB9A84 /* RegistrationTextField.swift in Sources */,
+				E0C2C94B292E3E59008249F4 /* FullNameRegistrationViewController.swift in Sources */,
+				E0C2C955292E5FE0008249F4 /* BirthDateRegistrationViewController.swift in Sources */,
 				E0E20D84292D101800AB9A84 /* FirstInfoViewController.swift in Sources */,
-				E0E20D88292D104A00AB9A84 /* FirstStepViewController.swift in Sources */,
+				E0C464DC292F99A1006B9B47 /* CompletedRegistrationViewController.swift in Sources */,
+				E0C2C951292E5075008249F4 /* CPFRegistrationViewController.swift in Sources */,
+				E0E20DF3292D44E600AB9A84 /* RegistrationViewModel.swift in Sources */,
+				E0C464D4292F8A39006B9B47 /* EmailRegistrationViewController.swift in Sources */,
+				E0C2C95A292E696F008249F4 /* PhoneNumberRegistrationViewController.swift in Sources */,
+				E0C2C94D292E426E008249F4 /* RegistrationButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,6 +734,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E0C4CEBC2931065F006BAE89 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 6.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E0C4CEBD2931065F006BAE89 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E0C4CEBC2931065F006BAE89 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E0E20D55292D0F5C00AB9A84 /* Project object */;
 }

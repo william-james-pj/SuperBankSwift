@@ -6,7 +6,15 @@
 //
 
 import UIKit
+import Common
 
 public protocol RegistrationCoordinatorDelegate: AnyObject {
-    func goToFirstStep()
+    func goToFullName()
+    func goToCPF()
+    func goToBirthDate()
+    func goToPhoneNumber()
+    func goToEmail()
+    func goToRepeatEmail()
+    func goToCompletedRegistration(login : Login)
+    func didFinishRegistration()
 }

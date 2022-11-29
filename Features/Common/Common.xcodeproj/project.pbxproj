@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E008E0D729367A490051A4CC /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E008E0D629367A490051A4CC /* Account.swift */; };
+		E008E0D929367A630051A4CC /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E008E0D829367A630051A4CC /* Customer.swift */; };
+		E008E0DB29367A990051A4CC /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = E008E0DA29367A990051A4CC /* Login.swift */; };
 		E0E20D04292D0B9D00AB9A84 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20CFB292D0B9D00AB9A84 /* Common.framework */; };
 		E0E20D09292D0B9D00AB9A84 /* CommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20D08292D0B9D00AB9A84 /* CommonTests.swift */; };
 		E0E20D0A292D0B9D00AB9A84 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = E0E20CFE292D0B9D00AB9A84 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -24,6 +27,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E008E0D629367A490051A4CC /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		E008E0D829367A630051A4CC /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		E008E0DA29367A990051A4CC /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		E0E20CFB292D0B9D00AB9A84 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20CFE292D0B9D00AB9A84 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		E0E20D03292D0B9D00AB9A84 /* CommonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +56,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E008E0D529367A0B0051A4CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E008E0D629367A490051A4CC /* Account.swift */,
+				E008E0D829367A630051A4CC /* Customer.swift */,
+				E008E0DA29367A990051A4CC /* Login.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		E0E20CF1292D0B9D00AB9A84 = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +87,7 @@
 		E0E20CFD292D0B9D00AB9A84 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				E008E0D529367A0B0051A4CC /* Model */,
 				E0E20D13292D0BAF00AB9A84 /* Extension */,
 				E0E20CFE292D0B9D00AB9A84 /* Common.h */,
 			);
@@ -203,7 +220,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E008E0D929367A630051A4CC /* Customer.swift in Sources */,
 				E0E20D15292D0BD300AB9A84 /* TextField+extension.swift in Sources */,
+				E008E0D729367A490051A4CC /* Account.swift in Sources */,
+				E008E0DB29367A990051A4CC /* Login.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

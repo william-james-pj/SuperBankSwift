@@ -125,7 +125,7 @@ public class FirstInfoViewController: UIViewController {
     
     // MARK: - Methods
     @IBAction func OpenAccountButtonTapped(_ sender: UIButton) {
-        self.coordinatorDelegate?.goToFirstStep()
+        self.coordinatorDelegate?.goToFullName()
     }
     
     fileprivate func buildHierarchy() {
@@ -148,7 +148,7 @@ public class FirstInfoViewController: UIViewController {
             stackBase.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             stackBase.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
-            viewImageContainer.heightAnchor.constraint(equalToConstant: 280),
+            viewImageContainer.heightAnchor.constraint(equalToConstant: 240),
             
             imageViewInfo.centerXAnchor.constraint(equalTo: viewImageContainer.centerXAnchor),
             imageViewInfo.bottomAnchor.constraint(equalTo: viewImageContainer.bottomAnchor, constant: -16),
