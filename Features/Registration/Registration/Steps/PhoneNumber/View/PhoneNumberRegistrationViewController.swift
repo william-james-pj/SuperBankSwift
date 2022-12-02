@@ -204,7 +204,11 @@ extension PhoneNumberRegistrationViewController: UITextFieldDelegate {
         if let updatedString = updatedString {
             if updatedString.count == 15 {
                 self.validateInput(true)
-            } else {
+            }
+            else if updatedString.count > 15 {
+                return false
+            }
+            else {
                 self.validateInput(false)
             }
         }

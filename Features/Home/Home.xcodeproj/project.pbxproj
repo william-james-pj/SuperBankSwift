@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E0DB9097293A3BFE00828677 /* HomeCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DB9096293A3BFE00828677 /* HomeCoordinatorDelegate.swift */; };
 		E0E20DA1292D11C200AB9A84 /* Home.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20D98292D11C200AB9A84 /* Home.framework */; };
 		E0E20DA6292D11C200AB9A84 /* HomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20DA5292D11C200AB9A84 /* HomeTests.swift */; };
 		E0E20DA7292D11C200AB9A84 /* Home.h in Headers */ = {isa = PBXBuildFile; fileRef = E0E20D9B292D11C200AB9A84 /* Home.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E0DB9096293A3BFE00828677 /* HomeCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		E0E20D98292D11C200AB9A84 /* Home.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Home.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20D9B292D11C200AB9A84 /* Home.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Home.h; sourceTree = "<group>"; };
 		E0E20DA0292D11C200AB9A84 /* HomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +66,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E0DB9093293A3BDF00828677 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				E0DB9096293A3BFE00828677 /* HomeCoordinatorDelegate.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		E0E20D8E292D11C200AB9A84 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +95,7 @@
 		E0E20D9A292D11C200AB9A84 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				E0DB9093293A3BDF00828677 /* Protocol */,
 				E0E20DB0292D11DA00AB9A84 /* UI */,
 				E0E20DC3292D12AE00AB9A84 /* View */,
 				E0E20D9B292D11C200AB9A84 /* Home.h */,
@@ -290,6 +301,7 @@
 			files = (
 				E0E20DB3292D11FA00AB9A84 /* HomeBalance.swift in Sources */,
 				E0E20DBA292D123F00AB9A84 /* HomeCreditCard.swift in Sources */,
+				E0DB9097293A3BFE00828677 /* HomeCoordinatorDelegate.swift in Sources */,
 				E0E20DB5292D120A00AB9A84 /* BalanceCollectionViewCell.swift in Sources */,
 				E0E20DC5292D12C000AB9A84 /* HomeViewController.swift in Sources */,
 				E0E20DBD292D126300AB9A84 /* HomeOptions.swift in Sources */,

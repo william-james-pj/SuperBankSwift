@@ -7,10 +7,10 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+public class HomeViewController: UIViewController {
     // MARK: - Constrants
     // MARK: - Variables
-//    weak var homeCoordinator: HomeCoordinator?
+    public weak var coordinatorDelegate: HomeCoordinatorDelegate?
     
     // MARK: - Components
     fileprivate let scrollView: UIScrollView = {
@@ -67,17 +67,17 @@ class HomeViewController: UIViewController {
     }()
     
     // MARK: - Lifecycle
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         setupVC()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
+    public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }

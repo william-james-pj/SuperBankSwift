@@ -188,7 +188,11 @@ extension BirthDateRegistrationViewController: UITextFieldDelegate {
         if let updatedString = updatedString {
             if updatedString.count == 10 {
                 self.validateInput(true)
-            } else {
+            }
+            else if updatedString.count > 10 {
+                return false
+            }
+            else {
                 self.validateInput(false)
             }
         }

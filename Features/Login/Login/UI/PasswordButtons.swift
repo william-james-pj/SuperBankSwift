@@ -7,9 +7,18 @@
 
 import UIKit
 
+protocol PasswordButtonsDelegate {
+    func getPasswordCharacter(_ character: ButtonPasswordText)
+    func removeLastTypedPassword()
+}
+
+
 class PasswordButtons: UIView {
     // MARK: - Constrants
     // MARK: - Variables
+    private var buttonsTexts: [ButtonPasswordText]?
+    var delegate: PasswordButtonsDelegate?
+    
     // MARK: - Components
     fileprivate let stackRow: UIStackView = {
         let stack = UIStackView()
@@ -40,32 +49,44 @@ class PasswordButtons: UIView {
     
     fileprivate let button1: PasswordButton = {
         let button = PasswordButton()
+        button.tag = 0
+        button.addTarget(self, action: #selector(PasswordButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
     fileprivate let button2: PasswordButton = {
         let button = PasswordButton()
+        button.tag = 1
+        button.addTarget(self, action: #selector(PasswordButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
     fileprivate let button3: PasswordButton = {
         let button = PasswordButton()
+        button.tag = 2
+        button.addTarget(self, action: #selector(PasswordButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
     fileprivate let button4: PasswordButton = {
         let button = PasswordButton()
+        button.tag = 3
+        button.addTarget(self, action: #selector(PasswordButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
     fileprivate let button5: PasswordButton = {
         let button = PasswordButton()
+        button.tag = 4
+        button.addTarget(self, action: #selector(PasswordButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
     fileprivate let button6: PasswordButton = {
         let button = PasswordButton()
+        button.tag = 5
         button.settingImage()
+        button.addTarget(self, action: #selector(DeleteButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -86,13 +107,47 @@ class PasswordButtons: UIView {
         buildConstraints()
     }
     
+    // MARK: - Actions
+    @IBAction func PasswordButtonTapped(_ sender: UIButton) {
+        guard let buttonsTexts = self.buttonsTexts else {
+            return
+        }
+        if buttonsTexts.count < sender.tag {
+            return
+        }
+        let character = buttonsTexts[sender.tag]
+        self.delegate?.getPasswordCharacter(character)
+    }
+    
+    @IBAction func DeleteButtonTapped(_ sender: UIButton) {
+        self.delegate?.removeLastTypedPassword()
+    }
+    
     // MARK: - Methods
     func settingTitles(_ texts: [ButtonPasswordText]) {
+        self.buttonsTexts = texts
         self.button1.settingText(texts[0])
         self.button2.settingText(texts[1])
         self.button3.settingText(texts[2])
         self.button4.settingText(texts[3])
         self.button5.settingText(texts[4])
+    }
+    
+    func settingButtons(_ isDisable: Bool) {
+        if isDisable {
+            self.button1.isEnabled = false
+            self.button2.isEnabled = false
+            self.button3.isEnabled = false
+            self.button4.isEnabled = false
+            self.button5.isEnabled = false
+            return
+        }
+        
+        self.button1.isEnabled = true
+        self.button2.isEnabled = true
+        self.button3.isEnabled = true
+        self.button4.isEnabled = true
+        self.button5.isEnabled = true
     }
     
     fileprivate func buildHierarchy() {
@@ -116,57 +171,5 @@ class PasswordButtons: UIView {
             stackRow.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             stackRow.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
-    }
-}
-
-class PasswordButton: UIButton {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func settingText(_ text: ButtonPasswordText) {
-        var config = self.getConfig()
-        
-        var container = AttributeContainer()
-        container.font = .systemFont(ofSize: 14, weight: .bold)
-        config.attributedTitle = AttributedString("\(text.first) ou \(text.second)", attributes: container)
-        
-        self.configuration = config
-    }
-    
-    func settingImage() {
-        self.setTitle("", for: .normal)
-        var config = self.getConfig()
-        config.image = UIImage(systemName: "delete.left",
-          withConfiguration: UIImage.SymbolConfiguration(scale: .large))
-        
-        self.configuration = config
-    }
-    
-    fileprivate func setupView() {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        
-        var config = self.getConfig()
-        
-        var container = AttributeContainer()
-        container.font = .systemFont(ofSize: 14, weight: .bold)
-        config.attributedTitle = AttributedString("A ou B", attributes: container)
-        
-        self.configuration = config
-    }
-    
-    fileprivate func getConfig() -> UIButton.Configuration {
-        var config = UIButton.Configuration.tinted()
-        config.baseForegroundColor = UIColor(named: "Primary")
-        config.baseBackgroundColor = UIColor(named: "Primary")
-        config.buttonSize = .medium
-        config.cornerStyle = .small
-        config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 4, bottom: 8, trailing: 4)
-        return config
     }
 }

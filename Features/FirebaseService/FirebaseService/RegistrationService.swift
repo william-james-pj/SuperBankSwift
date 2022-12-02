@@ -22,7 +22,7 @@ public class RegistrationService {
         let account = self.createAccount(id)
         let accountId = self.saveAccount(account)
         
-        let login = self.createLogin(accountId, account.accountNumber)
+        let login = self.createLogin(accountId, id, account.accountNumber)
         self.saveLogin(login)
         return login
     }
@@ -84,10 +84,10 @@ public class RegistrationService {
         return newAccount
     }
     
-    private func createLogin(_ accountId: String, _ accountCode: String) -> Login {
+    private func createLogin(_ accountId: String, _ customerId: String, _ accountCode: String) -> Login {
         let password = generateAccountCode(5)
         
-        let newLogin = Login(accountId: accountId, accountNumber: accountCode, password: password)
+        let newLogin = Login(accountId: accountId, customerId: customerId, accountNumber: accountCode, password: password)
         return newLogin
     }
     

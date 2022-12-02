@@ -10,27 +10,31 @@ import Common
 import Registration
 
 class RegistrationCoordinator: Coordinator {
+    // MARK: - Variables
     weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
+    // MARK: - Init
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
+    // MARK: - Methods
     func start() {
-        settingNav()
+        self.settingNav()
         let initialViewController = FirstInfoViewController()
         initialViewController.coordinatorDelegate = self
         self.navigationController.pushViewController(initialViewController, animated: false)
     }
     
-    fileprivate func settingNav() {
-        navigationController.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "Text") ?? .label]
-        navigationController.navigationBar.tintColor = UIColor(named: "Text")
+    private func settingNav() {
+        self.navigationController.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "Text") ?? .label]
+        self.navigationController.navigationBar.tintColor = UIColor(named: "Text")
     }
 }
 
+// MARK: - extension RegistrationCoordinatorDelegate
 extension RegistrationCoordinator: RegistrationCoordinatorDelegate {
     func goToFullName() {
         let fullNameVC = FullNameRegistrationViewController()
@@ -76,7 +80,7 @@ extension RegistrationCoordinator: RegistrationCoordinatorDelegate {
     }
     
     func didFinishRegistration() {
-        navigationController.popToRootViewController(animated: true)
-        parentCoordinator?.childDidFinish(self)
+        self.navigationController.popToRootViewController(animated: true)
+        self.parentCoordinator?.childDidFinish(self)
     }
 }

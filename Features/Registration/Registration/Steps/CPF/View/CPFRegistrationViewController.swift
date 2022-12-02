@@ -282,7 +282,11 @@ extension CPFRegistrationViewController: UITextFieldDelegate {
         if let updatedString = updatedString {
             if updatedString.count == 14 {
                 self.validateInput(true)
-            } else {
+            }
+            else if updatedString.count > 14 {
+                return false
+            }
+            else {
                 self.validateInput(false)
             }
         }
