@@ -36,7 +36,7 @@ class PasswordButton: UIButton {
         self.configuration = config
     }
     
-    fileprivate func setupView() {
+    private func setupView() {
         self.translatesAutoresizingMaskIntoConstraints = false
         
         var config = self.getConfig()
@@ -48,7 +48,7 @@ class PasswordButton: UIButton {
         self.configuration = config
     }
     
-    fileprivate func getConfig() -> UIButton.Configuration {
+    private func getConfig() -> UIButton.Configuration {
         var config = UIButton.Configuration.tinted()
         config.baseForegroundColor = UIColor(named: "Primary")
         config.baseBackgroundColor = UIColor(named: "Primary")

@@ -9,14 +9,14 @@ import UIKit
 
 public class PhoneNumberRegistrationViewController: UIViewController {
     // MARK: - Constrants
-    let viewModel = RegistrationViewModel.sharedRegistration
+    private let viewModel = RegistrationViewModel.sharedRegistration
     
     // MARK: - Variables
     public weak var coordinatorDelegate: RegistrationCoordinatorDelegate?
-    var phoneNumber: String = ""
+    private var phoneNumber: String = ""
     
     // MARK: - Components
-    fileprivate let stackBase: UIStackView = {
+    private let stackBase: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 32
@@ -34,7 +34,7 @@ public class PhoneNumberRegistrationViewController: UIViewController {
         return stack
     }()
     
-    fileprivate let labelTitle: UILabel = {
+    private let labelTitle: UILabel = {
         let attrString = NSMutableAttributedString(string: "Qual é o número do seu celular?")
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3
@@ -49,7 +49,7 @@ public class PhoneNumberRegistrationViewController: UIViewController {
         return label
     }()
     
-    fileprivate let labelInfo: UILabel = {
+    private let labelInfo: UILabel = {
         let attrString = NSMutableAttributedString(string: "Insira seu número de celular principal.Futuras\nrecuperação de senha ou informações sobre sua\nconta serão enviadas para este número.")
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3
@@ -64,7 +64,7 @@ public class PhoneNumberRegistrationViewController: UIViewController {
         return label
     }()
     
-    fileprivate let textFieldPhoneNumber: UITextField = {
+    private let textFieldPhoneNumber: UITextField = {
         let textField = RegistrationTextField()
         textField.attributedPlaceholder = NSAttributedString(
             string: "() 00000-0000",
@@ -74,7 +74,7 @@ public class PhoneNumberRegistrationViewController: UIViewController {
         return textField
     }()
     
-    fileprivate let buttonGo: RegistrationButton = {
+    private let buttonGo: RegistrationButton = {
         let button = RegistrationButton()
         button.addTarget(self, action: #selector(GoButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -88,7 +88,7 @@ public class PhoneNumberRegistrationViewController: UIViewController {
     }
     
     // MARK: - Setup
-    fileprivate func setupVC() {
+    private func setupVC() {
         view.backgroundColor = UIColor(named: "Background")
         settingButton(isDisabled: true)
         buildHierarchy()
@@ -101,13 +101,13 @@ public class PhoneNumberRegistrationViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func GoButtonTapped(_ sender: UIButton) {
+    @IBAction private func GoButtonTapped(_ sender: UIButton) {
         self.viewModel.setPhoneNumber(phoneNumber)
         self.coordinatorDelegate?.goToEmail()
     }
     
     // MARK: - Methods
-    fileprivate func validateInput(_ isValid: Bool) {
+    private func validateInput(_ isValid: Bool) {
         if isValid {
             self.textFieldPhoneNumber.textColor = UIColor(named: "Green")
             settingButton(isDisabled: false)
@@ -117,7 +117,7 @@ public class PhoneNumberRegistrationViewController: UIViewController {
         settingButton(isDisabled: true)
     }
     
-    fileprivate func settingButton(isDisabled: Bool) {
+    private func settingButton(isDisabled: Bool) {
         var container = AttributeContainer()
         container.font = .systemFont(ofSize: 14, weight: .bold)
         
@@ -135,7 +135,7 @@ public class PhoneNumberRegistrationViewController: UIViewController {
         self.buttonGo.isEnabled = true
     }
     
-    @objc fileprivate func formattedPhoneNumberMask(_ textField: UITextField){
+    @objc private func formattedPhoneNumberMask(_ textField: UITextField){
         if let text = textField.text {
             let cleanPhoneNumber = text.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
             self.phoneNumber = cleanPhoneNumber
@@ -154,7 +154,7 @@ public class PhoneNumberRegistrationViewController: UIViewController {
         }
     }
     
-    @objc fileprivate func keyboardWillShow(notification: NSNotification) {
+    @objc private func keyboardWillShow(notification: NSNotification) {
         let info = notification.userInfo!
         let keyboardFrame: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
 
@@ -164,7 +164,7 @@ public class PhoneNumberRegistrationViewController: UIViewController {
         })
     }
     
-    @objc fileprivate func keyboardWillHide(notification: NSNotification) {
+    @objc private func keyboardWillHide(notification: NSNotification) {
         let info = notification.userInfo!
         let _: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
@@ -174,7 +174,7 @@ public class PhoneNumberRegistrationViewController: UIViewController {
         })
     }
     
-    fileprivate func buildHierarchy() {
+    private func buildHierarchy() {
         view.addSubview(stackBase)
         stackBase.addArrangedSubview(stackContent)
         stackContent.addArrangedSubview(labelTitle)
@@ -184,7 +184,7 @@ public class PhoneNumberRegistrationViewController: UIViewController {
         stackBase.addArrangedSubview(buttonGo)
     }
     
-    fileprivate func buildConstraints() {
+    private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             stackBase.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),

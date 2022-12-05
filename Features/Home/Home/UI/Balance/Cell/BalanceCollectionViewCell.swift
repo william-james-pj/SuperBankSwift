@@ -14,7 +14,7 @@ class BalanceCollectionViewCell: UICollectionViewCell {
     // MARK: - Constrants
     // MARK: - Variables
     // MARK: - Components
-    fileprivate let stackBase: UIStackView = {
+    private let stackBase: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 8
@@ -23,7 +23,7 @@ class BalanceCollectionViewCell: UICollectionViewCell {
         return stack
     }()
     
-    fileprivate let labelTitle: UILabel = {
+    private let labelTitle: UILabel = {
         let label = UILabel()
         label.text = "Saldo"
         label.font = .systemFont(ofSize: 14, weight: .regular)
@@ -32,7 +32,7 @@ class BalanceCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    fileprivate let labelValue: UILabel = {
+    private let labelValue: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.textColor = UIColor(named: "Text")
@@ -51,7 +51,7 @@ class BalanceCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Setup
-    fileprivate func setupVC() {
+    private func setupVC() {
         buildHierarchy()
         buildConstraints()
     }
@@ -61,13 +61,13 @@ class BalanceCollectionViewCell: UICollectionViewCell {
         self.labelValue.text = "R$ " + value
     }
     
-    fileprivate func buildHierarchy() {
+    private func buildHierarchy() {
         self.addSubview(stackBase)
         stackBase.addArrangedSubview(labelTitle)
         stackBase.addArrangedSubview(labelValue)
     }
     
-    fileprivate func buildConstraints() {
+    private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: self.topAnchor),
             stackBase.leadingAnchor.constraint(equalTo: self.leadingAnchor),

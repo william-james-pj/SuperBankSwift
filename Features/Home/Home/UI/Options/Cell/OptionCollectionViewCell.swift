@@ -22,7 +22,7 @@ class OptionCollectionViewCell: UICollectionViewCell {
     // MARK: - Constrants
     // MARK: - Variables
     // MARK: - Components
-    fileprivate let stackBase: UIStackView = {
+    private let stackBase: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 4
@@ -31,13 +31,13 @@ class OptionCollectionViewCell: UICollectionViewCell {
         return stack
     }()
     
-    fileprivate let viewBoxContainer: UIView = {
+    private let viewBoxContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    fileprivate let viewBox: UIView = {
+    private let viewBox: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(named: "Card")
         view.clipsToBounds = true
@@ -46,14 +46,14 @@ class OptionCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    fileprivate let imageViewItem: UIImageView = {
+    private let imageViewItem: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    fileprivate let labelTitle: UILabel = {
+    private let labelTitle: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .regular)
         label.textColor = UIColor(named: "Text")
@@ -73,7 +73,7 @@ class OptionCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Setup
-    fileprivate func setupVC() {
+    private func setupVC() {
         buildHierarchy()
         buildConstraints()
     }
@@ -99,7 +99,7 @@ class OptionCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    fileprivate func settingEditButton () {
+    private func settingEditButton () {
         self.viewBox.backgroundColor = UIColor(named: "Backgroud")
         self.viewBox.layer.borderWidth = 1
         self.viewBox.layer.borderColor = UIColor(named: "Disabled")?.cgColor
@@ -107,7 +107,7 @@ class OptionCollectionViewCell: UICollectionViewCell {
         self.imageViewItem.image = UIImage(systemName: "plus")
     }
     
-    fileprivate func buildHierarchy() {
+    private func buildHierarchy() {
         self.addSubview(stackBase)
         stackBase.addArrangedSubview(viewBoxContainer)
         viewBoxContainer.addSubview(viewBox)
@@ -115,7 +115,7 @@ class OptionCollectionViewCell: UICollectionViewCell {
         stackBase.addArrangedSubview(labelTitle)
     }
     
-    fileprivate func buildConstraints() {
+    private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: self.topAnchor),
             stackBase.leadingAnchor.constraint(equalTo: self.leadingAnchor),

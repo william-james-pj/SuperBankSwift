@@ -13,19 +13,19 @@ public class HomeViewController: UIViewController {
     public weak var coordinatorDelegate: HomeCoordinatorDelegate?
     
     // MARK: - Components
-    fileprivate let scrollView: UIScrollView = {
+    private let scrollView: UIScrollView = {
         let scroll = UIScrollView()
         scroll.translatesAutoresizingMaskIntoConstraints = false
         return scroll
     }()
     
-    fileprivate let viewContent: UIView = {
+    private let viewContent: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    fileprivate let stackBase: UIStackView = {
+    private let stackBase: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 32
@@ -34,7 +34,7 @@ public class HomeViewController: UIViewController {
         return stack
     }()
     
-    fileprivate let labelName: UILabel = {
+    private let labelName: UILabel = {
         let label = UILabel()
         label.text = "Joãozinho"
         label.font = .systemFont(ofSize: 14, weight: .bold)
@@ -44,24 +44,24 @@ public class HomeViewController: UIViewController {
         return label
     }()
     
-    fileprivate let header: HomeHeader = {
+    private let header: HomeHeader = {
         let view = HomeHeader()
         return view
     }()
     
-    fileprivate let balance: HomeBalance = {
+    private let balance: HomeBalance = {
         let view = HomeBalance()
         view.currentValue = "10,823.53"
         return view
     }()
     
-    fileprivate let options: HomeOptions = {
+    private let options: HomeOptions = {
         let view = HomeOptions()
         view.options = [.pix, .transfer, .pay, .card, .edit]
         return view
     }()
     
-    fileprivate let creditCard: HomeCreditCard = {
+    private let creditCard: HomeCreditCard = {
         let view = HomeCreditCard()
         return view
     }()
@@ -83,7 +83,7 @@ public class HomeViewController: UIViewController {
     }
     
     // MARK: - Setup
-    fileprivate func setupVC() {
+    private func setupVC() {
         view.backgroundColor = UIColor(named: "Background")
         
         self.options.delegate = self
@@ -93,7 +93,7 @@ public class HomeViewController: UIViewController {
     }
     
     // MARK: - Methods
-    fileprivate func buildHierarchy() {
+    private func buildHierarchy() {
         view.addSubview(scrollView)
         scrollView.addSubview(viewContent)
         viewContent.addSubview(stackBase)
@@ -104,7 +104,7 @@ public class HomeViewController: UIViewController {
         stackBase.addArrangedSubview(creditCard)
     }
     
-    fileprivate func buildConstraints() {
+    private func buildConstraints() {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

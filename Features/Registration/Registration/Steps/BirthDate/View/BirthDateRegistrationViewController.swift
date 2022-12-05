@@ -9,14 +9,14 @@ import UIKit
 
 public class BirthDateRegistrationViewController: UIViewController {
     // MARK: - Constrants
-    let viewModel = RegistrationViewModel.sharedRegistration
+    private let viewModel = RegistrationViewModel.sharedRegistration
     
     // MARK: - Variables
     public weak var coordinatorDelegate: RegistrationCoordinatorDelegate?
-    var birthDate: String = ""
+    private var birthDate: String = ""
     
     // MARK: - Components
-    fileprivate let stackBase: UIStackView = {
+    private let stackBase: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 32
@@ -25,7 +25,7 @@ public class BirthDateRegistrationViewController: UIViewController {
         return stack
     }()
     
-    fileprivate let stackContent: UIStackView = {
+    private let stackContent: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 32
@@ -34,7 +34,7 @@ public class BirthDateRegistrationViewController: UIViewController {
         return stack
     }()
     
-    fileprivate let labelTitle: UILabel = {
+    private let labelTitle: UILabel = {
         let attrString = NSMutableAttributedString(string: "E qual é a sua data de nascimento?")
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3
@@ -49,7 +49,7 @@ public class BirthDateRegistrationViewController: UIViewController {
         return label
     }()
     
-    fileprivate let textFieldBirthDate: UITextField = {
+    private let textFieldBirthDate: UITextField = {
         let textField = RegistrationTextField()
         textField.attributedPlaceholder = NSAttributedString(
             string: "dd/mm/yyyy",
@@ -59,7 +59,7 @@ public class BirthDateRegistrationViewController: UIViewController {
         return textField
     }()
     
-    fileprivate let buttonGo: RegistrationButton = {
+    private let buttonGo: RegistrationButton = {
         let button = RegistrationButton()
         button.addTarget(self, action: #selector(GoButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -73,7 +73,7 @@ public class BirthDateRegistrationViewController: UIViewController {
     }
     
     // MARK: - Setup
-    fileprivate func setupVC() {
+    private func setupVC() {
         view.backgroundColor = UIColor(named: "Background")
         settingButton(isDisabled: true)
         buildHierarchy()
@@ -86,13 +86,13 @@ public class BirthDateRegistrationViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func GoButtonTapped(_ sender: UIButton) {
+    @IBAction private func GoButtonTapped(_ sender: UIButton) {
         viewModel.setBirthDate(birthDate)
         self.coordinatorDelegate?.goToPhoneNumber()
     }
     
     // MARK: - Methods
-    fileprivate func validateInput(_ isValid: Bool) {
+    private func validateInput(_ isValid: Bool) {
         if isValid {
             self.textFieldBirthDate.textColor = UIColor(named: "Green")
             settingButton(isDisabled: false)
@@ -102,7 +102,7 @@ public class BirthDateRegistrationViewController: UIViewController {
         settingButton(isDisabled: true)
     }
     
-    fileprivate func settingButton(isDisabled: Bool) {
+    private func settingButton(isDisabled: Bool) {
         var container = AttributeContainer()
         container.font = .systemFont(ofSize: 14, weight: .bold)
         
@@ -120,7 +120,7 @@ public class BirthDateRegistrationViewController: UIViewController {
         self.buttonGo.isEnabled = true
     }
     
-    @objc fileprivate func formattedBirthDateMask(_ textField: UITextField){
+    @objc private func formattedBirthDateMask(_ textField: UITextField){
         if let text = textField.text {
             let cleanBirthDate = text.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
             self.birthDate = cleanBirthDate
@@ -139,7 +139,7 @@ public class BirthDateRegistrationViewController: UIViewController {
         }
     }
     
-    @objc fileprivate func keyboardWillShow(notification: NSNotification) {
+    @objc private func keyboardWillShow(notification: NSNotification) {
         let info = notification.userInfo!
         let keyboardFrame: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
 
@@ -149,7 +149,7 @@ public class BirthDateRegistrationViewController: UIViewController {
         })
     }
     
-    @objc fileprivate func keyboardWillHide(notification: NSNotification) {
+    @objc private func keyboardWillHide(notification: NSNotification) {
         let info = notification.userInfo!
         let _: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
@@ -159,7 +159,7 @@ public class BirthDateRegistrationViewController: UIViewController {
         })
     }
     
-    fileprivate func buildHierarchy() {
+    private func buildHierarchy() {
         view.addSubview(stackBase)
         stackBase.addArrangedSubview(stackContent)
         stackContent.addArrangedSubview(labelTitle)
@@ -168,7 +168,7 @@ public class BirthDateRegistrationViewController: UIViewController {
         stackBase.addArrangedSubview(buttonGo)
     }
     
-    fileprivate func buildConstraints() {
+    private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             stackBase.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),

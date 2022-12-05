@@ -14,7 +14,7 @@ class CreditCardCollectionViewCell: UICollectionViewCell {
     // MARK: - Constrants
     // MARK: - Variables
     // MARK: - Components
-    fileprivate let stackBase: UIStackView = {
+    private let stackBase: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 16
@@ -23,14 +23,14 @@ class CreditCardCollectionViewCell: UICollectionViewCell {
         return stack
     }()
     
-    fileprivate let viewLine: UIView = {
+    private let viewLine: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(named: "Disabled")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    fileprivate let stackHeader: UIStackView = {
+    private let stackHeader: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.spacing = 0
@@ -39,7 +39,7 @@ class CreditCardCollectionViewCell: UICollectionViewCell {
         return stack
     }()
     
-    fileprivate let labelTitle: UILabel = {
+    private let labelTitle: UILabel = {
         let label = UILabel()
         label.text = "Cartão de crédito"
         label.font = .systemFont(ofSize: 14, weight: .bold)
@@ -48,13 +48,13 @@ class CreditCardCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    fileprivate let viewImage: UIView = {
+    private let viewImage: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    fileprivate let imageViewIcon: UIImageView = {
+    private let imageViewIcon: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "chevron-right")
         imageView.contentMode = .scaleAspectFit
@@ -62,7 +62,7 @@ class CreditCardCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    fileprivate let stackFooter: UIStackView = {
+    private let stackFooter: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.spacing = 0
@@ -71,7 +71,7 @@ class CreditCardCollectionViewCell: UICollectionViewCell {
         return stack
     }()
     
-    fileprivate let stackInvoice: UIStackView = {
+    private let stackInvoice: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 8
@@ -80,7 +80,7 @@ class CreditCardCollectionViewCell: UICollectionViewCell {
         return stack
     }()
     
-    fileprivate let labelInvoice: UILabel = {
+    private let labelInvoice: UILabel = {
         let label = UILabel()
         label.text = "Fatura atual"
         label.font = .systemFont(ofSize: 12, weight: .bold)
@@ -89,7 +89,7 @@ class CreditCardCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    fileprivate let labelInvoiceValue: UILabel = {
+    private let labelInvoiceValue: UILabel = {
         let label = UILabel()
         label.text = "R$ 219,23"
         label.font = .systemFont(ofSize: 16, weight: .bold)
@@ -98,13 +98,13 @@ class CreditCardCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    fileprivate let viewButtonContainer: UIView = {
+    private let viewButtonContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    fileprivate let buttonPay: UIButton = {
+    private let buttonPay: UIButton = {
         let button = UIButton()
         button.setTitle("Pagar fatura", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 12, weight: .bold)
@@ -128,7 +128,7 @@ class CreditCardCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Setup
-    fileprivate func setupVC() {
+    private func setupVC() {
         buildHierarchy()
         buildConstraints()
     }
@@ -137,7 +137,7 @@ class CreditCardCollectionViewCell: UICollectionViewCell {
     func settingCell() {
     }
     
-    fileprivate func buildHierarchy() {
+    private func buildHierarchy() {
         self.addSubview(stackBase)
         stackBase.addArrangedSubview(viewLine)
         
@@ -154,7 +154,7 @@ class CreditCardCollectionViewCell: UICollectionViewCell {
         viewButtonContainer.addSubview(buttonPay)
     }
     
-    fileprivate func buildConstraints() {
+    private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: self.topAnchor),
             stackBase.leadingAnchor.constraint(equalTo: self.leadingAnchor),

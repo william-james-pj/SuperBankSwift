@@ -11,7 +11,7 @@ class HomeCreditCard: UIView {
     // MARK: - Constrants
     // MARK: - Variables
     // MARK: - Components
-    fileprivate let stackBase: UIStackView = {
+    private let stackBase: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 0
@@ -20,7 +20,7 @@ class HomeCreditCard: UIView {
         return stack
     }()
     
-    fileprivate let collectionView: UICollectionView = {
+    private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 0
@@ -43,7 +43,7 @@ class HomeCreditCard: UIView {
     }
     
     // MARK: - Setup
-    fileprivate func setupVC() {
+    private func setupVC() {
         self.translatesAutoresizingMaskIntoConstraints = false
         
         buildHierarchy()
@@ -51,7 +51,7 @@ class HomeCreditCard: UIView {
         setupCollection()
     }
     
-    fileprivate func setupCollection() {
+    private func setupCollection() {
         collectionView.dataSource = self
         collectionView.delegate = self
         
@@ -59,12 +59,12 @@ class HomeCreditCard: UIView {
     }
     
     // MARK: - Methods
-    fileprivate func buildHierarchy() {
+    private func buildHierarchy() {
         self.addSubview(stackBase)
         stackBase.addArrangedSubview(collectionView)
     }
     
-    fileprivate func buildConstraints() {
+    private func buildConstraints() {
         NSLayoutConstraint.activate([
             self.heightAnchor.constraint(greaterThanOrEqualToConstant: 108),
             

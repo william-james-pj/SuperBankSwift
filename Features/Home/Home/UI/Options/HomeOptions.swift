@@ -18,7 +18,7 @@ class HomeOptions: UIView {
     var delegate: HomeOptionsDelegate?
     
     // MARK: - Components
-    fileprivate let stackBase: UIStackView = {
+    private let stackBase: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 16
@@ -27,7 +27,7 @@ class HomeOptions: UIView {
         return stack
     }()
     
-    fileprivate let stackHeader: UIStackView = {
+    private let stackHeader: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.spacing = 0
@@ -36,7 +36,7 @@ class HomeOptions: UIView {
         return stack
     }()
     
-    fileprivate let labelSection: UILabel = {
+    private let labelSection: UILabel = {
         let label = UILabel()
         label.text = "Seus atalhos"
         label.font = .systemFont(ofSize: 14, weight: .bold)
@@ -45,14 +45,14 @@ class HomeOptions: UIView {
         return label
     }()
     
-    fileprivate let buttonEdit: UIButton = {
+    private let buttonEdit: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "edit"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    fileprivate let collectionView: UICollectionView = {
+    private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 24
@@ -75,7 +75,7 @@ class HomeOptions: UIView {
     }
     
     // MARK: - Setup
-    fileprivate func setupVC() {
+    private func setupVC() {
         self.translatesAutoresizingMaskIntoConstraints = false
         
         buildHierarchy()
@@ -83,7 +83,7 @@ class HomeOptions: UIView {
         setupCollection()
     }
     
-    fileprivate func setupCollection() {
+    private func setupCollection() {
         collectionView.dataSource = self
         collectionView.delegate = self
         
@@ -91,7 +91,7 @@ class HomeOptions: UIView {
     }
     
     // MARK: - Methods
-    fileprivate func buildHierarchy() {
+    private func buildHierarchy() {
         self.addSubview(stackBase)
         
         stackBase.addArrangedSubview(stackHeader)
@@ -101,7 +101,7 @@ class HomeOptions: UIView {
         stackBase.addArrangedSubview(collectionView)
     }
     
-    fileprivate func buildConstraints() {
+    private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: self.topAnchor),
             stackBase.leadingAnchor.constraint(equalTo: self.leadingAnchor),

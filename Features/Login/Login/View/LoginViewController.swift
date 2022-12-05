@@ -243,11 +243,11 @@ public class LoginViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func RegistrationButtonTapped(_ sender: UIButton) {
+    @IBAction private func RegistrationButtonTapped(_ sender: UIButton) {
         self.coordinatorDelegate?.goToRegistration()
     }
     
-    @IBAction func AccontbuttonTapped(_ sender: UIButton) {
+    @IBAction private func AccontbuttonTapped(_ sender: UIButton) {
         if isTypingPassword {
             self.isPerformingTask.onNext(true)
             self.viewModel.logIn()
@@ -474,6 +474,7 @@ public class LoginViewController: UIViewController {
     }
 }
 
+// MARK: - extension UITextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
@@ -495,6 +496,7 @@ extension LoginViewController: UITextFieldDelegate {
     }
 }
 
+// MARK: - extension PasswordButtonsDelegate
 extension LoginViewController: PasswordButtonsDelegate {
     func getPasswordCharacter(_ character: ButtonPasswordText) {
         self.viewModel.setTypedPassword(character)

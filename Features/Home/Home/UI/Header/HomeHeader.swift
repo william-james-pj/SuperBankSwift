@@ -11,7 +11,7 @@ class HomeHeader: UIView {
     // MARK: - Constrants
     // MARK: - Variables
     // MARK: - Components
-    fileprivate let stackBase: UIStackView = {
+    private let stackBase: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.spacing = 0
@@ -20,7 +20,7 @@ class HomeHeader: UIView {
         return stack
     }()
     
-    fileprivate let stackUser: UIStackView = {
+    private let stackUser: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.spacing = 16
@@ -29,13 +29,13 @@ class HomeHeader: UIView {
         return stack
     }()
     
-    fileprivate let viewUserBoxContainer: UIView = {
+    private let viewUserBoxContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    fileprivate let viewUserBox: UIView = {
+    private let viewUserBox: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(named: "Disabled")
         view.clipsToBounds = true
@@ -44,7 +44,7 @@ class HomeHeader: UIView {
         return view
     }()
     
-    fileprivate let labelNameBox: UILabel = {
+    private let labelNameBox: UILabel = {
         let label = UILabel()
         label.text = "WJ"
         label.font = .systemFont(ofSize: 12, weight: .regular)
@@ -53,7 +53,7 @@ class HomeHeader: UIView {
         return label
     }()
     
-    fileprivate let stackUserInfo: UIStackView = {
+    private let stackUserInfo: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 4
@@ -62,7 +62,7 @@ class HomeHeader: UIView {
         return stack
     }()
     
-    fileprivate let labelHello: UILabel = {
+    private let labelHello: UILabel = {
         let label = UILabel()
         label.text = "Olá,"
         label.font = .systemFont(ofSize: 12, weight: .bold)
@@ -71,7 +71,7 @@ class HomeHeader: UIView {
         return label
     }()
     
-    fileprivate let labelName: UILabel = {
+    private let labelName: UILabel = {
         let label = UILabel()
         label.text = "William"
         label.font = .systemFont(ofSize: 16, weight: .bold)
@@ -80,13 +80,13 @@ class HomeHeader: UIView {
         return label
     }()
     
-    fileprivate let viewEyeContainer: UIView = {
+    private let viewEyeContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    fileprivate let stackButtons: UIStackView = {
+    private let stackButtons: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.spacing = 24
@@ -95,20 +95,20 @@ class HomeHeader: UIView {
         return stack
     }()
     
-    fileprivate let buttonEye: UIButton = {
+    private let buttonEye: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "eye"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    fileprivate let viewBellContainer: UIView = {
+    private let viewBellContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    fileprivate let buttonBell: UIButton = {
+    private let buttonBell: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "bell"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -126,7 +126,7 @@ class HomeHeader: UIView {
     }
     
     // MARK: - Setup
-    fileprivate func setupVC() {
+    private func setupVC() {
         self.translatesAutoresizingMaskIntoConstraints = false
         
         buildHierarchy()
@@ -134,7 +134,7 @@ class HomeHeader: UIView {
     }
     
     // MARK: - Methods
-    fileprivate func buildHierarchy() {
+    private func buildHierarchy() {
         self.addSubview(stackBase)
         
         stackBase.addArrangedSubview(stackUser)
@@ -152,7 +152,7 @@ class HomeHeader: UIView {
         viewBellContainer.addSubview(buttonBell)
     }
     
-    fileprivate func buildConstraints() {
+    private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: self.topAnchor),
             stackBase.leadingAnchor.constraint(equalTo: self.leadingAnchor),

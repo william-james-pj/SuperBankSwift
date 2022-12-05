@@ -10,13 +10,13 @@ import Common
 
 public class CompletedRegistrationViewController: UIViewController {
     // MARK: - Constrants
-    let viewModel = RegistrationViewModel.sharedRegistration
+    private let viewModel = RegistrationViewModel.sharedRegistration
     
     // MARK: - Variables
     public weak var coordinatorDelegate: RegistrationCoordinatorDelegate?
     
     // MARK: - Components
-    fileprivate let stackBase: UIStackView = {
+    private let stackBase: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 32
@@ -25,7 +25,7 @@ public class CompletedRegistrationViewController: UIViewController {
         return stack
     }()
     
-    fileprivate let stackContent: UIStackView = {
+    private let stackContent: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 32
@@ -34,13 +34,13 @@ public class CompletedRegistrationViewController: UIViewController {
         return stack
     }()
     
-    fileprivate let viewImageContainer: UIView = {
+    private let viewImageContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    fileprivate let imageViewInfo: UIImageView = {
+    private let imageViewInfo: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "happy")
         imageView.contentMode = .scaleAspectFit
@@ -48,7 +48,7 @@ public class CompletedRegistrationViewController: UIViewController {
         return imageView
     }()
     
-    fileprivate let labelTitle: UILabel = {
+    private let labelTitle: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .semibold)
         label.textColor = UIColor(named: "Text")
@@ -58,7 +58,7 @@ public class CompletedRegistrationViewController: UIViewController {
         return label
     }()
     
-    fileprivate let labelAccountOpened: UILabel = {
+    private let labelAccountOpened: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .regular)
         label.textColor = UIColor(named: "Text")
@@ -68,7 +68,7 @@ public class CompletedRegistrationViewController: UIViewController {
         return label
     }()
     
-    fileprivate let stackInfoBox: UIStackView = {
+    private let stackInfoBox: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.spacing = 16
@@ -77,19 +77,19 @@ public class CompletedRegistrationViewController: UIViewController {
         return stack
     }()
     
-    fileprivate let infoBoxCode: InfoBox = {
+    private let infoBoxCode: InfoBox = {
         let view = InfoBox()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    fileprivate let infoBoxPassword: InfoBox = {
+    private let infoBoxPassword: InfoBox = {
         let view = InfoBox()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    fileprivate let buttonGo: RegistrationButton = {
+    private let buttonGo: RegistrationButton = {
         var container = AttributeContainer()
         container.font = .systemFont(ofSize: 14, weight: .bold)
         
@@ -107,14 +107,14 @@ public class CompletedRegistrationViewController: UIViewController {
     }
     
     // MARK: - Setup
-    fileprivate func setupVC() {
+    private func setupVC() {
         view.backgroundColor = UIColor(named: "Background")
         buildHierarchy()
         buildConstraints()
     }
     
     // MARK: - Actions
-    @IBAction func GoButtonTapped(_ sender: UIButton) {
+    @IBAction private func GoButtonTapped(_ sender: UIButton) {
         self.coordinatorDelegate?.didFinishRegistration()
     }
     
@@ -124,7 +124,7 @@ public class CompletedRegistrationViewController: UIViewController {
         self.infoBoxPassword.settingView("Senha inicial", login.password)
     }
     
-    fileprivate func buildHierarchy() {
+    private func buildHierarchy() {
         view.addSubview(stackBase)
         stackBase.addArrangedSubview(stackContent)
         stackContent.addArrangedSubview(labelTitle)
@@ -141,7 +141,7 @@ public class CompletedRegistrationViewController: UIViewController {
         stackBase.addArrangedSubview(buttonGo)
     }
     
-    fileprivate func buildConstraints() {
+    private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             stackBase.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),

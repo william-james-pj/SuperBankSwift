@@ -20,7 +20,7 @@ class PasswordButtons: UIView {
     var delegate: PasswordButtonsDelegate?
     
     // MARK: - Components
-    fileprivate let stackRow: UIStackView = {
+    private let stackRow: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 8
@@ -29,7 +29,7 @@ class PasswordButtons: UIView {
         return stack
     }()
     
-    fileprivate let stackColumn1: UIStackView = {
+    private let stackColumn1: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.spacing = 8
@@ -38,7 +38,7 @@ class PasswordButtons: UIView {
         return stack
     }()
     
-    fileprivate let stackColumn2: UIStackView = {
+    private let stackColumn2: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.spacing = 8
@@ -47,42 +47,42 @@ class PasswordButtons: UIView {
         return stack
     }()
     
-    fileprivate let button1: PasswordButton = {
+    private let button1: PasswordButton = {
         let button = PasswordButton()
         button.tag = 0
         button.addTarget(self, action: #selector(PasswordButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
-    fileprivate let button2: PasswordButton = {
+    private let button2: PasswordButton = {
         let button = PasswordButton()
         button.tag = 1
         button.addTarget(self, action: #selector(PasswordButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
-    fileprivate let button3: PasswordButton = {
+    private let button3: PasswordButton = {
         let button = PasswordButton()
         button.tag = 2
         button.addTarget(self, action: #selector(PasswordButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
-    fileprivate let button4: PasswordButton = {
+    private let button4: PasswordButton = {
         let button = PasswordButton()
         button.tag = 3
         button.addTarget(self, action: #selector(PasswordButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
-    fileprivate let button5: PasswordButton = {
+    private let button5: PasswordButton = {
         let button = PasswordButton()
         button.tag = 4
         button.addTarget(self, action: #selector(PasswordButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
-    fileprivate let button6: PasswordButton = {
+    private let button6: PasswordButton = {
         let button = PasswordButton()
         button.tag = 5
         button.settingImage()
@@ -101,14 +101,14 @@ class PasswordButtons: UIView {
     }
     
     // MARK: - Setup
-    fileprivate func setupView() {
+    private func setupView() {
         self.translatesAutoresizingMaskIntoConstraints = false
         buildHierarchy()
         buildConstraints()
     }
     
     // MARK: - Actions
-    @IBAction func PasswordButtonTapped(_ sender: UIButton) {
+    @IBAction private func PasswordButtonTapped(_ sender: UIButton) {
         guard let buttonsTexts = self.buttonsTexts else {
             return
         }
@@ -119,7 +119,7 @@ class PasswordButtons: UIView {
         self.delegate?.getPasswordCharacter(character)
     }
     
-    @IBAction func DeleteButtonTapped(_ sender: UIButton) {
+    @IBAction private func DeleteButtonTapped(_ sender: UIButton) {
         self.delegate?.removeLastTypedPassword()
     }
     
@@ -150,7 +150,7 @@ class PasswordButtons: UIView {
         self.button5.isEnabled = true
     }
     
-    fileprivate func buildHierarchy() {
+    private func buildHierarchy() {
         self.addSubview(stackRow)
         
         stackRow.addArrangedSubview(stackColumn1)
@@ -164,7 +164,7 @@ class PasswordButtons: UIView {
         stackColumn2.addArrangedSubview(button6)
     }
     
-    fileprivate func buildConstraints() {
+    private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackRow.topAnchor.constraint(equalTo: self.topAnchor),
             stackRow.leadingAnchor.constraint(equalTo: self.leadingAnchor),

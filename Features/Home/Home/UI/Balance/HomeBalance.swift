@@ -13,7 +13,7 @@ class HomeBalance: UIView {
     var currentValue: String = "0,00"
     
     // MARK: - Components
-    fileprivate let stackBase: UIStackView = {
+    private let stackBase: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 0
@@ -22,7 +22,7 @@ class HomeBalance: UIView {
         return stack
     }()
     
-    fileprivate let collectionView: UICollectionView = {
+    private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 0
@@ -45,7 +45,7 @@ class HomeBalance: UIView {
     }
     
     // MARK: - Setup
-    fileprivate func setupVC() {
+    private func setupVC() {
         self.translatesAutoresizingMaskIntoConstraints = false
         
         buildHierarchy()
@@ -53,7 +53,7 @@ class HomeBalance: UIView {
         setupCollection()
     }
     
-    fileprivate func setupCollection() {
+    private func setupCollection() {
         collectionView.dataSource = self
         collectionView.delegate = self
         
@@ -61,12 +61,12 @@ class HomeBalance: UIView {
     }
     
     // MARK: - Methods
-    fileprivate func buildHierarchy() {
+    private func buildHierarchy() {
         self.addSubview(stackBase)
         stackBase.addArrangedSubview(collectionView)
     }
     
-    fileprivate func buildConstraints() {
+    private func buildConstraints() {
         NSLayoutConstraint.activate([
             self.heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
             
@@ -97,7 +97,7 @@ extension HomeBalance: UICollectionViewDataSource {
 
 // MARK: - extension CollectionViewDelegateFlowLayout
 extension HomeBalance: UICollectionViewDelegateFlowLayout {
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width
         let height = collectionView.frame.height
         return CGSize(width: width, height: height)

@@ -25,7 +25,7 @@ class LoginButton: UIButton {
     }
     
     // MARK: - Setup
-    fileprivate func setupButton() {
+    private func setupButton() {
         var config = UIButton.Configuration.gray()
         config.baseForegroundColor = UIColor(named: "White")
         config.baseBackgroundColor = UIColor(named: "Primary")
