@@ -19,6 +19,7 @@ class HomeViewModel {
     // MARK: - Closures
     var updateCustomerUI: ((_ customer: Customer) -> Void)?
     var updateAccountUI: ((_ account: Account) -> Void)?
+    var updateHideMoney: ((_ isHide: Bool) -> Void)?
     
     // MARK: - Init
     init() {
@@ -31,6 +32,16 @@ class HomeViewModel {
     func getData() async {
         await self.getCustomer("j2Ky1kqXFXutJbd6NEZA")
         await self.getAccount("VENfK2YsMQ860MhS53aC")
+    }
+    
+    func getMoneyIsHide() {
+        let isHide = HideMoney().getIsHide()
+        self.updateHideMoney?(isHide)
+    }
+    
+    func setMoneyIsHide(to isHide: Bool) {
+        HideMoney().setIsHide(to: isHide)
+        self.updateHideMoney?(isHide)
     }
     
     private func getAccount(_ id: String) async {

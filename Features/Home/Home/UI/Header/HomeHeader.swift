@@ -9,12 +9,14 @@ import UIKit
 
 protocol HomeHeaderDelegate {
     func openDrawerMenu()
+    func setMoneyHide(to isHide: Bool)
 }
 
 class HomeHeader: UIView {
     // MARK: - Constrants
     // MARK: - Variables
     var delegate: HomeHeaderDelegate?
+    private var moneyIsHide: Bool = true
     
     // MARK: - Components
     private let stackBase: UIStackView = {
@@ -96,8 +98,13 @@ class HomeHeader: UIView {
     }()
     
     private let buttonEye: UIButton = {
+        var config = UIButton.Configuration.gray()
+        config.baseBackgroundColor = UIColor(named: "Background")
+        config.image = UIImage(named: "eye")
+        
         let button = UIButton()
-        button.setImage(UIImage(named: "eye"), for: .normal)
+        button.configuration = config
+        button.addTarget(self, action: #selector(EyeButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -138,6 +145,10 @@ class HomeHeader: UIView {
         self.delegate?.openDrawerMenu()
     }
     
+    @IBAction private func EyeButtonTapped(_ sender: UIButton) {
+        self.delegate?.setMoneyHide(to: !moneyIsHide)
+    }
+    
     // MARK: - Methods
     func settingView(fullName: String) {
         var nameArr = fullName.components(separatedBy: " ")
@@ -149,6 +160,17 @@ class HomeHeader: UIView {
             String(nameArr[0].remove(at: nameArr[0].startIndex)),
             attributes: container
         )
+    }
+    
+    func settingMoneyIsHide(to isHide: Bool) {
+        self.moneyIsHide = isHide
+        
+        if isHide {
+            self.buttonEye.configuration?.image = UIImage(named: "eyeSlash")
+            return
+        }
+        
+        self.buttonEye.configuration?.image = UIImage(named: "eye")
     }
     
     private func buildHierarchy() {

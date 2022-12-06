@@ -40,6 +40,19 @@ class BalanceCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    private let textFildeMoney: UITextField = {
+        let textField = UITextField()
+        textField.textColor = UIColor(named: "Text")
+        textField.text = "* * *"
+        textField.font = .systemFont(ofSize: 16)
+        textField.isEnabled = false
+        textField.isSecureTextEntry = true
+        textField.isEnabled = false
+        textField.isHidden = true
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,14 +70,24 @@ class BalanceCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Methods
-    func settingCell(_ value: String) {
+    func settingCell(_ value: String, isHide: Bool) {
         self.labelValue.text = "R$ " + value
+        
+        if isHide {
+            self.textFildeMoney.isHidden = false
+            self.labelValue.isHidden = true
+            return
+        }
+        
+        self.textFildeMoney.isHidden = true
+        self.labelValue.isHidden = false
     }
     
     private func buildHierarchy() {
         self.addSubview(stackBase)
         stackBase.addArrangedSubview(labelTitle)
         stackBase.addArrangedSubview(labelValue)
+        stackBase.addArrangedSubview(textFildeMoney)
     }
     
     private func buildConstraints() {

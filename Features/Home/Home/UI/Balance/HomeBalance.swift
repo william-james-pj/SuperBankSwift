@@ -11,6 +11,7 @@ class HomeBalance: UIView {
     // MARK: - Constrants
     // MARK: - Variables
     private var currentValue: String = "0,00"
+    private var moneyIsHide: Bool = false
     
     // MARK: - Components
     private let stackBase: UIStackView = {
@@ -47,6 +48,11 @@ class HomeBalance: UIView {
     // MARK: - Setup
     func settingView(balance: Double) {
         self.currentValue = "\(balance)"
+        self.collectionView.reloadData()
+    }
+    
+    func settingHide(to isHide: Bool) {
+        self.moneyIsHide = isHide
         self.collectionView.reloadData()
     }
     
@@ -95,7 +101,7 @@ extension HomeBalance: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BalanceCollectionViewCell.resuseIdentifier, for: indexPath) as! BalanceCollectionViewCell
-        cell.settingCell(currentValue)
+        cell.settingCell(currentValue, isHide: moneyIsHide)
         return cell
     }
 }

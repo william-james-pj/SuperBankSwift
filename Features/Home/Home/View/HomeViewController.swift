@@ -92,6 +92,8 @@ public class HomeViewController: UIViewController {
         settingClosures()
         loaderData()
         
+        self.viewModel.getMoneyIsHide()
+        
         buildHierarchy()
         buildConstraints()
     }
@@ -112,6 +114,11 @@ public class HomeViewController: UIViewController {
         
         self.viewModel.updateAccountUI = { account in
             self.balance.settingView(balance: account.balance)
+        }
+        
+        self.viewModel.updateHideMoney = { isHide in
+            self.balance.settingHide(to: isHide)
+            self.header.settingMoneyIsHide(to: isHide)
         }
     }
     
@@ -149,6 +156,10 @@ public class HomeViewController: UIViewController {
 
 // MARK: - extension HomeHeaderDelegate
 extension HomeViewController: HomeHeaderDelegate {
+    func setMoneyHide(to isHide: Bool) {
+        self.viewModel.setMoneyIsHide(to: isHide)
+    }
+    
     func openDrawerMenu() {
         self.coordinatorDelegate?.goToDrawerMenu()
     }
