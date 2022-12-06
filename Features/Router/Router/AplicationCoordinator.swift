@@ -24,12 +24,13 @@ public class AplicationCoordinator: Coordinator {
     }
     
     public func start() {
-        if isLoggedIn {
-            self.goToMain()
-            return
-        }
-        
-        self.goToAuthentication()
+        self.goToMain()
+//        if isLoggedIn {
+//            self.goToMain()
+//            return
+//        }
+//
+//        self.goToAuthentication()
     }
     
     // MARK: - Methods

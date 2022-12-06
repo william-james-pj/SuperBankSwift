@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol HomeHeaderDelegate {
+    func openDrawerMenu()
+}
+
 class HomeHeader: UIView {
     // MARK: - Constrants
     // MARK: - Variables
+    var delegate: HomeHeaderDelegate?
+    
     // MARK: - Components
     private let stackBase: UIStackView = {
         let stack = UIStackView()
@@ -35,22 +41,17 @@ class HomeHeader: UIView {
         return view
     }()
     
-    private let viewUserBox: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(named: "Disabled")
-        view.clipsToBounds = true
-        view.layer.cornerRadius = 17
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private let labelNameBox: UILabel = {
-        let label = UILabel()
-        label.text = "WJ"
-        label.font = .systemFont(ofSize: 12, weight: .regular)
-        label.textColor = UIColor(named: "Text")
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    private let buttonUser: UIButton = {
+        var config = UIButton.Configuration.gray()
+        config.baseForegroundColor = UIColor(named: "Text")
+        config.baseBackgroundColor = UIColor(named: "Card")
+        config.cornerStyle = .capsule
+        
+        let button = UIButton()
+        button.configuration = config
+        button.addTarget(self, action: #selector(DrawerButtonTapped(_:)), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     private let stackUserInfo: UIStackView = {
@@ -73,7 +74,6 @@ class HomeHeader: UIView {
     
     private let labelName: UILabel = {
         let label = UILabel()
-        label.text = "William"
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.textColor = UIColor(named: "Text")
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -133,14 +133,30 @@ class HomeHeader: UIView {
         buildConstraints()
     }
     
+    // MARK: - Actions
+    @IBAction private func DrawerButtonTapped(_ sender: UIButton) {
+        self.delegate?.openDrawerMenu()
+    }
+    
     // MARK: - Methods
+    func settingView(fullName: String) {
+        var nameArr = fullName.components(separatedBy: " ")
+        self.labelName.text = "\(nameArr[0]) \(nameArr[1])"
+        
+        var container = AttributeContainer()
+        container.font = .systemFont(ofSize: 12, weight: .bold)
+        self.buttonUser.configuration?.attributedTitle = AttributedString(
+            String(nameArr[0].remove(at: nameArr[0].startIndex)),
+            attributes: container
+        )
+    }
+    
     private func buildHierarchy() {
         self.addSubview(stackBase)
         
         stackBase.addArrangedSubview(stackUser)
         stackUser.addArrangedSubview(viewUserBoxContainer)
-        viewUserBoxContainer.addSubview(viewUserBox)
-        viewUserBox.addSubview(labelNameBox)
+        viewUserBoxContainer.addSubview(buttonUser)
         stackUser.addArrangedSubview(stackUserInfo)
         stackUserInfo.addArrangedSubview(labelHello)
         stackUserInfo.addArrangedSubview(labelName)
@@ -160,13 +176,10 @@ class HomeHeader: UIView {
             stackBase.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
             viewUserBoxContainer.widthAnchor.constraint(equalToConstant: 28),
-            viewUserBox.widthAnchor.constraint(equalToConstant: 35),
-            viewUserBox.heightAnchor.constraint(equalToConstant: 35),
-            viewUserBox.centerXAnchor.constraint(equalTo: viewUserBoxContainer.centerXAnchor),
-            viewUserBox.centerYAnchor.constraint(equalTo: viewUserBoxContainer.centerYAnchor),
-            
-            labelNameBox.centerXAnchor.constraint(equalTo: viewUserBox.centerXAnchor),
-            labelNameBox.centerYAnchor.constraint(equalTo: viewUserBox.centerYAnchor),
+            buttonUser.widthAnchor.constraint(equalToConstant: 35),
+            buttonUser.heightAnchor.constraint(equalToConstant: 35),
+            buttonUser.centerXAnchor.constraint(equalTo: viewUserBoxContainer.centerXAnchor),
+            buttonUser.centerYAnchor.constraint(equalTo: viewUserBoxContainer.centerYAnchor),
             
             viewEyeContainer.widthAnchor.constraint(equalToConstant: 20),
             buttonEye.widthAnchor.constraint(equalToConstant: 20),

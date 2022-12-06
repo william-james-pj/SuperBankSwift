@@ -311,7 +311,7 @@ public class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil);
     }
     
-    fileprivate func settingClosures() {
+    private func settingClosures() {
         self.isPerformingTask.subscribe(onNext: { element in
             self.settingLoadingButton(element)
             if !element {

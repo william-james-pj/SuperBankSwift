@@ -9,6 +9,8 @@ import UIKit
 
 public class HomeViewController: UIViewController {
     // MARK: - Constrants
+    private let viewModel = HomeViewModel()
+    
     // MARK: - Variables
     public weak var coordinatorDelegate: HomeCoordinatorDelegate?
     
@@ -51,7 +53,6 @@ public class HomeViewController: UIViewController {
     
     private let balance: HomeBalance = {
         let view = HomeBalance()
-        view.currentValue = "10,823.53"
         return view
     }()
     
@@ -85,14 +86,35 @@ public class HomeViewController: UIViewController {
     // MARK: - Setup
     private func setupVC() {
         view.backgroundColor = UIColor(named: "Background")
-        
+        self.header.delegate = self
         self.options.delegate = self
+        
+        settingClosures()
+        loaderData()
         
         buildHierarchy()
         buildConstraints()
     }
     
     // MARK: - Methods
+    private func loaderData() {
+        Task {
+            await self.viewModel.getData()
+        }
+    }
+    
+    private func settingClosures() {
+        self.viewModel.updateCustomerUI = { customer in
+            DispatchQueue.main.async {
+                self.header.settingView(fullName: customer.fullName)
+            }
+        }
+        
+        self.viewModel.updateAccountUI = { account in
+            self.balance.settingView(balance: account.balance)
+        }
+    }
+    
     private func buildHierarchy() {
         view.addSubview(scrollView)
         scrollView.addSubview(viewContent)
@@ -101,7 +123,7 @@ public class HomeViewController: UIViewController {
         stackBase.addArrangedSubview(header)
         stackBase.addArrangedSubview(balance)
         stackBase.addArrangedSubview(options)
-        stackBase.addArrangedSubview(creditCard)
+//        stackBase.addArrangedSubview(creditCard)
     }
     
     private func buildConstraints() {
@@ -125,6 +147,14 @@ public class HomeViewController: UIViewController {
     }
 }
 
+// MARK: - extension HomeHeaderDelegate
+extension HomeViewController: HomeHeaderDelegate {
+    func openDrawerMenu() {
+        self.coordinatorDelegate?.goToDrawerMenu()
+    }
+}
+
+// MARK: - extension HomeOptionsDelegate
 extension HomeViewController: HomeOptionsDelegate {
     func onPress(option: OptionType) {
         switch option {

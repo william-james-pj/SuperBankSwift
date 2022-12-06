@@ -96,7 +96,7 @@ class HomeOptions: UIView {
         
         stackBase.addArrangedSubview(stackHeader)
         stackHeader.addArrangedSubview(labelSection)
-        stackHeader.addArrangedSubview(buttonEdit)
+//        stackHeader.addArrangedSubview(buttonEdit)
         
         stackBase.addArrangedSubview(collectionView)
     }

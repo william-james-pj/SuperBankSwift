@@ -10,7 +10,7 @@ import UIKit
 class HomeBalance: UIView {
     // MARK: - Constrants
     // MARK: - Variables
-    var currentValue: String = "0,00"
+    private var currentValue: String = "0,00"
     
     // MARK: - Components
     private let stackBase: UIStackView = {
@@ -45,6 +45,11 @@ class HomeBalance: UIView {
     }
     
     // MARK: - Setup
+    func settingView(balance: Double) {
+        self.currentValue = "\(balance)"
+        self.collectionView.reloadData()
+    }
+    
     private func setupVC() {
         self.translatesAutoresizingMaskIntoConstraints = false
         

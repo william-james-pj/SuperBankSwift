@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E02A1DB5293E127600F246A5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02A1DB4293E127600F246A5 /* HomeViewModel.swift */; };
+		E02A1DB8293E12B200F246A5 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E02A1DB7293E12B200F246A5 /* Common.framework */; };
+		E02A1DB9293E12B200F246A5 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E02A1DB7293E12B200F246A5 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E02A1DBC293E12B800F246A5 /* FirebaseService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E02A1DBB293E12B800F246A5 /* FirebaseService.framework */; };
+		E02A1DBD293E12B800F246A5 /* FirebaseService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E02A1DBB293E12B800F246A5 /* FirebaseService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E02A1DC6293E372300F246A5 /* DrawerMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02A1DC5293E372300F246A5 /* DrawerMenuViewController.swift */; };
+		E032B084293F63220091C75B /* DrawerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E032B083293F63220091C75B /* DrawerHeader.swift */; };
+		E032B086293F75260091C75B /* DrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E032B085293F75260091C75B /* DrawerTableViewCell.swift */; };
 		E0DB9097293A3BFE00828677 /* HomeCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DB9096293A3BFE00828677 /* HomeCoordinatorDelegate.swift */; };
 		E0E20DA1292D11C200AB9A84 /* Home.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20D98292D11C200AB9A84 /* Home.framework */; };
 		E0E20DA6292D11C200AB9A84 /* HomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20DA5292D11C200AB9A84 /* HomeTests.swift */; };
@@ -31,7 +39,28 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E02A1DBA293E12B200F246A5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E02A1DB9293E12B200F246A5 /* Common.framework in Embed Frameworks */,
+				E02A1DBD293E12B800F246A5 /* FirebaseService.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		E02A1DB4293E127600F246A5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		E02A1DB7293E12B200F246A5 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E02A1DBB293E12B800F246A5 /* FirebaseService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E02A1DC5293E372300F246A5 /* DrawerMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerMenuViewController.swift; sourceTree = "<group>"; };
+		E032B083293F63220091C75B /* DrawerHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerHeader.swift; sourceTree = "<group>"; };
+		E032B085293F75260091C75B /* DrawerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTableViewCell.swift; sourceTree = "<group>"; };
 		E0DB9096293A3BFE00828677 /* HomeCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		E0E20D98292D11C200AB9A84 /* Home.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Home.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20D9B292D11C200AB9A84 /* Home.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Home.h; sourceTree = "<group>"; };
@@ -52,6 +81,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E02A1DB8293E12B200F246A5 /* Common.framework in Frameworks */,
+				E02A1DBC293E12B800F246A5 /* FirebaseService.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +97,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E02A1DB3293E126400F246A5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E02A1DB4293E127600F246A5 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E02A1DB6293E12B200F246A5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E02A1DBB293E12B800F246A5 /* FirebaseService.framework */,
+				E02A1DB7293E12B200F246A5 /* Common.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E02A1DC3293E36F500F246A5 /* DrawerMenu */ = {
+			isa = PBXGroup;
+			children = (
+				E032B082293F620E0091C75B /* Cell */,
+				E02A1DC5293E372300F246A5 /* DrawerMenuViewController.swift */,
+			);
+			path = DrawerMenu;
+			sourceTree = "<group>";
+		};
+		E032B082293F620E0091C75B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E032B083293F63220091C75B /* DrawerHeader.swift */,
+				E032B085293F75260091C75B /* DrawerTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		E0DB9093293A3BDF00828677 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +146,7 @@
 				E0E20D9A292D11C200AB9A84 /* Home */,
 				E0E20DA4292D11C200AB9A84 /* HomeTests */,
 				E0E20D99292D11C200AB9A84 /* Products */,
+				E02A1DB6293E12B200F246A5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,7 +164,9 @@
 			children = (
 				E0DB9093293A3BDF00828677 /* Protocol */,
 				E0E20DB0292D11DA00AB9A84 /* UI */,
+				E02A1DB3293E126400F246A5 /* ViewModel */,
 				E0E20DC3292D12AE00AB9A84 /* View */,
+				E02A1DC3293E36F500F246A5 /* DrawerMenu */,
 				E0E20D9B292D11C200AB9A84 /* Home.h */,
 			);
 			path = Home;
@@ -211,6 +280,7 @@
 				E0E20D94292D11C200AB9A84 /* Sources */,
 				E0E20D95292D11C200AB9A84 /* Frameworks */,
 				E0E20D96292D11C200AB9A84 /* Resources */,
+				E02A1DBA293E12B200F246A5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -302,12 +372,16 @@
 				E0E20DB3292D11FA00AB9A84 /* HomeBalance.swift in Sources */,
 				E0E20DBA292D123F00AB9A84 /* HomeCreditCard.swift in Sources */,
 				E0DB9097293A3BFE00828677 /* HomeCoordinatorDelegate.swift in Sources */,
+				E032B084293F63220091C75B /* DrawerHeader.swift in Sources */,
+				E02A1DB5293E127600F246A5 /* HomeViewModel.swift in Sources */,
 				E0E20DB5292D120A00AB9A84 /* BalanceCollectionViewCell.swift in Sources */,
 				E0E20DC5292D12C000AB9A84 /* HomeViewController.swift in Sources */,
 				E0E20DBD292D126300AB9A84 /* HomeOptions.swift in Sources */,
 				E0E20DC2292D129A00AB9A84 /* HomeHeader.swift in Sources */,
 				E0E20DB8292D122B00AB9A84 /* CreditCardCollectionViewCell.swift in Sources */,
+				E02A1DC6293E372300F246A5 /* DrawerMenuViewController.swift in Sources */,
 				E0E20DBF292D127400AB9A84 /* OptionCollectionViewCell.swift in Sources */,
+				E032B086293F75260091C75B /* DrawerTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

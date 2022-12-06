@@ -35,4 +35,14 @@ class HomeCoordinator: Coordinator {
 
 // MARK: - extension HomeCoordinatorDelegate
 extension HomeCoordinator: HomeCoordinatorDelegate {
+    func goToDrawerMenu() {
+        let drawerVC = DrawerMenuViewController()
+        drawerVC.coordinatorDelegate = self
+        drawerVC.modalPresentationStyle = .fullScreen
+        self.navigationController.present(drawerVC, animated: true, completion: nil)
+    }
+    
+    func closeDrawerMenu() {
+        self.navigationController.dismiss(animated: true, completion: nil)
+    }
 }
