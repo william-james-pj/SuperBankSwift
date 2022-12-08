@@ -9,5 +9,5 @@ import Foundation
 
 public protocol LoginCoordinatorDelegate: AnyObject {
     func goToRegistration()
-    func didAuthenticate()
+    func didAuthenticate(customerId: String, accountId: String)
 }

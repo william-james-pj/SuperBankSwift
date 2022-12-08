@@ -358,8 +358,8 @@ public class LoginViewController: UIViewController {
             self.validateInput(false)
         }
         
-        self.viewModel.loggedIn = {
-            self.coordinatorDelegate?.didAuthenticate()
+        self.viewModel.loggedIn = { (customerId, accountId) in
+            self.coordinatorDelegate?.didAuthenticate(customerId: customerId, accountId: accountId)
         }
     }
     

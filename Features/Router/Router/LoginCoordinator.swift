@@ -9,7 +9,7 @@ import UIKit
 import Login
 
 protocol AuthenticationCoordinatorDelegate: AnyObject {
-    func coordinatorDidAuthenticate()
+    func coordinatorDidAuthenticate(customerId: String, accountId: String)
 }
 
 class LoginCoordinator: Coordinator {
@@ -30,7 +30,7 @@ class LoginCoordinator: Coordinator {
         settingNav()
         let initialViewController = LoginViewController()
         initialViewController.coordinatorDelegate = self
-        self.navigationController.pushViewController(initialViewController, animated: false)
+        self.navigationController.setViewControllers([initialViewController], animated: false)
     }
     
     private func settingNav() {
@@ -48,9 +48,9 @@ extension LoginCoordinator: LoginCoordinatorDelegate {
         coordinator.start()
     }
     
-    func didAuthenticate() {
+    func didAuthenticate(customerId: String, accountId: String) {
         self.navigationController.popToRootViewController(animated: true)
         self.parentCoordinator?.childDidFinish(self)
-        self.delegate?.coordinatorDidAuthenticate()
+        self.delegate?.coordinatorDidAuthenticate(customerId: customerId, accountId: accountId)
     }
 }

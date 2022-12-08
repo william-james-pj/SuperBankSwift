@@ -8,11 +8,17 @@
 import UIKit
 import Home
 
+protocol LogoutCoordinatorDelegate: AnyObject {
+    func coordinatorDidLogout()
+}
+
 class HomeCoordinator: Coordinator {
     // MARK: - Variables
     weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
+    
+    weak var delegate: LogoutCoordinatorDelegate?
     
     // MARK: - Init
     init(navigationController: UINavigationController) {
@@ -22,9 +28,13 @@ class HomeCoordinator: Coordinator {
     // MARK: - Methods
     func start() {
         settingNav()
+    }
+    
+    func goToMain(customerId: String, accountId: String) {
         let initialViewController = HomeViewController()
+        initialViewController.loaderData(customerId: customerId, accountId: accountId)
         initialViewController.coordinatorDelegate = self
-        self.navigationController.pushViewController(initialViewController, animated: false)
+        self.navigationController.setViewControllers([initialViewController], animated: false)
     }
     
     private func settingNav() {
@@ -44,6 +54,12 @@ extension HomeCoordinator: HomeCoordinatorDelegate {
     
     func closeDrawerMenu() {
         self.navigationController.dismiss(animated: true, completion: nil)
+    }
+    
+    func logoff() {
+        self.navigationController.popToRootViewController(animated: true)
+        self.parentCoordinator?.childDidFinish(self)
+        self.delegate?.coordinatorDidLogout()
     }
     
     func goToPresentCard() {

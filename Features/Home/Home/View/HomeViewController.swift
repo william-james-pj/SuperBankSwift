@@ -96,7 +96,6 @@ public class HomeViewController: UIViewController {
         self.requestCard.delegate = self
         
         settingClosures()
-        loaderData()
         
         self.viewModel.getMoneyIsHide()
         
@@ -105,9 +104,9 @@ public class HomeViewController: UIViewController {
     }
     
     // MARK: - Methods
-    private func loaderData() {
+    public func loaderData(customerId: String, accountId: String) {
         Task {
-            await self.viewModel.getData()
+            await self.viewModel.getData(customerId: customerId, accountId: accountId)
         }
     }
     

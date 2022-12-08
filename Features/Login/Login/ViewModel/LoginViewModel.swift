@@ -22,7 +22,7 @@ class LoginViewModel {
     var updateAccountUI: ((_ customerName: String, _ accountNumber: String) -> Void)?
     var updatePasswordTextField: ((_ isRemoving: Bool) -> Void)?
     var finalizedPassword: (() -> Void)?
-    var loggedIn: (() -> Void)?
+    var loggedIn: ((_ customerId: String, _ accountId: String) -> Void)?
     var invalidPassword: (() -> Void)?
     
     // MARK: - Init
@@ -56,7 +56,11 @@ class LoginViewModel {
             return
         }
         
-        self.loggedIn?()
+        guard let loginSaved = loginSaved else {
+            return
+        }
+        
+        self.loggedIn?(loginSaved.customerId, loginSaved.accountId)
     }
     
     func getAccount(_ accountNumber: String) async {

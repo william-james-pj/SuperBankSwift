@@ -82,7 +82,8 @@ extension DrawerMenuViewController: UITableViewDelegate {
         case .profile:
             break
         case .logoff:
-            break
+            self.coordinatorDelegate?.closeDrawerMenu()
+            self.coordinatorDelegate?.logoff()
         }
     }
 }

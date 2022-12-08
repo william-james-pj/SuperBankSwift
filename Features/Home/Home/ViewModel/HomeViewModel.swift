@@ -29,9 +29,9 @@ class HomeViewModel {
     }
     
     // MARK: - Methods
-    func getData() async {
-        await self.getCustomer("j2Ky1kqXFXutJbd6NEZA")
-        await self.getAccount("VENfK2YsMQ860MhS53aC")
+    func getData(customerId: String, accountId: String) async {
+        await self.getCustomer(customerId)
+        await self.getAccount(accountId)
     }
     
     func getMoneyIsHide() {

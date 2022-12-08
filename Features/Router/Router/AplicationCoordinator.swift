@@ -24,13 +24,13 @@ public class AplicationCoordinator: Coordinator {
     }
     
     public func start() {
-        self.goToMain()
+//        self.goToMain(customerId: "j2Ky1kqXFXutJbd6NEZA", accountId: "VENfK2YsMQ860MhS53aC")
 //        if isLoggedIn {
 //            self.goToMain()
 //            return
 //        }
-//
-//        self.goToAuthentication()
+
+        self.goToAuthentication()
     }
     
     // MARK: - Methods
@@ -43,10 +43,12 @@ public class AplicationCoordinator: Coordinator {
         window.rootViewController = coordinator.navigationController
     }
     
-    private func goToMain() {
+    private func goToMain(customerId: String, accountId: String) {
         let coordinator = HomeCoordinator(navigationController: navigationController)
         coordinator.parentCoordinator = self
+        coordinator.delegate = self
         coordinator.start()
+        coordinator.goToMain(customerId: customerId, accountId: accountId)
         self.childCoordinators.append(coordinator)
         window.rootViewController = coordinator.navigationController
     }
@@ -54,7 +56,14 @@ public class AplicationCoordinator: Coordinator {
 
 // MARK: - extension AuthenticationCoordinatorDelegate
 extension AplicationCoordinator: AuthenticationCoordinatorDelegate {
-    func coordinatorDidAuthenticate() {
-        self.goToMain()
+    func coordinatorDidAuthenticate(customerId: String, accountId: String) {
+        self.goToMain(customerId: customerId, accountId: accountId)
+    }
+}
+
+// MARK: - extension LogOffCoordinatorDelegate
+extension AplicationCoordinator: LogoutCoordinatorDelegate {
+    func coordinatorDidLogout() {
+        self.goToAuthentication()
     }
 }
