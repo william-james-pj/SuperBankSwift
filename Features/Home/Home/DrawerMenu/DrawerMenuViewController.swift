@@ -23,11 +23,6 @@ public class DrawerMenuViewController: UIViewController {
         return table
     }()
     
-    private let header: DrawerHeader = {
-        let view = DrawerHeader()
-        return view
-    }()
-    
     // MARK: - Lifecycle
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +43,7 @@ public class DrawerMenuViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(DrawerTableViewCell.self, forCellReuseIdentifier: DrawerTableViewCell.resuseIdentifier)
         tableView.register(DrawerHeader.self, forHeaderFooterViewReuseIdentifier: DrawerHeader.resuseIdentifier)
-      }
+    }
     
     // MARK: - Methods
     private func buildHierarchy() {
@@ -87,7 +82,7 @@ extension DrawerMenuViewController: UITableViewDelegate {
         case .profile:
             break
         case .logoff:
-            print("BB")
+            break
         }
     }
 }

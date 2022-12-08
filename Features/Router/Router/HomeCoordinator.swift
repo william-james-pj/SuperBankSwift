@@ -45,4 +45,11 @@ extension HomeCoordinator: HomeCoordinatorDelegate {
     func closeDrawerMenu() {
         self.navigationController.dismiss(animated: true, completion: nil)
     }
+    
+    func goToPresentCard() {
+        let coordinator = CardCoordinator(navigationController: navigationController)
+        coordinator.parentCoordinator = self
+        childCoordinators.append(coordinator)
+        coordinator.start()
+    }
 }

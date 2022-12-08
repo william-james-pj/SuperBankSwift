@@ -10,4 +10,6 @@ import Foundation
 public protocol HomeCoordinatorDelegate: AnyObject {
     func goToDrawerMenu()
     func closeDrawerMenu()
+    
+    func goToPresentCard()
 }

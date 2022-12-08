@@ -62,6 +62,11 @@ public class HomeViewController: UIViewController {
         return view
     }()
     
+    private let requestCard: RequestCard = {
+        let view = RequestCard()
+        return view
+    }()
+    
     private let creditCard: HomeCreditCard = {
         let view = HomeCreditCard()
         return view
@@ -88,6 +93,7 @@ public class HomeViewController: UIViewController {
         view.backgroundColor = UIColor(named: "Background")
         self.header.delegate = self
         self.options.delegate = self
+        self.requestCard.delegate = self
         
         settingClosures()
         loaderData()
@@ -130,6 +136,7 @@ public class HomeViewController: UIViewController {
         stackBase.addArrangedSubview(header)
         stackBase.addArrangedSubview(balance)
         stackBase.addArrangedSubview(options)
+        stackBase.addArrangedSubview(requestCard)
 //        stackBase.addArrangedSubview(creditCard)
     }
     
@@ -176,9 +183,16 @@ extension HomeViewController: HomeOptionsDelegate {
         case .pay:
             break
         case .card:
-            break
+            self.coordinatorDelegate?.goToPresentCard()
         case .edit:
             break
         }
+    }
+}
+
+// MARK: - extension RequestCardDelegate
+extension HomeViewController: RequestCardDelegate {
+    func onPress() {
+        self.coordinatorDelegate?.goToPresentCard()
     }
 }

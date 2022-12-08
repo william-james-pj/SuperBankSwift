@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E032B093293FBBC40091C75B /* Cards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E032B092293FBBC40091C75B /* Cards.framework */; };
+		E032B094293FBBC40091C75B /* Cards.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E032B092293FBBC40091C75B /* Cards.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E032B096293FBBCE0091C75B /* CardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E032B095293FBBCE0091C75B /* CardCoordinator.swift */; };
 		E0DB908F293A3B5800828677 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DB908E293A3B5800828677 /* HomeCoordinator.swift */; };
 		E0DB9091293A3B7D00828677 /* Home.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0DB9090293A3B7D00828677 /* Home.framework */; };
 		E0DB9092293A3B7D00828677 /* Home.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E0DB9090293A3B7D00828677 /* Home.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -40,6 +43,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E032B094293FBBC40091C75B /* Cards.framework in Embed Frameworks */,
 				E0E20D46292D0CE500AB9A84 /* Login.framework in Embed Frameworks */,
 				E0E20D8B292D109900AB9A84 /* Registration.framework in Embed Frameworks */,
 				E0DB9092293A3B7D00828677 /* Home.framework in Embed Frameworks */,
@@ -50,6 +54,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E032B092293FBBC40091C75B /* Cards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Cards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E032B095293FBBCE0091C75B /* CardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCoordinator.swift; sourceTree = "<group>"; };
 		E0DB908E293A3B5800828677 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		E0DB9090293A3B7D00828677 /* Home.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Home.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20D2B292D0CD000AB9A84 /* Router.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Router.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E032B093293FBBC40091C75B /* Cards.framework in Frameworks */,
 				E0E20D45292D0CE500AB9A84 /* Login.framework in Frameworks */,
 				E0E20D8A292D109900AB9A84 /* Registration.framework in Frameworks */,
 				E0DB9091293A3B7D00828677 /* Home.framework in Frameworks */,
@@ -114,6 +121,7 @@
 				E0E20D4D292D0D6100AB9A84 /* LoginCoordinator.swift */,
 				E0E20D8C292D10AE00AB9A84 /* RegistrationCoordinator.swift */,
 				E0DB908E293A3B5800828677 /* HomeCoordinator.swift */,
+				E032B095293FBBCE0091C75B /* CardCoordinator.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -129,6 +137,7 @@
 		E0E20D43292D0CE500AB9A84 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E032B092293FBBC40091C75B /* Cards.framework */,
 				E0DB9090293A3B7D00828677 /* Home.framework */,
 				E0E20D89292D109900AB9A84 /* Registration.framework */,
 				E0E20D44292D0CE500AB9A84 /* Login.framework */,
@@ -255,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E032B096293FBBCE0091C75B /* CardCoordinator.swift in Sources */,
 				E0E20D4E292D0D6100AB9A84 /* LoginCoordinator.swift in Sources */,
 				E0E20D4C292D0D4F00AB9A84 /* AplicationCoordinator.swift in Sources */,
 				E0DB908F293A3B5800828677 /* HomeCoordinator.swift in Sources */,

@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E032B08E293FB82C0091C75B /* PresentCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E032B08D293FB82C0091C75B /* PresentCardViewController.swift */; };
+		E032B091293FBB7B0091C75B /* CardCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E032B090293FBB7B0091C75B /* CardCoordinatorDelegate.swift */; };
+		E051581A294113FA00322EE1 /* MyCardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0515819294113FA00322EE1 /* MyCardsTableViewCell.swift */; };
 		E0E20DD9292D130600AB9A84 /* Cards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20DD0292D130600AB9A84 /* Cards.framework */; };
 		E0E20DDE292D130600AB9A84 /* CardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20DDD292D130600AB9A84 /* CardsTests.swift */; };
 		E0E20DDF292D130600AB9A84 /* Cards.h in Headers */ = {isa = PBXBuildFile; fileRef = E0E20DD3292D130600AB9A84 /* Cards.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E0E20DEA292D132A00AB9A84 /* MyCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20DE9292D132A00AB9A84 /* MyCardsViewController.swift */; };
-		E0E20DED292D134600AB9A84 /* MyCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20DEC292D134600AB9A84 /* MyCardCollectionViewCell.swift */; };
+		E0E25EC3294204C000E20822 /* VirtualCardFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E25EC2294204C000E20822 /* VirtualCardFooter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,12 +28,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E032B08D293FB82C0091C75B /* PresentCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentCardViewController.swift; sourceTree = "<group>"; };
+		E032B090293FBB7B0091C75B /* CardCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCoordinatorDelegate.swift; sourceTree = "<group>"; };
+		E0515819294113FA00322EE1 /* MyCardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsTableViewCell.swift; sourceTree = "<group>"; };
 		E0E20DD0292D130600AB9A84 /* Cards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20DD3292D130600AB9A84 /* Cards.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cards.h; sourceTree = "<group>"; };
 		E0E20DD8292D130600AB9A84 /* CardsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20DDD292D130600AB9A84 /* CardsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsTests.swift; sourceTree = "<group>"; };
 		E0E20DE9292D132A00AB9A84 /* MyCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsViewController.swift; sourceTree = "<group>"; };
-		E0E20DEC292D134600AB9A84 /* MyCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		E0E25EC2294204C000E20822 /* VirtualCardFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualCardFooter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +58,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E032B08B293FB7F10091C75B /* PresentCard */ = {
+			isa = PBXGroup;
+			children = (
+				E032B08C293FB8040091C75B /* View */,
+			);
+			path = PresentCard;
+			sourceTree = "<group>";
+		};
+		E032B08C293FB8040091C75B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E032B08D293FB82C0091C75B /* PresentCardViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E032B08F293FBB670091C75B /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				E032B090293FBB7B0091C75B /* CardCoordinatorDelegate.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		E0E20DC6292D130600AB9A84 = {
 			isa = PBXGroup;
 			children = (
@@ -73,7 +103,9 @@
 		E0E20DD2292D130600AB9A84 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
-				E0E20DE8292D131400AB9A84 /* View */,
+				E032B08F293FBB670091C75B /* Protocol */,
+				E032B08B293FB7F10091C75B /* PresentCard */,
+				E0E20DE8292D131400AB9A84 /* MyCards */,
 				E0E20DD3292D130600AB9A84 /* Cards.h */,
 			);
 			path = Cards;
@@ -87,19 +119,20 @@
 			path = CardsTests;
 			sourceTree = "<group>";
 		};
-		E0E20DE8292D131400AB9A84 /* View */ = {
+		E0E20DE8292D131400AB9A84 /* MyCards */ = {
 			isa = PBXGroup;
 			children = (
 				E0E20DEB292D133700AB9A84 /* Cell */,
 				E0E20DE9292D132A00AB9A84 /* MyCardsViewController.swift */,
 			);
-			path = View;
+			path = MyCards;
 			sourceTree = "<group>";
 		};
 		E0E20DEB292D133700AB9A84 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				E0E20DEC292D134600AB9A84 /* MyCardCollectionViewCell.swift */,
+				E0515819294113FA00322EE1 /* MyCardsTableViewCell.swift */,
+				E0E25EC2294204C000E20822 /* VirtualCardFooter.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -214,8 +247,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0E20DED292D134600AB9A84 /* MyCardCollectionViewCell.swift in Sources */,
+				E0E25EC3294204C000E20822 /* VirtualCardFooter.swift in Sources */,
+				E032B091293FBB7B0091C75B /* CardCoordinatorDelegate.swift in Sources */,
 				E0E20DEA292D132A00AB9A84 /* MyCardsViewController.swift in Sources */,
+				E032B08E293FB82C0091C75B /* PresentCardViewController.swift in Sources */,
+				E051581A294113FA00322EE1 /* MyCardsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@ import UIKit
 import Common
 import Registration
 
-class RegistrationCoordinator: Coordinator {
+class RegistrationCoordinator: NSObject, Coordinator {
     // MARK: - Variables
     weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
@@ -22,6 +22,8 @@ class RegistrationCoordinator: Coordinator {
     
     // MARK: - Methods
     func start() {
+        self.navigationController.delegate = self
+        
         self.settingNav()
         let initialViewController = FirstInfoViewController()
         initialViewController.coordinatorDelegate = self
@@ -82,5 +84,22 @@ extension RegistrationCoordinator: RegistrationCoordinatorDelegate {
     func didFinishRegistration() {
         self.navigationController.popToRootViewController(animated: true)
         self.parentCoordinator?.childDidFinish(self)
+    }
+}
+
+// MARK: - extension UINavigationControllerDelegate
+extension RegistrationCoordinator: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
+            return
+        }
+
+        if navigationController.viewControllers.contains(fromViewController) {
+            return
+        }
+
+        if let _ = fromViewController as? FirstInfoViewController {
+            self.parentCoordinator?.childDidFinish(self)
+        }
     }
 }
