@@ -1,17 +1,16 @@
 //
-//  BalanceCollectionViewCell.swift
+//  BalanceHomeTableViewCell.swift
 //  Home
 //
-//  Created by Pinto Junior, William James on 22/11/22.
+//  Created by Pinto Junior, William James on 14/12/22.
 //
 
 import UIKit
 
-class BalanceCollectionViewCell: UICollectionViewCell {
-    // MARK: - Constants
-    static let resuseIdentifier: String = "BalanceCollectionViewCell"
-    
+class BalanceHomeTableViewCell: UITableViewCell {
     // MARK: - Constrants
+    static let resuseIdentifier: String = "BalanceHomeTableViewCell"
+
     // MARK: - Variables
     // MARK: - Components
     private let stackBase: UIStackView = {
@@ -36,6 +35,7 @@ class BalanceCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.textColor = UIColor(named: "Text")
+        label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -52,23 +52,31 @@ class BalanceCollectionViewCell: UICollectionViewCell {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
-    
-    // MARK: - Lifecycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupVC()
+
+    // MARK: - Init
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
-    
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+
     // MARK: - Setup
-    private func setupVC() {
+    private func setupView() {
         buildHierarchy()
         buildConstraints()
     }
-    
+
     // MARK: - Methods
     func settingCell(_ value: String, isHide: Bool) {
         self.labelValue.text = "R$ " + value
@@ -84,7 +92,7 @@ class BalanceCollectionViewCell: UICollectionViewCell {
     }
     
     private func buildHierarchy() {
-        self.addSubview(stackBase)
+        contentView.addSubview(stackBase)
         stackBase.addArrangedSubview(labelTitle)
         stackBase.addArrangedSubview(labelValue)
         stackBase.addArrangedSubview(textFildeMoney)
@@ -99,5 +107,3 @@ class BalanceCollectionViewCell: UICollectionViewCell {
         ])
     }
 }
-
-

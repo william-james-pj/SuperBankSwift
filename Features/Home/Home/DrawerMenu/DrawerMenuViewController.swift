@@ -68,14 +68,6 @@ extension DrawerMenuViewController: UITableViewDelegate {
         return view
     }
     
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 100.0
-    }
-    
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60.0
-    }
-    
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let aux = self.items[indexPath.row]
         switch aux {
@@ -99,6 +91,14 @@ extension DrawerMenuViewController: UITableViewDataSource {
         cell.settingCell(items[indexPath.row])
         cell.selectionStyle = .none
         return cell
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 100.0
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
     }
 }
 

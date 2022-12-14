@@ -1,21 +1,23 @@
 //
-//  HomeHeader.swift
+//  HeaderHomeTableViewCell.swift
 //  Home
 //
-//  Created by Pinto Junior, William James on 22/11/22.
+//  Created by Pinto Junior, William James on 14/12/22.
 //
 
 import UIKit
 
-protocol HomeHeaderDelegate {
+protocol HeaderHomeTableViewCellDelegate {
     func openDrawerMenu()
     func setMoneyHide(to isHide: Bool)
 }
 
-class HomeHeader: UIView {
+class HeaderHomeTableViewCell: UITableViewCell {
     // MARK: - Constrants
+    static let resuseIdentifier: String = "HomeHeaderTableViewCell"
+
     // MARK: - Variables
-    var delegate: HomeHeaderDelegate?
+    var delegate: HeaderHomeTableViewCellDelegate?
     private var moneyIsHide: Bool = true
     
     // MARK: - Components
@@ -23,7 +25,7 @@ class HomeHeader: UIView {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.spacing = 0
-        stack.distribution = .equalSpacing
+        stack.distribution = .fill
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -59,8 +61,8 @@ class HomeHeader: UIView {
     private let stackUserInfo: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.spacing = 4
-        stack.distribution = .fill
+        stack.spacing = 5
+        stack.distribution = .equalSpacing
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -78,6 +80,7 @@ class HomeHeader: UIView {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.textColor = UIColor(named: "Text")
+        label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -99,7 +102,6 @@ class HomeHeader: UIView {
     
     private let buttonEye: UIButton = {
         var config = UIButton.Configuration.gray()
-        config.baseBackgroundColor = UIColor(named: "Background")
         config.image = UIImage(named: "eye")
         
         let button = UIButton()
@@ -116,26 +118,35 @@ class HomeHeader: UIView {
     }()
     
     private let buttonBell: UIButton = {
+        var config = UIButton.Configuration.gray()
+        config.image = UIImage(named: "bell")
+        
         let button = UIButton()
-        button.setImage(UIImage(named: "bell"), for: .normal)
+        button.configuration = config
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
-    // MARK: - Lifecycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupVC()
+
+    // MARK: - Init
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
-    
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+
     // MARK: - Setup
-    private func setupVC() {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        
+    private func setupView() {
         buildHierarchy()
         buildConstraints()
     }
@@ -148,10 +159,13 @@ class HomeHeader: UIView {
     @IBAction private func EyeButtonTapped(_ sender: UIButton) {
         self.delegate?.setMoneyHide(to: !moneyIsHide)
     }
-    
+
     // MARK: - Methods
     func settingView(fullName: String) {
         var nameArr = fullName.components(separatedBy: " ")
+        if nameArr.count < 2 {
+            return
+        }
         self.labelName.text = "\(nameArr[0]) \(nameArr[1])"
         
         var container = AttributeContainer()
@@ -174,7 +188,7 @@ class HomeHeader: UIView {
     }
     
     private func buildHierarchy() {
-        self.addSubview(stackBase)
+        contentView.addSubview(stackBase)
         
         stackBase.addArrangedSubview(stackUser)
         stackUser.addArrangedSubview(viewUserBoxContainer)

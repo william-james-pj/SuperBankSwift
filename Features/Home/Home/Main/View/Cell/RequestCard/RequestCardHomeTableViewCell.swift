@@ -1,17 +1,23 @@
 //
-//  HomeBalance.swift
+//  RequestCardHomeTableViewCell.swift
 //  Home
 //
-//  Created by Pinto Junior, William James on 22/11/22.
+//  Created by Pinto Junior, William James on 14/12/22.
 //
 
 import UIKit
 
-class HomeBalance: UIView {
+protocol RequestCardHomeTableViewCellDelegate {
+    func onPress()
+}
+
+
+class RequestCardHomeTableViewCell: UITableViewCell {
     // MARK: - Constrants
+    static let resuseIdentifier: String = "RequestCardHomeTableViewCell"
+
     // MARK: - Variables
-    private var currentValue: String = "0,00"
-    private var moneyIsHide: Bool = false
+    var delegate: RequestCardHomeTableViewCellDelegate?
     
     // MARK: - Components
     private let stackBase: UIStackView = {
@@ -34,31 +40,27 @@ class HomeBalance: UIView {
         collectionView.bounces = false
         return collectionView
     }()
-    
-    // MARK: - Lifecycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupVC()
+
+    // MARK: - Init
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
-    
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+
     // MARK: - Setup
-    func settingView(balance: Double) {
-        self.currentValue = "\(balance)"
-        self.collectionView.reloadData()
-    }
-    
-    func settingHide(to isHide: Bool) {
-        self.moneyIsHide = isHide
-        self.collectionView.reloadData()
-    }
-    
-    private func setupVC() {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        
+    private func setupView() {
         buildHierarchy()
         buildConstraints()
         setupCollection()
@@ -68,19 +70,17 @@ class HomeBalance: UIView {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        collectionView.register(BalanceCollectionViewCell.self, forCellWithReuseIdentifier: BalanceCollectionViewCell.resuseIdentifier)
+        collectionView.register(RequestCardCollectionViewCell.self, forCellWithReuseIdentifier: RequestCardCollectionViewCell.resuseIdentifier)
     }
-    
+
     // MARK: - Methods
     private func buildHierarchy() {
-        self.addSubview(stackBase)
+        contentView.addSubview(stackBase)
         stackBase.addArrangedSubview(collectionView)
     }
     
     private func buildConstraints() {
-        NSLayoutConstraint.activate([
-            self.heightAnchor.constraint(greaterThanOrEqualToConstant: 44),
-            
+        NSLayoutConstraint.activate([            
             stackBase.topAnchor.constraint(equalTo: self.topAnchor),
             stackBase.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             stackBase.trailingAnchor.constraint(equalTo: self.trailingAnchor),
@@ -90,29 +90,29 @@ class HomeBalance: UIView {
 }
 
 // MARK: - extension UICollectionViewDelegate
-extension HomeBalance: UICollectionViewDelegate {
+extension RequestCardTableViewCell: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.delegate?.onPress()
+    }
 }
 
 // MARK: - extension CollectionViewDataSource
-extension HomeBalance: UICollectionViewDataSource {
+extension RequestCardTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BalanceCollectionViewCell.resuseIdentifier, for: indexPath) as! BalanceCollectionViewCell
-        cell.settingCell(currentValue, isHide: moneyIsHide)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RequestCardCollectionViewCell.resuseIdentifier, for: indexPath) as! RequestCardCollectionViewCell
         return cell
     }
 }
 
 // MARK: - extension CollectionViewDelegateFlowLayout
-extension HomeBalance: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+extension RequestCardTableViewCell: UICollectionViewDelegateFlowLayout {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width
         let height = collectionView.frame.height
         return CGSize(width: width, height: height)
     }
 }
-
-

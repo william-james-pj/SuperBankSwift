@@ -15,20 +15,18 @@
 		E02A1DC6293E372300F246A5 /* DrawerMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02A1DC5293E372300F246A5 /* DrawerMenuViewController.swift */; };
 		E032B084293F63220091C75B /* DrawerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E032B083293F63220091C75B /* DrawerHeader.swift */; };
 		E032B086293F75260091C75B /* DrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E032B085293F75260091C75B /* DrawerTableViewCell.swift */; };
-		E05158152940D11A00322EE1 /* RequestCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05158142940D11A00322EE1 /* RequestCard.swift */; };
 		E05158182940D1C400322EE1 /* RequestCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05158172940D1C400322EE1 /* RequestCardCollectionViewCell.swift */; };
 		E0DB9097293A3BFE00828677 /* HomeCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DB9096293A3BFE00828677 /* HomeCoordinatorDelegate.swift */; };
+		E0DF030B294A3D1D00AA5721 /* RequestCardHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DF030A294A3D1D00AA5721 /* RequestCardHomeTableViewCell.swift */; };
+		E0DF030F294A3FFC00AA5721 /* CreditInvoiceHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DF030E294A3FFC00AA5721 /* CreditInvoiceHomeTableViewCell.swift */; };
 		E0E20DA1292D11C200AB9A84 /* Home.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20D98292D11C200AB9A84 /* Home.framework */; };
 		E0E20DA6292D11C200AB9A84 /* HomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20DA5292D11C200AB9A84 /* HomeTests.swift */; };
 		E0E20DA7292D11C200AB9A84 /* Home.h in Headers */ = {isa = PBXBuildFile; fileRef = E0E20D9B292D11C200AB9A84 /* Home.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E0E20DB3292D11FA00AB9A84 /* HomeBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20DB2292D11FA00AB9A84 /* HomeBalance.swift */; };
-		E0E20DB5292D120A00AB9A84 /* BalanceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20DB4292D120A00AB9A84 /* BalanceCollectionViewCell.swift */; };
-		E0E20DB8292D122B00AB9A84 /* CreditCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20DB7292D122B00AB9A84 /* CreditCardCollectionViewCell.swift */; };
-		E0E20DBA292D123F00AB9A84 /* HomeCreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20DB9292D123F00AB9A84 /* HomeCreditCard.swift */; };
-		E0E20DBD292D126300AB9A84 /* HomeOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20DBC292D126300AB9A84 /* HomeOptions.swift */; };
-		E0E20DBF292D127400AB9A84 /* OptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20DBE292D127400AB9A84 /* OptionCollectionViewCell.swift */; };
-		E0E20DC2292D129A00AB9A84 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20DC1292D129A00AB9A84 /* HomeHeader.swift */; };
-		E0E20DC5292D12C000AB9A84 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20DC4292D12C000AB9A84 /* HomeViewController.swift */; };
+		E0E2133F294A070800EFB851 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E2133E294A070800EFB851 /* HomeViewController.swift */; };
+		E0E21342294A0B9300EFB851 /* HeaderHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E21341294A0B9300EFB851 /* HeaderHomeTableViewCell.swift */; };
+		E0E21344294A10BC00EFB851 /* BalanceHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E21343294A10BC00EFB851 /* BalanceHomeTableViewCell.swift */; };
+		E0E21349294A131B00EFB851 /* OptionsHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E21348294A131B00EFB851 /* OptionsHomeTableViewCell.swift */; };
+		E0E2134C294A13DB00EFB851 /* OptionHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E2134B294A13DB00EFB851 /* OptionHomeCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,21 +61,19 @@
 		E02A1DC5293E372300F246A5 /* DrawerMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerMenuViewController.swift; sourceTree = "<group>"; };
 		E032B083293F63220091C75B /* DrawerHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerHeader.swift; sourceTree = "<group>"; };
 		E032B085293F75260091C75B /* DrawerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTableViewCell.swift; sourceTree = "<group>"; };
-		E05158142940D11A00322EE1 /* RequestCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCard.swift; sourceTree = "<group>"; };
 		E05158172940D1C400322EE1 /* RequestCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0DB9096293A3BFE00828677 /* HomeCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorDelegate.swift; sourceTree = "<group>"; };
+		E0DF030A294A3D1D00AA5721 /* RequestCardHomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCardHomeTableViewCell.swift; sourceTree = "<group>"; };
+		E0DF030E294A3FFC00AA5721 /* CreditInvoiceHomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditInvoiceHomeTableViewCell.swift; sourceTree = "<group>"; };
 		E0E20D98292D11C200AB9A84 /* Home.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Home.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20D9B292D11C200AB9A84 /* Home.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Home.h; sourceTree = "<group>"; };
 		E0E20DA0292D11C200AB9A84 /* HomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20DA5292D11C200AB9A84 /* HomeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTests.swift; sourceTree = "<group>"; };
-		E0E20DB2292D11FA00AB9A84 /* HomeBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBalance.swift; sourceTree = "<group>"; };
-		E0E20DB4292D120A00AB9A84 /* BalanceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceCollectionViewCell.swift; sourceTree = "<group>"; };
-		E0E20DB7292D122B00AB9A84 /* CreditCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardCollectionViewCell.swift; sourceTree = "<group>"; };
-		E0E20DB9292D123F00AB9A84 /* HomeCreditCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCreditCard.swift; sourceTree = "<group>"; };
-		E0E20DBC292D126300AB9A84 /* HomeOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOptions.swift; sourceTree = "<group>"; };
-		E0E20DBE292D127400AB9A84 /* OptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCollectionViewCell.swift; sourceTree = "<group>"; };
-		E0E20DC1292D129A00AB9A84 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
-		E0E20DC4292D12C000AB9A84 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E0E2133E294A070800EFB851 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E0E21341294A0B9300EFB851 /* HeaderHomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderHomeTableViewCell.swift; sourceTree = "<group>"; };
+		E0E21343294A10BC00EFB851 /* BalanceHomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceHomeTableViewCell.swift; sourceTree = "<group>"; };
+		E0E21348294A131B00EFB851 /* OptionsHomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsHomeTableViewCell.swift; sourceTree = "<group>"; };
+		E0E2134B294A13DB00EFB851 /* OptionHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionHomeCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,16 +132,24 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		E05158132940D0FD00322EE1 /* RequestCard */ = {
+		E0DB9093293A3BDF00828677 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				E05158162940D1A200322EE1 /* Cell */,
-				E05158142940D11A00322EE1 /* RequestCard.swift */,
+				E0DB9096293A3BFE00828677 /* HomeCoordinatorDelegate.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		E0DF0309294A3CF400AA5721 /* RequestCard */ = {
+			isa = PBXGroup;
+			children = (
+				E0DF030C294A3E3000AA5721 /* Cell */,
+				E0DF030A294A3D1D00AA5721 /* RequestCardHomeTableViewCell.swift */,
 			);
 			path = RequestCard;
 			sourceTree = "<group>";
 		};
-		E05158162940D1A200322EE1 /* Cell */ = {
+		E0DF030C294A3E3000AA5721 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				E05158172940D1C400322EE1 /* RequestCardCollectionViewCell.swift */,
@@ -153,12 +157,12 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		E0DB9093293A3BDF00828677 /* Protocol */ = {
+		E0DF030D294A3FD600AA5721 /* CreditInvoice */ = {
 			isa = PBXGroup;
 			children = (
-				E0DB9096293A3BFE00828677 /* HomeCoordinatorDelegate.swift */,
+				E0DF030E294A3FFC00AA5721 /* CreditInvoiceHomeTableViewCell.swift */,
 			);
-			path = Protocol;
+			path = CreditInvoice;
 			sourceTree = "<group>";
 		};
 		E0E20D8E292D11C200AB9A84 = {
@@ -184,9 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				E0DB9093293A3BDF00828677 /* Protocol */,
-				E0E20DB0292D11DA00AB9A84 /* UI */,
-				E02A1DB3293E126400F246A5 /* ViewModel */,
-				E0E20DC3292D12AE00AB9A84 /* View */,
+				E0E2133C294A067E00EFB851 /* Main */,
 				E02A1DC3293E36F500F246A5 /* DrawerMenu */,
 				E0E20D9B292D11C200AB9A84 /* Home.h */,
 			);
@@ -201,81 +203,65 @@
 			path = HomeTests;
 			sourceTree = "<group>";
 		};
-		E0E20DB0292D11DA00AB9A84 /* UI */ = {
+		E0E2133C294A067E00EFB851 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				E0E20DC0292D129100AB9A84 /* Header */,
-				E0E20DB1292D11EB00AB9A84 /* Balance */,
-				E0E20DBB292D125800AB9A84 /* Options */,
-				E0E20DB6292D122000AB9A84 /* CreditCard */,
-				E05158132940D0FD00322EE1 /* RequestCard */,
+				E02A1DB3293E126400F246A5 /* ViewModel */,
+				E0E2133D294A069000EFB851 /* View */,
 			);
-			path = UI;
+			path = Main;
 			sourceTree = "<group>";
 		};
-		E0E20DB1292D11EB00AB9A84 /* Balance */ = {
+		E0E2133D294A069000EFB851 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E0E20DEE292D135E00AB9A84 /* Cell */,
-				E0E20DB2292D11FA00AB9A84 /* HomeBalance.swift */,
-			);
-			path = Balance;
-			sourceTree = "<group>";
-		};
-		E0E20DB6292D122000AB9A84 /* CreditCard */ = {
-			isa = PBXGroup;
-			children = (
-				E0E20DF0292D137600AB9A84 /* Cell */,
-				E0E20DB9292D123F00AB9A84 /* HomeCreditCard.swift */,
-			);
-			path = CreditCard;
-			sourceTree = "<group>";
-		};
-		E0E20DBB292D125800AB9A84 /* Options */ = {
-			isa = PBXGroup;
-			children = (
-				E0E20DEF292D136A00AB9A84 /* Cell */,
-				E0E20DBC292D126300AB9A84 /* HomeOptions.swift */,
-			);
-			path = Options;
-			sourceTree = "<group>";
-		};
-		E0E20DC0292D129100AB9A84 /* Header */ = {
-			isa = PBXGroup;
-			children = (
-				E0E20DC1292D129A00AB9A84 /* HomeHeader.swift */,
-			);
-			path = Header;
-			sourceTree = "<group>";
-		};
-		E0E20DC3292D12AE00AB9A84 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				E0E20DC4292D12C000AB9A84 /* HomeViewController.swift */,
+				E0E21340294A0B7300EFB851 /* Cell */,
+				E0E2133E294A070800EFB851 /* HomeViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		E0E20DEE292D135E00AB9A84 /* Cell */ = {
+		E0E21340294A0B7300EFB851 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				E0E20DB4292D120A00AB9A84 /* BalanceCollectionViewCell.swift */,
+				E0E21346294A12FB00EFB851 /* Header */,
+				E0E21347294A130400EFB851 /* Balance */,
+				E0E21345294A12EC00EFB851 /* Options */,
+				E0DF0309294A3CF400AA5721 /* RequestCard */,
+				E0DF030D294A3FD600AA5721 /* CreditInvoice */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		E0E20DEF292D136A00AB9A84 /* Cell */ = {
+		E0E21345294A12EC00EFB851 /* Options */ = {
 			isa = PBXGroup;
 			children = (
-				E0E20DBE292D127400AB9A84 /* OptionCollectionViewCell.swift */,
+				E0E2134A294A13BD00EFB851 /* Cell */,
+				E0E21348294A131B00EFB851 /* OptionsHomeTableViewCell.swift */,
 			);
-			path = Cell;
+			path = Options;
 			sourceTree = "<group>";
 		};
-		E0E20DF0292D137600AB9A84 /* Cell */ = {
+		E0E21346294A12FB00EFB851 /* Header */ = {
 			isa = PBXGroup;
 			children = (
-				E0E20DB7292D122B00AB9A84 /* CreditCardCollectionViewCell.swift */,
+				E0E21341294A0B9300EFB851 /* HeaderHomeTableViewCell.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		E0E21347294A130400EFB851 /* Balance */ = {
+			isa = PBXGroup;
+			children = (
+				E0E21343294A10BC00EFB851 /* BalanceHomeTableViewCell.swift */,
+			);
+			path = Balance;
+			sourceTree = "<group>";
+		};
+		E0E2134A294A13BD00EFB851 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E0E2134B294A13DB00EFB851 /* OptionHomeCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -392,19 +378,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				E05158182940D1C400322EE1 /* RequestCardCollectionViewCell.swift in Sources */,
-				E0E20DB3292D11FA00AB9A84 /* HomeBalance.swift in Sources */,
-				E0E20DBA292D123F00AB9A84 /* HomeCreditCard.swift in Sources */,
 				E0DB9097293A3BFE00828677 /* HomeCoordinatorDelegate.swift in Sources */,
 				E032B084293F63220091C75B /* DrawerHeader.swift in Sources */,
 				E02A1DB5293E127600F246A5 /* HomeViewModel.swift in Sources */,
-				E0E20DB5292D120A00AB9A84 /* BalanceCollectionViewCell.swift in Sources */,
-				E0E20DC5292D12C000AB9A84 /* HomeViewController.swift in Sources */,
-				E0E20DBD292D126300AB9A84 /* HomeOptions.swift in Sources */,
-				E0E20DC2292D129A00AB9A84 /* HomeHeader.swift in Sources */,
-				E05158152940D11A00322EE1 /* RequestCard.swift in Sources */,
-				E0E20DB8292D122B00AB9A84 /* CreditCardCollectionViewCell.swift in Sources */,
+				E0E2133F294A070800EFB851 /* HomeViewController.swift in Sources */,
+				E0DF030B294A3D1D00AA5721 /* RequestCardHomeTableViewCell.swift in Sources */,
+				E0E21349294A131B00EFB851 /* OptionsHomeTableViewCell.swift in Sources */,
 				E02A1DC6293E372300F246A5 /* DrawerMenuViewController.swift in Sources */,
-				E0E20DBF292D127400AB9A84 /* OptionCollectionViewCell.swift in Sources */,
+				E0DF030F294A3FFC00AA5721 /* CreditInvoiceHomeTableViewCell.swift in Sources */,
+				E0E21342294A0B9300EFB851 /* HeaderHomeTableViewCell.swift in Sources */,
+				E0E21344294A10BC00EFB851 /* BalanceHomeTableViewCell.swift in Sources */,
+				E0E2134C294A13DB00EFB851 /* OptionHomeCollectionViewCell.swift in Sources */,
 				E032B086293F75260091C75B /* DrawerTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

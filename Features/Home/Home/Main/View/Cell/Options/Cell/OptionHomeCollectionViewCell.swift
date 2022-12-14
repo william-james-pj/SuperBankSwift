@@ -1,13 +1,13 @@
 //
-//  OptionCollectionViewCell.swift
+//  OptionHomeCollectionViewCell.swift
 //  Home
 //
-//  Created by Pinto Junior, William James on 22/11/22.
+//  Created by Pinto Junior, William James on 14/12/22.
 //
 
 import UIKit
 
-enum OptionType {
+enum OptionHomeType {
     case pix
     case transfer
     case pay
@@ -15,9 +15,9 @@ enum OptionType {
     case edit
 }
 
-class OptionCollectionViewCell: UICollectionViewCell {
+class OptionHomeCollectionViewCell: UICollectionViewCell {
     // MARK: - Constants
-    static let resuseIdentifier: String = "OptionCollectionViewCell"
+    static let resuseIdentifier: String = "OptionHomeCollectionViewCell"
     
     // MARK: - Constrants
     // MARK: - Variables
@@ -79,7 +79,7 @@ class OptionCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Methods
-    func settingCell(_ type: OptionType) {
+    func settingCell(_ type: OptionHomeType) {
         switch type {
         case .pix:
             self.labelTitle.text = "Pix"
@@ -133,5 +133,3 @@ class OptionCollectionViewCell: UICollectionViewCell {
         ])
     }
 }
-
-

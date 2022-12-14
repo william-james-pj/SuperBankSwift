@@ -1,21 +1,23 @@
 //
-//  HomeOptions.swift
+//  OptionsHomeTableViewCell.swift
 //  Home
 //
-//  Created by Pinto Junior, William James on 22/11/22.
+//  Created by Pinto Junior, William James on 14/12/22.
 //
 
 import UIKit
 
-protocol HomeOptionsDelegate {
-    func onPress(option: OptionType)
+protocol OptionsHomeTableViewCellDelegate {
+    func onPress(option: OptionHomeType)
 }
 
-class HomeOptions: UIView {
+class OptionsHomeTableViewCell: UITableViewCell {
     // MARK: - Constrants
+    static let resuseIdentifier: String = "OptionsHomeTableViewCell"
+
     // MARK: - Variables
-    var options: [OptionType] = []
-    var delegate: HomeOptionsDelegate?
+    var options: [OptionHomeType] = []
+    var delegate: OptionsHomeTableViewCellDelegate?
     
     // MARK: - Components
     private let stackBase: UIStackView = {
@@ -45,13 +47,6 @@ class HomeOptions: UIView {
         return label
     }()
     
-    private let buttonEdit: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "edit"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -63,44 +58,48 @@ class HomeOptions: UIView {
         collectionView.bounces = false
         return collectionView
     }()
-    
-    // MARK: - Lifecycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupVC()
+
+    // MARK: - Init
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupCell()
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
-    
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+
     // MARK: - Setup
-    private func setupVC() {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        
+    private func setupCell() {
         buildHierarchy()
         buildConstraints()
         setupCollection()
     }
-    
+
     private func setupCollection() {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        collectionView.register(OptionCollectionViewCell.self, forCellWithReuseIdentifier: OptionCollectionViewCell.resuseIdentifier)
+        collectionView.register(OptionHomeCollectionViewCell.self, forCellWithReuseIdentifier: OptionHomeCollectionViewCell.resuseIdentifier)
     }
     
     // MARK: - Methods
     private func buildHierarchy() {
-        self.addSubview(stackBase)
-        
+        contentView.addSubview(stackBase)
         stackBase.addArrangedSubview(stackHeader)
         stackHeader.addArrangedSubview(labelSection)
-//        stackHeader.addArrangedSubview(buttonEdit)
         
         stackBase.addArrangedSubview(collectionView)
     }
-    
+
     private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: self.topAnchor),
@@ -108,41 +107,36 @@ class HomeOptions: UIView {
             stackBase.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             stackBase.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
-            buttonEdit.widthAnchor.constraint(equalToConstant: 20),
-            
             collectionView.heightAnchor.constraint(equalToConstant: 90),
         ])
     }
 }
 
 // MARK: - extension UICollectionViewDelegate
-extension HomeOptions: UICollectionViewDelegate {
+extension OptionsHomeTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.delegate?.onPress(option: options[indexPath.row])
     }
 }
 
 // MARK: - extension CollectionViewDataSource
-extension HomeOptions: UICollectionViewDataSource {
+extension OptionsHomeTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return options.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OptionCollectionViewCell.resuseIdentifier, for: indexPath) as! OptionCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OptionHomeCollectionViewCell.resuseIdentifier, for: indexPath) as! OptionHomeCollectionViewCell
         cell.settingCell(options[indexPath.row])
         return cell
     }
 }
 
 // MARK: - extension CollectionViewDelegateFlowLayout
-extension HomeOptions: UICollectionViewDelegateFlowLayout {
+extension OptionsHomeTableViewCell: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //        let width = collectionView.frame.width
         let height = collectionView.frame.height
         return CGSize(width: 60, height: height)
     }
 }
-
-
-
