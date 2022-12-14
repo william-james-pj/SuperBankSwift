@@ -9,5 +9,13 @@ import Foundation
 
 public protocol CardCoordinatorDelegate: AnyObject {
     func goToPresentCard()
+    func goToCreditLimit()
+    func goToInvoiceDueDate()
+    func goToCardPin()
+    func goToCardTerm()
+    func goToRequestCardResume()
+    func goToCompledRequestCard()
+    func finalizeRequest()
+    
     func goToMyCards()
 }

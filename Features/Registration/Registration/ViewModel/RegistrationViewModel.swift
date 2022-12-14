@@ -21,6 +21,7 @@ class RegistrationViewModel {
     private var phoneNumber: String = ""
     private var email: String = ""
     
+    // MARK: - Closures
     var finishRegister: ((_ login: Login) -> Void)?
     
     // MARK: - Init

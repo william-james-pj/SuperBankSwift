@@ -19,9 +19,6 @@ public class HomeService {
     // MARK: - Constrants
     let db = Firestore.firestore()
     
-    // MARK: - Closures
-    public var updateAccount: ((_ account: Account) -> Void)?
-    
     // MARK: - Init
     public init() {
     }
@@ -36,7 +33,7 @@ public class HomeService {
         }
         
         if !document.exists {
-            throw LoginError.invalidCustomer
+            throw HomeError.invalidCustomer
         }
         
         let data = document.data()
@@ -55,29 +52,33 @@ public class HomeService {
         )
     }
     
-    public func getAccount(_ id: String) {
+    public func getAccount(_ id: String) async throws -> Account {
         let q = db.collection("accounts").document(id)
+        let document = try? await q.getDocument()
         
-        q.addSnapshotListener { documentSnapshot, error in
-            guard let document = documentSnapshot else {
-                print("Error fetching document: \(error!)")
-                return
-            }
-            
-            let data = document.data()
-            let accountNumber = data?["birthDate"] as? String ?? ""
-            let balance = data?["balance"] as? Double ?? 0
-            let customerId = data?["customerId"] as? String ?? ""
-            let openDate = data?["openDate"] as? String ?? ""
-            
-            let account = Account(
-                accountNumber: accountNumber,
-                balance: balance,
-                customerId: customerId,
-                openDate: openDate
-            )
-            
-            self.updateAccount?(account)
+        guard let document = document else {
+            throw HomeError.invalidDocument
         }
+        
+        if !document.exists {
+            throw HomeError.invalidAccount
+        }
+            
+        let data = document.data()
+        let accountNumber = data?["birthDate"] as? String ?? ""
+        let balance = data?["balance"] as? Double ?? 0
+        let customerId = data?["customerId"] as? String ?? ""
+        let openDate = data?["openDate"] as? String ?? ""
+        let hasCard = data?["hasCard"] as? Bool ?? false
+        let cardPin = data?["cardPin"] as? String ?? ""
+        
+        return Account(
+            accountNumber: accountNumber,
+            balance: balance,
+            customerId: customerId,
+            openDate: openDate,
+            hasCard: hasCard,
+            cardPin: cardPin
+        )
     }
 }

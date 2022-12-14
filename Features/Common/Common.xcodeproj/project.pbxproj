@@ -16,6 +16,7 @@
 		E0E20D09292D0B9D00AB9A84 /* CommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20D08292D0B9D00AB9A84 /* CommonTests.swift */; };
 		E0E20D0A292D0B9D00AB9A84 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = E0E20CFE292D0B9D00AB9A84 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E0E20D15292D0BD300AB9A84 /* TextField+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20D14292D0BD300AB9A84 /* TextField+extension.swift */; };
+		E0E213312949E99B00EFB851 /* InvoiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E213302949E99B00EFB851 /* InvoiceModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		E0E20D03292D0B9D00AB9A84 /* CommonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20D08292D0B9D00AB9A84 /* CommonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTests.swift; sourceTree = "<group>"; };
 		E0E20D14292D0BD300AB9A84 /* TextField+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+extension.swift"; sourceTree = "<group>"; };
+		E0E213302949E99B00EFB851 /* InvoiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				E008E0D629367A490051A4CC /* Account.swift */,
 				E008E0D829367A630051A4CC /* Customer.swift */,
 				E008E0DA29367A990051A4CC /* Login.swift */,
+				E0E213302949E99B00EFB851 /* InvoiceModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				E008E0D929367A630051A4CC /* Customer.swift in Sources */,
 				E0E20D15292D0BD300AB9A84 /* TextField+extension.swift in Sources */,
 				E032B08A293F8D390091C75B /* HideMoney.swift in Sources */,
+				E0E213312949E99B00EFB851 /* InvoiceModel.swift in Sources */,
 				E008E0D729367A490051A4CC /* Account.swift in Sources */,
 				E032B088293F8BA70091C75B /* UserDefaults+Extensions.swift in Sources */,
 				E008E0DB29367A990051A4CC /* Login.swift in Sources */,

@@ -15,17 +15,16 @@ class HomeViewModel {
     
     // MARK: - Variables
     var customer: Customer?
+    var account: Account?
     
     // MARK: - Closures
     var updateCustomerUI: ((_ customer: Customer) -> Void)?
     var updateAccountUI: ((_ account: Account) -> Void)?
     var updateHideMoney: ((_ isHide: Bool) -> Void)?
+    var updateHasCard: ((_ hasCard: Bool) -> Void)?
     
     // MARK: - Init
     init() {
-        self.firebaseService.updateAccount = { account in
-            self.updateAccountUI?(account)
-        }
     }
     
     // MARK: - Methods
@@ -45,7 +44,14 @@ class HomeViewModel {
     }
     
     private func getAccount(_ id: String) async {
-        self.firebaseService.getAccount(id)
+        do {
+            let account = try await self.firebaseService.getAccount(id)
+            self.account = account
+            self.updateAccountUI?(account)
+        }
+        catch {
+            print("Unexpected error: \(error).")
+        }
     }
     
     private func getCustomer(_ id: String) async {

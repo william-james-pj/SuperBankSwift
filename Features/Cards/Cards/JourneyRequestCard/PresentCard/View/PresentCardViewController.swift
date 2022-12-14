@@ -232,18 +232,9 @@ public class PresentCardViewController: UIViewController {
         return view
     }()
     
-    private let buttonRequestCard: UIButton = {
-        var config = UIButton.Configuration.gray()
-        config.baseForegroundColor = UIColor(named: "White")
-        config.baseBackgroundColor = UIColor(named: "Primary")
-        config.buttonSize = .large
-        
-        var container = AttributeContainer()
-        container.font = .systemFont(ofSize: 14, weight: .bold)
-        config.attributedTitle = AttributedString("Solicitar o cartão", attributes: container)
-        
-        let button = UIButton()
-        button.configuration = config
+    private let buttonRequestCard: RequestCardButton = {
+        let button = RequestCardButton()
+        button.settingTitle("Solicitar o cartão")
         button.addTarget(self, action: #selector(RequestCardButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -282,7 +273,7 @@ public class PresentCardViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction private func RequestCardButtonTapped(_ sender: UIButton) {
-        self.coordinatorDelegate?.goToMyCards()
+        self.coordinatorDelegate?.goToCreditLimit()
     }
     
     // MARK: - Methods

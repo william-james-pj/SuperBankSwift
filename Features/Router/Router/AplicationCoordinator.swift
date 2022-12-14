@@ -24,13 +24,13 @@ public class AplicationCoordinator: Coordinator {
     }
     
     public func start() {
-//        self.goToMain(customerId: "j2Ky1kqXFXutJbd6NEZA", accountId: "VENfK2YsMQ860MhS53aC")
+        self.goToMain(customerId: "8re3dnF70F1XEIOT521p", accountId: "FD2Rn1v7IsIFGOPOTZUH")
 //        if isLoggedIn {
 //            self.goToMain()
 //            return
 //        }
 
-        self.goToAuthentication()
+//        self.goToAuthentication()
     }
     
     // MARK: - Methods
@@ -47,6 +47,7 @@ public class AplicationCoordinator: Coordinator {
         let coordinator = HomeCoordinator(navigationController: navigationController)
         coordinator.parentCoordinator = self
         coordinator.delegate = self
+        coordinator.accountId = accountId
         coordinator.start()
         coordinator.goToMain(customerId: customerId, accountId: accountId)
         self.childCoordinators.append(coordinator)

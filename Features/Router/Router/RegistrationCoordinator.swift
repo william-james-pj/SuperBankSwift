@@ -75,6 +75,8 @@ extension RegistrationCoordinator: RegistrationCoordinatorDelegate {
     }
     
     func goToCompletedRegistration(login: Login) {
+        self.navigationController.popToRootViewController(animated: true)
+        
         let completedRegistrationVC = CompletedRegistrationViewController()
         completedRegistrationVC.coordinatorDelegate = self
         completedRegistrationVC.settingVC(login: login)
@@ -99,6 +101,10 @@ extension RegistrationCoordinator: UINavigationControllerDelegate {
         }
 
         if let _ = fromViewController as? FirstInfoViewController {
+            self.parentCoordinator?.childDidFinish(self)
+        }
+        
+        if let _ = fromViewController as? CompletedRegistrationViewController {
             self.parentCoordinator?.childDidFinish(self)
         }
     }

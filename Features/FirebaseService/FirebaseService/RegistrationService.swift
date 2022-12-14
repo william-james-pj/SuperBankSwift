@@ -80,7 +80,7 @@ public class RegistrationService {
         let code = self.generateAccountCode(7)
         let date = getCurrentDate()
         
-        let newAccount = Account(accountNumber: code, balance: 0, customerId: customerId, openDate: date)
+        let newAccount = Account(accountNumber: code, balance: 0, customerId: customerId, openDate: date, hasCard: false, cardPin: "")
         return newAccount
     }
     

@@ -13,6 +13,7 @@ public class HomeViewController: UIViewController {
     
     // MARK: - Variables
     public weak var coordinatorDelegate: HomeCoordinatorDelegate?
+    private var accountHasCard: Bool = false
     
     // MARK: - Components
     private let scrollView: UIScrollView = {
@@ -64,11 +65,13 @@ public class HomeViewController: UIViewController {
     
     private let requestCard: RequestCard = {
         let view = RequestCard()
+        view.isHidden = true
         return view
     }()
     
     private let creditCard: HomeCreditCard = {
         let view = HomeCreditCard()
+        view.isHidden = true
         return view
     }()
     
@@ -118,13 +121,25 @@ public class HomeViewController: UIViewController {
         }
         
         self.viewModel.updateAccountUI = { account in
-            self.balance.settingView(balance: account.balance)
+            DispatchQueue.main.async {
+                self.balance.settingView(balance: account.balance)
+                self.settingCard(account.hasCard)
+            }
         }
         
         self.viewModel.updateHideMoney = { isHide in
             self.balance.settingHide(to: isHide)
             self.header.settingMoneyIsHide(to: isHide)
         }
+    }
+    
+    private func settingCard(_ hasCard: Bool) {
+        if hasCard {
+            self.accountHasCard = true
+            self.creditCard.isHidden = false
+            return
+        }
+        self.requestCard.isHidden = false
     }
     
     private func buildHierarchy() {
@@ -136,7 +151,7 @@ public class HomeViewController: UIViewController {
         stackBase.addArrangedSubview(balance)
         stackBase.addArrangedSubview(options)
         stackBase.addArrangedSubview(requestCard)
-//        stackBase.addArrangedSubview(creditCard)
+        stackBase.addArrangedSubview(creditCard)
     }
     
     private func buildConstraints() {
@@ -182,7 +197,7 @@ extension HomeViewController: HomeOptionsDelegate {
         case .pay:
             break
         case .card:
-            self.coordinatorDelegate?.goToPresentCard()
+            self.coordinatorDelegate?.goToCard(hasCard: accountHasCard)
         case .edit:
             break
         }
@@ -192,6 +207,6 @@ extension HomeViewController: HomeOptionsDelegate {
 // MARK: - extension RequestCardDelegate
 extension HomeViewController: RequestCardDelegate {
     func onPress() {
-        self.coordinatorDelegate?.goToPresentCard()
+        self.coordinatorDelegate?.goToCard(hasCard: false)
     }
 }

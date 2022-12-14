@@ -20,6 +20,8 @@ class HomeCoordinator: Coordinator {
     
     weak var delegate: LogoutCoordinatorDelegate?
     
+    var accountId: String?
+    
     // MARK: - Init
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -62,10 +64,11 @@ extension HomeCoordinator: HomeCoordinatorDelegate {
         self.delegate?.coordinatorDidLogout()
     }
     
-    func goToPresentCard() {
+    func goToCard(hasCard: Bool) {
         let coordinator = CardCoordinator(navigationController: navigationController)
         coordinator.parentCoordinator = self
+        coordinator.accountId = accountId
         childCoordinators.append(coordinator)
-        coordinator.start()
+        coordinator.start(hasCard: hasCard)
     }
 }

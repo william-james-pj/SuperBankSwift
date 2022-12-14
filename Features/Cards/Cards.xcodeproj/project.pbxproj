@@ -10,11 +10,29 @@
 		E032B08E293FB82C0091C75B /* PresentCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E032B08D293FB82C0091C75B /* PresentCardViewController.swift */; };
 		E032B091293FBB7B0091C75B /* CardCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E032B090293FBB7B0091C75B /* CardCoordinatorDelegate.swift */; };
 		E051581A294113FA00322EE1 /* MyCardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0515819294113FA00322EE1 /* MyCardsTableViewCell.swift */; };
+		E0BA939129474BF200A8AE06 /* CardTermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BA939029474BF200A8AE06 /* CardTermViewController.swift */; };
+		E0BA93942947504500A8AE06 /* CardTermTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BA93932947504500A8AE06 /* CardTermTableViewCell.swift */; };
+		E0BA9397294754F500A8AE06 /* CardTermModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BA9396294754F500A8AE06 /* CardTermModel.swift */; };
+		E0BA939C29475E9400A8AE06 /* RequestCardResumeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BA939B29475E9400A8AE06 /* RequestCardResumeViewController.swift */; };
+		E0D021E229434ECE00DBCF33 /* CreditLimitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D021E129434ECE00DBCF33 /* CreditLimitViewController.swift */; };
+		E0D713B129489DA8002C9EC1 /* CheckTerm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D713B029489DA8002C9EC1 /* CheckTerm.swift */; };
+		E0D713B52948A5F4002C9EC1 /* CompletedRequestCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D713B42948A5F4002C9EC1 /* CompletedRequestCardViewController.swift */; };
+		E0D713B72948B137002C9EC1 /* RequestCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D713B62948B137002C9EC1 /* RequestCardButton.swift */; };
 		E0E20DD9292D130600AB9A84 /* Cards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20DD0292D130600AB9A84 /* Cards.framework */; };
 		E0E20DDE292D130600AB9A84 /* CardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20DDD292D130600AB9A84 /* CardsTests.swift */; };
 		E0E20DDF292D130600AB9A84 /* Cards.h in Headers */ = {isa = PBXBuildFile; fileRef = E0E20DD3292D130600AB9A84 /* Cards.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E0E20DEA292D132A00AB9A84 /* MyCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20DE9292D132A00AB9A84 /* MyCardsViewController.swift */; };
+		E0E213362949EBA200EFB851 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E213352949EBA200EFB851 /* Common.framework */; };
+		E0E213372949EBA200EFB851 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E0E213352949EBA200EFB851 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E0E2133A2949EBA800EFB851 /* FirebaseService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E213392949EBA800EFB851 /* FirebaseService.framework */; };
+		E0E2133B2949EBA800EFB851 /* FirebaseService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E0E213392949EBA800EFB851 /* FirebaseService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E0E25EC3294204C000E20822 /* VirtualCardFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E25EC2294204C000E20822 /* VirtualCardFooter.swift */; };
+		E0E25EC82942170500E20822 /* InvoiceDueDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E25EC72942170500E20822 /* InvoiceDueDateViewController.swift */; };
+		E0E25ECE2942225800E20822 /* ChooseDueDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E25ECD2942225800E20822 /* ChooseDueDate.swift */; };
+		E0E25ED0294222D300E20822 /* ViewDueDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E25ECF294222D300E20822 /* ViewDueDate.swift */; };
+		E0E25ED3294227A700E20822 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E0E25ED2294227A700E20822 /* RxSwift */; };
+		E0E25ED629422AD400E20822 /* JourneyRequestCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E25ED529422AD400E20822 /* JourneyRequestCardViewModel.swift */; };
+		E0E25EDC29425A9200E20822 /* CardPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E25EDB29425A9200E20822 /* CardPinViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,16 +45,46 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E0E213382949EBA200EFB851 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E0E213372949EBA200EFB851 /* Common.framework in Embed Frameworks */,
+				E0E2133B2949EBA800EFB851 /* FirebaseService.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		E032B08D293FB82C0091C75B /* PresentCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentCardViewController.swift; sourceTree = "<group>"; };
 		E032B090293FBB7B0091C75B /* CardCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		E0515819294113FA00322EE1 /* MyCardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsTableViewCell.swift; sourceTree = "<group>"; };
+		E0BA939029474BF200A8AE06 /* CardTermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTermViewController.swift; sourceTree = "<group>"; };
+		E0BA93932947504500A8AE06 /* CardTermTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTermTableViewCell.swift; sourceTree = "<group>"; };
+		E0BA9396294754F500A8AE06 /* CardTermModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTermModel.swift; sourceTree = "<group>"; };
+		E0BA939B29475E9400A8AE06 /* RequestCardResumeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCardResumeViewController.swift; sourceTree = "<group>"; };
+		E0D021E129434ECE00DBCF33 /* CreditLimitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditLimitViewController.swift; sourceTree = "<group>"; };
+		E0D713B029489DA8002C9EC1 /* CheckTerm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckTerm.swift; sourceTree = "<group>"; };
+		E0D713B42948A5F4002C9EC1 /* CompletedRequestCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedRequestCardViewController.swift; sourceTree = "<group>"; };
+		E0D713B62948B137002C9EC1 /* RequestCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCardButton.swift; sourceTree = "<group>"; };
 		E0E20DD0292D130600AB9A84 /* Cards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20DD3292D130600AB9A84 /* Cards.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cards.h; sourceTree = "<group>"; };
 		E0E20DD8292D130600AB9A84 /* CardsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20DDD292D130600AB9A84 /* CardsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsTests.swift; sourceTree = "<group>"; };
 		E0E20DE9292D132A00AB9A84 /* MyCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsViewController.swift; sourceTree = "<group>"; };
+		E0E213352949EBA200EFB851 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0E213392949EBA800EFB851 /* FirebaseService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E25EC2294204C000E20822 /* VirtualCardFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualCardFooter.swift; sourceTree = "<group>"; };
+		E0E25EC72942170500E20822 /* InvoiceDueDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceDueDateViewController.swift; sourceTree = "<group>"; };
+		E0E25ECD2942225800E20822 /* ChooseDueDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDueDate.swift; sourceTree = "<group>"; };
+		E0E25ECF294222D300E20822 /* ViewDueDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDueDate.swift; sourceTree = "<group>"; };
+		E0E25ED529422AD400E20822 /* JourneyRequestCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyRequestCardViewModel.swift; sourceTree = "<group>"; };
+		E0E25EDB29425A9200E20822 /* CardPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPinViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +92,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0E25ED3294227A700E20822 /* RxSwift in Frameworks */,
+				E0E2133A2949EBA800EFB851 /* FirebaseService.framework in Frameworks */,
+				E0E213362949EBA200EFB851 /* Common.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,12 +133,96 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		E0BA938E29474BB200A8AE06 /* CardTerm */ = {
+			isa = PBXGroup;
+			children = (
+				E0BA9395294754E100A8AE06 /* Model */,
+				E0BA938F29474BC700A8AE06 /* View */,
+			);
+			path = CardTerm;
+			sourceTree = "<group>";
+		};
+		E0BA938F29474BC700A8AE06 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E0BA93922947502E00A8AE06 /* Cell */,
+				E0BA939029474BF200A8AE06 /* CardTermViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E0BA93922947502E00A8AE06 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E0BA93932947504500A8AE06 /* CardTermTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		E0BA9395294754E100A8AE06 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E0BA9396294754F500A8AE06 /* CardTermModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E0BA939829475CCD00A8AE06 /* RequestCardResume */ = {
+			isa = PBXGroup;
+			children = (
+				E0BA939B29475E9400A8AE06 /* RequestCardResumeViewController.swift */,
+			);
+			path = RequestCardResume;
+			sourceTree = "<group>";
+		};
+		E0D021DF29434EAA00DBCF33 /* CreditLimit */ = {
+			isa = PBXGroup;
+			children = (
+				E0D021E029434EB900DBCF33 /* View */,
+			);
+			path = CreditLimit;
+			sourceTree = "<group>";
+		};
+		E0D021E029434EB900DBCF33 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E0D021E129434ECE00DBCF33 /* CreditLimitViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E0D713AF29489D61002C9EC1 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E0D713B029489DA8002C9EC1 /* CheckTerm.swift */,
+				E0D713B62948B137002C9EC1 /* RequestCardButton.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		E0D713B22948A5C8002C9EC1 /* CompletedRequest */ = {
+			isa = PBXGroup;
+			children = (
+				E0D713B32948A5E8002C9EC1 /* View */,
+			);
+			path = CompletedRequest;
+			sourceTree = "<group>";
+		};
+		E0D713B32948A5E8002C9EC1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E0D713B42948A5F4002C9EC1 /* CompletedRequestCardViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E0E20DC6292D130600AB9A84 = {
 			isa = PBXGroup;
 			children = (
 				E0E20DD2292D130600AB9A84 /* Cards */,
 				E0E20DDC292D130600AB9A84 /* CardsTests */,
 				E0E20DD1292D130600AB9A84 /* Products */,
+				E0E213342949EBA200EFB851 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,7 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				E032B08F293FBB670091C75B /* Protocol */,
-				E032B08B293FB7F10091C75B /* PresentCard */,
+				E0E25EC42942167A00E20822 /* JourneyRequestCard */,
 				E0E20DE8292D131400AB9A84 /* MyCards */,
 				E0E20DD3292D130600AB9A84 /* Cards.h */,
 			);
@@ -137,6 +272,81 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		E0E213342949EBA200EFB851 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E0E213392949EBA800EFB851 /* FirebaseService.framework */,
+				E0E213352949EBA200EFB851 /* Common.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E0E25EC42942167A00E20822 /* JourneyRequestCard */ = {
+			isa = PBXGroup;
+			children = (
+				E0D713AF29489D61002C9EC1 /* UI */,
+				E0E25ED429422ABD00E20822 /* ViewModel */,
+				E032B08B293FB7F10091C75B /* PresentCard */,
+				E0D021DF29434EAA00DBCF33 /* CreditLimit */,
+				E0E25EC5294216C300E20822 /* InvoiceDueDate */,
+				E0E25ED729425A0C00E20822 /* CardPin */,
+				E0BA938E29474BB200A8AE06 /* CardTerm */,
+				E0BA939829475CCD00A8AE06 /* RequestCardResume */,
+				E0D713B22948A5C8002C9EC1 /* CompletedRequest */,
+			);
+			path = JourneyRequestCard;
+			sourceTree = "<group>";
+		};
+		E0E25EC5294216C300E20822 /* InvoiceDueDate */ = {
+			isa = PBXGroup;
+			children = (
+				E0E25ECC2942224200E20822 /* UI */,
+				E0E25EC6294216EA00E20822 /* View */,
+			);
+			path = InvoiceDueDate;
+			sourceTree = "<group>";
+		};
+		E0E25EC6294216EA00E20822 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E0E25EC72942170500E20822 /* InvoiceDueDateViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E0E25ECC2942224200E20822 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E0E25ECD2942225800E20822 /* ChooseDueDate.swift */,
+				E0E25ECF294222D300E20822 /* ViewDueDate.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		E0E25ED429422ABD00E20822 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E0E25ED529422AD400E20822 /* JourneyRequestCardViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E0E25ED729425A0C00E20822 /* CardPin */ = {
+			isa = PBXGroup;
+			children = (
+				E0E25ED829425A6A00E20822 /* View */,
+			);
+			path = CardPin;
+			sourceTree = "<group>";
+		};
+		E0E25ED829425A6A00E20822 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E0E25EDB29425A9200E20822 /* CardPinViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -159,12 +369,16 @@
 				E0E20DCC292D130600AB9A84 /* Sources */,
 				E0E20DCD292D130600AB9A84 /* Frameworks */,
 				E0E20DCE292D130600AB9A84 /* Resources */,
+				E0E213382949EBA200EFB851 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Cards;
+			packageProductDependencies = (
+				E0E25ED2294227A700E20822 /* RxSwift */,
+			);
 			productName = Cards;
 			productReference = E0E20DD0292D130600AB9A84 /* Cards.framework */;
 			productType = "com.apple.product-type.framework";
@@ -215,6 +429,9 @@
 				Base,
 			);
 			mainGroup = E0E20DC6292D130600AB9A84;
+			packageReferences = (
+				E0E25ED1294227A700E20822 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = E0E20DD1292D130600AB9A84 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -247,10 +464,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0D713B129489DA8002C9EC1 /* CheckTerm.swift in Sources */,
+				E0D021E229434ECE00DBCF33 /* CreditLimitViewController.swift in Sources */,
 				E0E25EC3294204C000E20822 /* VirtualCardFooter.swift in Sources */,
+				E0E25EC82942170500E20822 /* InvoiceDueDateViewController.swift in Sources */,
+				E0BA939C29475E9400A8AE06 /* RequestCardResumeViewController.swift in Sources */,
+				E0E25EDC29425A9200E20822 /* CardPinViewController.swift in Sources */,
+				E0BA939129474BF200A8AE06 /* CardTermViewController.swift in Sources */,
 				E032B091293FBB7B0091C75B /* CardCoordinatorDelegate.swift in Sources */,
+				E0E25ED0294222D300E20822 /* ViewDueDate.swift in Sources */,
+				E0D713B72948B137002C9EC1 /* RequestCardButton.swift in Sources */,
 				E0E20DEA292D132A00AB9A84 /* MyCardsViewController.swift in Sources */,
+				E0D713B52948A5F4002C9EC1 /* CompletedRequestCardViewController.swift in Sources */,
+				E0BA93942947504500A8AE06 /* CardTermTableViewCell.swift in Sources */,
+				E0E25ECE2942225800E20822 /* ChooseDueDate.swift in Sources */,
 				E032B08E293FB82C0091C75B /* PresentCardViewController.swift in Sources */,
+				E0BA9397294754F500A8AE06 /* CardTermModel.swift in Sources */,
+				E0E25ED629422AD400E20822 /* JourneyRequestCardViewModel.swift in Sources */,
 				E051581A294113FA00322EE1 /* MyCardsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,6 +762,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E0E25ED1294227A700E20822 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 6.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E0E25ED2294227A700E20822 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E0E25ED1294227A700E20822 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E0E20DC7292D130600AB9A84 /* Project object */;
 }

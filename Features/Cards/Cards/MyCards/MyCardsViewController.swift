@@ -91,7 +91,7 @@ public class MyCardsViewController: UIViewController {
     }
 }
 
-
+// MARK: - extension UITableViewDelegate
 extension MyCardsViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear
@@ -114,6 +114,7 @@ extension MyCardsViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - extension UITableViewDataSource
 extension MyCardsViewController: UITableViewDataSource {
     public func numberOfSections(in tableView: UITableView) -> Int {
         return 2

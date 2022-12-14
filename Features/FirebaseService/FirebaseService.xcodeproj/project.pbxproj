@@ -16,6 +16,7 @@
 		E0E20E0D292D469700AB9A84 /* FirebaseService.h in Headers */ = {isa = PBXBuildFile; fileRef = E0E20E01292D469700AB9A84 /* FirebaseService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E0E20E18292D474000AB9A84 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E0E20E17292D474000AB9A84 /* FirebaseFirestore */; };
 		E0E20E1F292D4CFE00AB9A84 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20E1E292D4CFE00AB9A84 /* RegistrationService.swift */; };
+		E0E213332949EA5D00EFB851 /* CardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E213322949EA5D00EFB851 /* CardService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		E0E20E06292D469700AB9A84 /* FirebaseServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirebaseServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20E0B292D469700AB9A84 /* FirebaseServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseServiceTests.swift; sourceTree = "<group>"; };
 		E0E20E1E292D4CFE00AB9A84 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
+		E0E213322949EA5D00EFB851 /* CardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				E0E20E1E292D4CFE00AB9A84 /* RegistrationService.swift */,
 				E02EE8FD2937736D00FD1C80 /* LoginService.swift */,
 				E02A1DBE293E13C300F246A5 /* HomeService.swift */,
+				E0E213322949EA5D00EFB851 /* CardService.swift */,
 				E0E20E01292D469700AB9A84 /* FirebaseService.h */,
 			);
 			path = FirebaseService;
@@ -240,6 +243,7 @@
 				E02A1DBF293E13C300F246A5 /* HomeService.swift in Sources */,
 				E0E20E1F292D4CFE00AB9A84 /* RegistrationService.swift in Sources */,
 				E02EE8FE2937736D00FD1C80 /* LoginService.swift in Sources */,
+				E0E213332949EA5D00EFB851 /* CardService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
