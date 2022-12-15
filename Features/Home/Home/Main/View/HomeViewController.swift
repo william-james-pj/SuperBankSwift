@@ -10,6 +10,7 @@ import UIKit
 public class HomeViewController: UIViewController {
     // MARK: - Constrants
     private let viewModel = HomeViewModel()
+    private let refreshControl = UIRefreshControl()
     
     // MARK: - Variables
     public weak var coordinatorDelegate: HomeCoordinatorDelegate?
@@ -23,7 +24,6 @@ public class HomeViewController: UIViewController {
     // MARK: - Components
     private let tableView: UITableView = {
         let table = UITableView()
-        table.bounces = false
         table.separatorStyle = .none
         table.backgroundColor = UIColor(named: "Background")
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -51,6 +51,8 @@ public class HomeViewController: UIViewController {
         view.backgroundColor = UIColor(named: "Background")
         
         settingClosures()
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor(named: "Primary")
         
         setupTableView()
         buildHierarchy()
@@ -60,12 +62,23 @@ public class HomeViewController: UIViewController {
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.refreshControl = refreshControl
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.register(HeaderHomeTableViewCell.self, forCellReuseIdentifier: HeaderHomeTableViewCell.resuseIdentifier)
         tableView.register(BalanceHomeTableViewCell.self, forCellReuseIdentifier: BalanceHomeTableViewCell.resuseIdentifier)
         tableView.register(OptionsHomeTableViewCell.self, forCellReuseIdentifier: OptionsHomeTableViewCell.resuseIdentifier)
         tableView.register(RequestCardHomeTableViewCell.self, forCellReuseIdentifier: RequestCardHomeTableViewCell.resuseIdentifier)
         tableView.register(CreditInvoiceHomeTableViewCell.self, forCellReuseIdentifier: CreditInvoiceHomeTableViewCell.resuseIdentifier)
+    }
+    
+    // MARK: - Actions
+    @objc private func refreshData(_ sender: Any) {
+        Task {
+            await self.viewModel.reloadAccount()
+            DispatchQueue.main.async {
+                self.refreshControl.endRefreshing()
+            }
+        }
     }
     
     // MARK: - Methods

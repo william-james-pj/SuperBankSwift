@@ -14,8 +14,10 @@ class HomeViewModel {
     private let firebaseService = HomeService()
     
     // MARK: - Variables
-    var customer: CustomerModel?
-    var account: AccountModel?
+    private var customerId: String?
+    private var accountId: String?
+    private var customer: CustomerModel?
+    private var account: AccountModel?
     
     // MARK: - Closures
     var updateCustomerUI: ((_ customer: CustomerModel) -> Void)?
@@ -28,7 +30,16 @@ class HomeViewModel {
     }
     
     // MARK: - Methods
+    func reloadAccount() async {
+        guard let accountId = accountId else {
+            return
+        }
+        await self.getAccount(accountId)
+    }
+    
     func getData(customerId: String, accountId: String) async {
+        self.customerId = customerId
+        self.accountId = accountId
         await self.getCustomer(customerId)
         await self.getAccount(accountId)
     }
