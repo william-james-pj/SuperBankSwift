@@ -22,7 +22,7 @@ public class LoginService {
         
     }
     
-    public func getLogin(_ accountNumber: String) async throws -> Login {
+    public func getLogin(_ accountNumber: String) async throws -> LoginModel {
         let q = db.collection("login").whereField("accountNumber", isEqualTo: accountNumber)
         let documents = try? await q.getDocuments()
         
@@ -40,7 +40,7 @@ public class LoginService {
         let accountNumber = data["accountNumber"] as? String ?? ""
         let password = data["password"] as? String ?? ""
         
-        let login = Login(accountId: accountId, customerId: customerId, accountNumber: accountNumber, password: password)
+        let login = LoginModel(accountId: accountId, customerId: customerId, accountNumber: accountNumber, password: password)
         return login
     }
     

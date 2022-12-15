@@ -90,14 +90,14 @@ class RequestCardHomeTableViewCell: UITableViewCell {
 }
 
 // MARK: - extension UICollectionViewDelegate
-extension RequestCardTableViewCell: UICollectionViewDelegate {
+extension RequestCardHomeTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.delegate?.onPress()
     }
 }
 
 // MARK: - extension CollectionViewDataSource
-extension RequestCardTableViewCell: UICollectionViewDataSource {
+extension RequestCardHomeTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
@@ -109,7 +109,7 @@ extension RequestCardTableViewCell: UICollectionViewDataSource {
 }
 
 // MARK: - extension CollectionViewDelegateFlowLayout
-extension RequestCardTableViewCell: UICollectionViewDelegateFlowLayout {
+extension RequestCardHomeTableViewCell: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width
         let height = collectionView.frame.height

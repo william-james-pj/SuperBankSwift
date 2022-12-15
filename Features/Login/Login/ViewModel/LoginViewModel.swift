@@ -15,7 +15,7 @@ class LoginViewModel {
     private let firebaseService = LoginService()
     
     // MARK: - Variables
-    private var loginSaved: Login?
+    private var loginSaved: LoginModel?
     private var typedPassword: [ButtonPasswordText] = []
     
     // MARK: - Closures

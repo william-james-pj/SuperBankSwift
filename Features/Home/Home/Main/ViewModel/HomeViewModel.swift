@@ -14,12 +14,12 @@ class HomeViewModel {
     private let firebaseService = HomeService()
     
     // MARK: - Variables
-    var customer: Customer?
-    var account: Account?
+    var customer: CustomerModel?
+    var account: AccountModel?
     
     // MARK: - Closures
-    var updateCustomerUI: ((_ customer: Customer) -> Void)?
-    var updateAccountUI: ((_ account: Account) -> Void)?
+    var updateCustomerUI: ((_ customer: CustomerModel) -> Void)?
+    var updateAccountUI: ((_ account: AccountModel) -> Void)?
     var updateHideMoney: ((_ isHide: Bool) -> Void)?
     var updateHasCard: ((_ hasCard: Bool) -> Void)?
     

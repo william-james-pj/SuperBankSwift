@@ -24,7 +24,7 @@ public class AplicationCoordinator: Coordinator {
     }
     
     public func start() {
-        self.goToMain(customerId: "8re3dnF70F1XEIOT521p", accountId: "FD2Rn1v7IsIFGOPOTZUH")
+        self.goToMain(customerId: "XSL68swsjFjdZVSTT8j3", accountId: "6j1UBjtkp4G8p4lyKJFM")
 //        if isLoggedIn {
 //            self.goToMain()
 //            return

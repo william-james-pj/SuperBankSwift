@@ -119,7 +119,7 @@ public class CompletedRegistrationViewController: UIViewController {
     }
     
     // MARK: - Methods
-    public func settingVC(login: Login) {
+    public func settingVC(login: LoginModel) {
         self.infoBoxCode.settingView("Código de Cliente", login.accountNumber)
         self.infoBoxPassword.settingView("Senha inicial", login.password)
     }

@@ -74,8 +74,8 @@ extension RegistrationCoordinator: RegistrationCoordinatorDelegate {
         self.navigationController.pushViewController(repeatEmailVC, animated: true)
     }
     
-    func goToCompletedRegistration(login: Login) {
-        self.navigationController.popToRootViewController(animated: true)
+    func goToCompletedRegistration(login: LoginModel) {
+        self.navigationController.popToRootViewController(animated: false)
         
         let completedRegistrationVC = CompletedRegistrationViewController()
         completedRegistrationVC.coordinatorDelegate = self

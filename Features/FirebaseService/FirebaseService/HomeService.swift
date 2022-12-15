@@ -24,7 +24,7 @@ public class HomeService {
     }
     
     // MARK: - Methods
-    public func getCustomer(_ id: String) async throws -> Customer {
+    public func getCustomer(_ id: String) async throws -> CustomerModel {
         let q = db.collection("customers").document(id)
         let document = try? await q.getDocument()
         
@@ -43,7 +43,7 @@ public class HomeService {
         let fullName = data?["fullName"] as? String ?? ""
         let phoneNumber = data?["phoneNumber"] as? String ?? ""
         
-        return Customer(
+        return CustomerModel(
             birthDate: birthDate,
             cpf: cpf,
             email: email,
@@ -52,7 +52,7 @@ public class HomeService {
         )
     }
     
-    public func getAccount(_ id: String) async throws -> Account {
+    public func getAccount(_ id: String) async throws -> AccountModel {
         let q = db.collection("accounts").document(id)
         let document = try? await q.getDocument()
         
@@ -72,7 +72,7 @@ public class HomeService {
         let hasCard = data?["hasCard"] as? Bool ?? false
         let cardPin = data?["cardPin"] as? String ?? ""
         
-        return Account(
+        return AccountModel(
             accountNumber: accountNumber,
             balance: balance,
             customerId: customerId,

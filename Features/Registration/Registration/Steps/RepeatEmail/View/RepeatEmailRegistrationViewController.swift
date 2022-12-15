@@ -109,7 +109,9 @@ public class RepeatEmailRegistrationViewController: UIViewController {
         setTextWithLink()
         
         self.viewModel.finishRegister = { login in
-            self.coordinatorDelegate?.goToCompletedRegistration(login: login)
+            DispatchQueue.main.async {
+                self.coordinatorDelegate?.goToCompletedRegistration(login: login)
+            }
         }
         
         self.email = viewModel.getEmail()
@@ -125,7 +127,9 @@ public class RepeatEmailRegistrationViewController: UIViewController {
         self.buttonGo.isEnabled = false
         self.buttonGo.setTitle("", for: .normal)
         self.buttonGo.configuration?.showsActivityIndicator = true
-        self.viewModel.registerCustomer()
+        Task {
+            await self.viewModel.registerCustomer()
+        }
     }
     
     // MARK: - Methods

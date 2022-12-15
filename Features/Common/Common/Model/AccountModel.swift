@@ -1,5 +1,5 @@
 //
-//  Account.swift
+//  AccountModel.swift
 //  Common
 //
 //  Created by Pinto Junior, William James on 29/11/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Account {
+public struct AccountModel {
     public let accountNumber: String
     public let balance: Double
     public let customerId: String

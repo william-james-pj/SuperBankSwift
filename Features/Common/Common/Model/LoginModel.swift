@@ -1,5 +1,5 @@
 //
-//  Login.swift
+//  LoginModel.swift
 //  Common
 //
 //  Created by Pinto Junior, William James on 29/11/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Login {
+public struct LoginModel {
     public let accountId: String
     public let customerId: String
     public let accountNumber: String

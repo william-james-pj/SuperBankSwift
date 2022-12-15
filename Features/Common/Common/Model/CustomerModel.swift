@@ -1,5 +1,5 @@
 //
-//  Customer.swift
+//  CustomerModel.swift
 //  Common
 //
 //  Created by Pinto Junior, William James on 29/11/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Customer {
+public struct CustomerModel {
     public let birthDate: String
     public let cpf: String
     public let email: String
