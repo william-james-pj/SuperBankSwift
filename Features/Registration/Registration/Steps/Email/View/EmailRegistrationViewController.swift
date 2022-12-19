@@ -80,7 +80,7 @@ public class EmailRegistrationViewController: UIViewController {
     }()
     
     private let labelErro: UILabel = {
-        let attrString = NSMutableAttributedString(string: "Esse CPF já esta em uso, digite novamente ou faça login.")
+        let attrString = NSMutableAttributedString(string: "Esse email já esta em uso, digite novamente ou faça login.")
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3
         attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
