@@ -15,6 +15,7 @@ class CardCoordinator: NSObject, Coordinator {
     var navigationController: UINavigationController
     
     var accountId: String?
+    var delegate: ReloadHomeDelegate?
     
     // MARK: - Init
     init(navigationController: UINavigationController) {
@@ -98,7 +99,19 @@ extension CardCoordinator: CardCoordinatorDelegate {
     func goToMyCards() {
         let myCards = MyCardsViewController()
         myCards.coordinatorDelegate = self
+        myCards.accountId = self.accountId
         self.navigationController.pushViewController(myCards, animated: true)
+    }
+    
+    func goToNewVirtualCard() {
+        let newVirtualCard = NewVirtualCardViewController()
+        newVirtualCard.coordinatorDelegate = self
+        newVirtualCard.accountId = self.accountId
+        self.navigationController.pushViewController(newVirtualCard, animated: true)
+    }
+    
+    func finalizeSavingCard() {
+        self.navigationController.popViewController(animated: true)
     }
     
 }
@@ -119,6 +132,7 @@ extension CardCoordinator: UINavigationControllerDelegate {
         }
         
         if let _ = fromViewController as? CompletedRequestCardViewController {
+            self.delegate?.reloadHome()
             self.parentCoordinator?.childDidFinish(self)
         }
         

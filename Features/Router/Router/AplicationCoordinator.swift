@@ -48,8 +48,7 @@ public class AplicationCoordinator: Coordinator {
         coordinator.parentCoordinator = self
         coordinator.delegate = self
         coordinator.accountId = accountId
-        coordinator.start()
-        coordinator.goToMain(customerId: customerId, accountId: accountId)
+        coordinator.start(customerId: customerId, accountId: accountId)
         self.childCoordinators.append(coordinator)
         window.rootViewController = coordinator.navigationController
     }

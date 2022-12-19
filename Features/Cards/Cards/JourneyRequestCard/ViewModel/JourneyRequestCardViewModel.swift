@@ -38,6 +38,8 @@ class JourneyRequestCardViewModel {
             try await self.firebaseService.saveInvoice(newInvoice)
             
             try await self.firebaseService.saveAccountHasCard(accountId: accountId, cardPin: cardPin)
+            
+            try await self.firebaseService.savePhysicalCard(accountId: accountId)
 
             self.finishSavingInvoice?()
         }

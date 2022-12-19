@@ -6,11 +6,17 @@
 //
 
 import UIKit
+import Common
 
 public class MyCardsViewController: UIViewController {
     // MARK: - Constrants
+    private let viewModel = MyCardsViewModel()
+    
     // MARK: - Variables
     public weak var coordinatorDelegate: CardCoordinatorDelegate?
+    public var accountId: String?
+    private var physicalCards: [CardModel] = []
+    private var virtualCards: [CardModel] = []
     
     // MARK: - Components
     private let stackBase: UIStackView = {
@@ -49,13 +55,16 @@ public class MyCardsViewController: UIViewController {
     // MARK: - Lifecycle
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Lista de cartões"
         setupVC()
     }
     
     // MARK: - Setup
     fileprivate func setupVC() {
         view.backgroundColor = UIColor(named: "Background")
+        self.title = "Lista de cartões"
+        
+        settingClosures()
+        getCards()
         
         buildHierarchy()
         buildConstraints()
@@ -70,6 +79,26 @@ public class MyCardsViewController: UIViewController {
     }
     
     // MARK: - Methods
+    private func getCards() {
+        guard let accountId = accountId else {
+            return
+        }
+
+        Task {
+            await self.viewModel.getCards(accountId: accountId)
+        }
+    }
+    
+    private func settingClosures() {
+        self.viewModel.finishGetCards = { physicalCards, virtualCards in
+            DispatchQueue.main.async {
+                self.physicalCards = physicalCards
+                self.virtualCards = virtualCards
+                self.tableViewCards.reloadData()
+            }
+        }
+    }
+    
     fileprivate func buildHierarchy() {
         view.addSubview(stackBase)
         stackBase.addArrangedSubview(viewLabelContainer)
@@ -110,6 +139,7 @@ extension MyCardsViewController: UITableViewDelegate {
         }
         
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: VirtualCardFooter.resuseIdentifier) as! VirtualCardFooter
+        view.delegate = self
         return view
     }
 }
@@ -122,13 +152,19 @@ extension MyCardsViewController: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 1
+            return physicalCards.count
         }
-        return 1
+        return virtualCards.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: MyCardsTableViewCell.resuseIdentifier, for: indexPath) as! MyCardsTableViewCell
+            cell.settingView(card: self.physicalCards[indexPath.row])
+            return cell
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: MyCardsTableViewCell.resuseIdentifier, for: indexPath) as! MyCardsTableViewCell
+        cell.settingView(card: self.virtualCards[indexPath.row])
         return cell
     }
     
@@ -137,5 +173,12 @@ extension MyCardsViewController: UITableViewDataSource {
             return "Cartões físicos"
         }
         return "Cartões virtuais"
+    }
+}
+
+// MARK: - extension VirtualCardFooterDelegate
+extension MyCardsViewController: VirtualCardFooterDelegate {
+    func newCardButtonPressed() {
+        self.coordinatorDelegate?.goToNewVirtualCard()
     }
 }

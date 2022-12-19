@@ -1,13 +1,13 @@
 //
-//  RequestCardButton.swift
+//  ButtonPrimary.swift
 //  Cards
 //
-//  Created by Pinto Junior, William James on 13/12/22.
+//  Created by Pinto Junior, William James on 16/12/22.
 //
 
 import UIKit
 
-class RequestCardButton: UIButton {
+class ButtonPrimary: UIButton {
     // MARK: - Variable
     private var textAux: String = ""
     
@@ -82,3 +82,4 @@ class RequestCardButton: UIButton {
         return AttributedString(text, attributes: container)
     }
 }
+

@@ -12,6 +12,7 @@
 		E008E0DB29367A990051A4CC /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E008E0DA29367A990051A4CC /* LoginModel.swift */; };
 		E032B088293F8BA70091C75B /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E032B087293F8BA70091C75B /* UserDefaults+Extensions.swift */; };
 		E032B08A293F8D390091C75B /* HideMoney.swift in Sources */ = {isa = PBXBuildFile; fileRef = E032B089293F8D390091C75B /* HideMoney.swift */; };
+		E0C5CF4D294C8CA300A232D9 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C5CF4C294C8CA300A232D9 /* CardModel.swift */; };
 		E0E20D04292D0B9D00AB9A84 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20CFB292D0B9D00AB9A84 /* Common.framework */; };
 		E0E20D09292D0B9D00AB9A84 /* CommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20D08292D0B9D00AB9A84 /* CommonTests.swift */; };
 		E0E20D0A292D0B9D00AB9A84 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = E0E20CFE292D0B9D00AB9A84 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -35,6 +36,7 @@
 		E008E0DA29367A990051A4CC /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		E032B087293F8BA70091C75B /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		E032B089293F8D390091C75B /* HideMoney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideMoney.swift; sourceTree = "<group>"; };
+		E0C5CF4C294C8CA300A232D9 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		E0E20CFB292D0B9D00AB9A84 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20CFE292D0B9D00AB9A84 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		E0E20D03292D0B9D00AB9A84 /* CommonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +71,7 @@
 				E008E0D829367A630051A4CC /* CustomerModel.swift */,
 				E008E0DA29367A990051A4CC /* LoginModel.swift */,
 				E0E213302949E99B00EFB851 /* InvoiceModel.swift */,
+				E0C5CF4C294C8CA300A232D9 /* CardModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				E032B08A293F8D390091C75B /* HideMoney.swift in Sources */,
 				E0E213312949E99B00EFB851 /* InvoiceModel.swift in Sources */,
 				E008E0D729367A490051A4CC /* AccountModel.swift in Sources */,
+				E0C5CF4D294C8CA300A232D9 /* CardModel.swift in Sources */,
 				E032B088293F8BA70091C75B /* UserDefaults+Extensions.swift in Sources */,
 				E008E0DB29367A990051A4CC /* LoginModel.swift in Sources */,
 			);

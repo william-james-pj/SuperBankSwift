@@ -220,8 +220,8 @@ public class RequestCardResumeViewController: UIViewController {
         return view
     }()
     
-    private let buttonNext: RequestCardButton = {
-        let button = RequestCardButton()
+    private let buttonNext: ButtonPrimary = {
+        let button = ButtonPrimary()
         button.addTarget(self, action: #selector(NextButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

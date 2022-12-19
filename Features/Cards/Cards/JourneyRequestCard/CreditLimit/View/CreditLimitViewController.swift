@@ -125,8 +125,8 @@ public class CreditLimitViewController: UIViewController {
         return slider
     }()
     
-    private let buttonNext: RequestCardButton = {
-        let button = RequestCardButton()
+    private let buttonNext: ButtonPrimary = {
+        let button = ButtonPrimary()
         button.settingTitle("Avançar")
         button.addTarget(self, action: #selector(NextButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false

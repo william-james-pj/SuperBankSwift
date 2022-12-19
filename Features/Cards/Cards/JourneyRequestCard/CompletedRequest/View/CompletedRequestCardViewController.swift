@@ -74,8 +74,8 @@ public class CompletedRequestCardViewController: UIViewController {
         return label
     }()
     
-    private let buttonNext: RequestCardButton = {
-        let button = RequestCardButton()
+    private let buttonNext: ButtonPrimary = {
+        let button = ButtonPrimary()
         button.settingTitle("Finalizar")
         button.addTarget(self, action: #selector(NextButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false

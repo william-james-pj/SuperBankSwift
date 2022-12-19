@@ -18,4 +18,6 @@ public protocol CardCoordinatorDelegate: AnyObject {
     func finalizeRequest()
     
     func goToMyCards()
+    func goToNewVirtualCard()
+    func finalizeSavingCard()
 }

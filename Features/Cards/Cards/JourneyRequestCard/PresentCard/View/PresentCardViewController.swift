@@ -232,8 +232,8 @@ public class PresentCardViewController: UIViewController {
         return view
     }()
     
-    private let buttonRequestCard: RequestCardButton = {
-        let button = RequestCardButton()
+    private let buttonRequestCard: ButtonPrimary = {
+        let button = ButtonPrimary()
         button.settingTitle("Solicitar o cartão")
         button.addTarget(self, action: #selector(RequestCardButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false

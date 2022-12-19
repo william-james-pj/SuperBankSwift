@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol VirtualCardFooterDelegate {
+    func newCardButtonPressed()
+}
+
 class VirtualCardFooter: UITableViewHeaderFooterView {
     // MARK: - Constrants
     static let resuseIdentifier: String = "DrawerHeader"
     
     // MARK: - Variables
+    var delegate: VirtualCardFooterDelegate?
+    
     // MARK: - Components
     private let buttonNewCard: UIButton = {
         var container = AttributeContainer()
@@ -41,6 +47,7 @@ class VirtualCardFooter: UITableViewHeaderFooterView {
     
     // MARK: - Actions
     @IBAction private func AddNewCardButtonTapped(_ sender: UIButton) {
+        self.delegate?.newCardButtonPressed()
     }
     
     // MARK: - Setup

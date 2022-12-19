@@ -88,6 +88,12 @@ public class HomeViewController: UIViewController {
         }
     }
     
+    public func reloadTableHome() {
+        Task {
+            await self.viewModel.reloadAccount()
+        }
+    }
+    
     private func settingClosures() {
         self.viewModel.updateCustomerUI = { customer in
             DispatchQueue.main.async {

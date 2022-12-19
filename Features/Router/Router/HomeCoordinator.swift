@@ -32,7 +32,9 @@ class HomeCoordinator: Coordinator {
         settingNav()
     }
     
-    func goToMain(customerId: String, accountId: String) {
+    func start(customerId: String, accountId: String) {
+        self.start()
+
         let initialViewController = HomeViewController()
         initialViewController.loaderData(customerId: customerId, accountId: accountId)
         initialViewController.coordinatorDelegate = self
@@ -67,8 +69,19 @@ extension HomeCoordinator: HomeCoordinatorDelegate {
     func goToCard(hasCard: Bool) {
         let coordinator = CardCoordinator(navigationController: navigationController)
         coordinator.parentCoordinator = self
+        coordinator.delegate = self
         coordinator.accountId = accountId
         childCoordinators.append(coordinator)
         coordinator.start(hasCard: hasCard)
+    }
+}
+
+// MARK: - ReloadHomeDelegate
+extension HomeCoordinator: ReloadHomeDelegate {
+    func reloadHome() {
+        guard let aux = self.navigationController.viewControllers[0] as? HomeViewController else {
+            return
+        }
+        aux.reloadTableHome()
     }
 }

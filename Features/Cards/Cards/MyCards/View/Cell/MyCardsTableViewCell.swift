@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Common
 
 class MyCardsTableViewCell: UITableViewCell {
     // MARK: - Constrants
@@ -103,6 +104,16 @@ class MyCardsTableViewCell: UITableViewCell {
     }
     
     // MARK: - Methods
+    func settingView(card: CardModel) {
+        self.labelCardName.text = card.nickname
+        self.labelCardFinalNumber.text = formattingCardNumber(card.cardNumber)
+    }
+    
+    private func formattingCardNumber(_ cardNumber: String) -> String{
+        let lastNumber = cardNumber.suffix(4)
+        return "•••• \(lastNumber)"
+    }
+    
     private func buildHierarchy() {
         self.addSubview(stackBase)
         stackBase.addArrangedSubview(viewImageCardContainer)

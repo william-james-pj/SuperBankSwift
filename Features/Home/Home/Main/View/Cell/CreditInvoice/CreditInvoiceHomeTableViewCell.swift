@@ -90,7 +90,7 @@ class CreditInvoiceHomeTableViewCell: UITableViewCell {
     
     private let labelInvoiceValue: UILabel = {
         let label = UILabel()
-        label.text = "R$ 219,23"
+        label.text = "R$ 0,00"
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.textColor = UIColor(named: "Text")
         label.setContentHuggingPriority(.defaultHigh, for: .vertical)
@@ -113,7 +113,7 @@ class CreditInvoiceHomeTableViewCell: UITableViewCell {
         
         var container = AttributeContainer()
         container.font = .systemFont(ofSize: 12, weight: .bold)
-        config.attributedTitle = AttributedString("Pagar fatura", attributes: container)
+        config.attributedTitle = AttributedString("Detalhes da fatura", attributes: container)
         
         let button = UIButton()
         button.configuration = config

@@ -113,8 +113,8 @@ public class CardPinViewController: UIViewController {
         return button
     }()
     
-    private let buttonNext: RequestCardButton = {
-        let button = RequestCardButton()
+    private let buttonNext: ButtonPrimary = {
+        let button = ButtonPrimary()
         button.addTarget(self, action: #selector(NextButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
