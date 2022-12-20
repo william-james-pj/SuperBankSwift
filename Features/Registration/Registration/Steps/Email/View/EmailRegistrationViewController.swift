@@ -80,7 +80,7 @@ public class EmailRegistrationViewController: UIViewController {
     }()
     
     private let labelErro: UILabel = {
-        let attrString = NSMutableAttributedString(string: "Esse CPF já esta em uso, digite novamente ou faça login.")
+        let attrString = NSMutableAttributedString(string: "Esse email já esta em uso, digite novamente ou faça login.")
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3
         attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
@@ -126,7 +126,7 @@ public class EmailRegistrationViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func GoButtonTapped(_ sender: UIButton) {
+    @IBAction private func GoButtonTapped(_ sender: UIButton) {
         Task {
             guard let email = self.textFieldEmail.text else {
                 return
@@ -145,7 +145,7 @@ public class EmailRegistrationViewController: UIViewController {
     }
     
     // MARK: - Methods
-    fileprivate func validateInput(_ isValid: Bool) {
+    private func validateInput(_ isValid: Bool) {
         if isError {
             self.settingError(to: false)
         }
@@ -170,7 +170,7 @@ public class EmailRegistrationViewController: UIViewController {
         self.labelErro.isHidden = true
     }
     
-    fileprivate func settingButton(isDisabled: Bool) {
+    private func settingButton(isDisabled: Bool) {
         if isDisabled {
             self.buttonGo.configuration?.baseForegroundColor = .gray
             self.buttonGo.configuration?.baseBackgroundColor = UIColor(named: "DisabledLight")
@@ -201,7 +201,7 @@ public class EmailRegistrationViewController: UIViewController {
         return
     }
     
-    @objc fileprivate func keyboardWillShow(notification: NSNotification) {
+    @objc private func keyboardWillShow(notification: NSNotification) {
         let info = notification.userInfo!
         let keyboardFrame: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
 
@@ -211,7 +211,7 @@ public class EmailRegistrationViewController: UIViewController {
         })
     }
     
-    @objc fileprivate func keyboardWillHide(notification: NSNotification) {
+    @objc private func keyboardWillHide(notification: NSNotification) {
         let info = notification.userInfo!
         let _: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
@@ -221,7 +221,7 @@ public class EmailRegistrationViewController: UIViewController {
         })
     }
     
-    fileprivate func buildHierarchy() {
+    private func buildHierarchy() {
         view.addSubview(stackBase)
         stackBase.addArrangedSubview(stackContent)
         stackContent.addArrangedSubview(labelTitle)
@@ -232,7 +232,7 @@ public class EmailRegistrationViewController: UIViewController {
         stackBase.addArrangedSubview(buttonGo)
     }
     
-    fileprivate func buildConstraints() {
+    private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             stackBase.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),

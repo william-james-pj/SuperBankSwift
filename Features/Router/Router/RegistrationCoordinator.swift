@@ -9,28 +9,34 @@ import UIKit
 import Common
 import Registration
 
-class RegistrationCoordinator: Coordinator {
+class RegistrationCoordinator: NSObject, Coordinator {
+    // MARK: - Variables
     weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
+    // MARK: - Init
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
+    // MARK: - Methods
     func start() {
-        settingNav()
+        self.navigationController.delegate = self
+        
+        self.settingNav()
         let initialViewController = FirstInfoViewController()
         initialViewController.coordinatorDelegate = self
         self.navigationController.pushViewController(initialViewController, animated: false)
     }
     
-    fileprivate func settingNav() {
-        navigationController.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "Text") ?? .label]
-        navigationController.navigationBar.tintColor = UIColor(named: "Text")
+    private func settingNav() {
+        self.navigationController.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "Text") ?? .label]
+        self.navigationController.navigationBar.tintColor = UIColor(named: "Text")
     }
 }
 
+// MARK: - extension RegistrationCoordinatorDelegate
 extension RegistrationCoordinator: RegistrationCoordinatorDelegate {
     func goToFullName() {
         let fullNameVC = FullNameRegistrationViewController()
@@ -68,7 +74,9 @@ extension RegistrationCoordinator: RegistrationCoordinatorDelegate {
         self.navigationController.pushViewController(repeatEmailVC, animated: true)
     }
     
-    func goToCompletedRegistration(login: Login) {
+    func goToCompletedRegistration(login: LoginModel) {
+        self.navigationController.popToRootViewController(animated: false)
+        
         let completedRegistrationVC = CompletedRegistrationViewController()
         completedRegistrationVC.coordinatorDelegate = self
         completedRegistrationVC.settingVC(login: login)
@@ -76,7 +84,28 @@ extension RegistrationCoordinator: RegistrationCoordinatorDelegate {
     }
     
     func didFinishRegistration() {
-        navigationController.popToRootViewController(animated: true)
-        parentCoordinator?.childDidFinish(self)
+        self.navigationController.popToRootViewController(animated: true)
+        self.parentCoordinator?.childDidFinish(self)
+    }
+}
+
+// MARK: - extension UINavigationControllerDelegate
+extension RegistrationCoordinator: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
+            return
+        }
+
+        if navigationController.viewControllers.contains(fromViewController) {
+            return
+        }
+
+        if let _ = fromViewController as? FirstInfoViewController {
+            self.parentCoordinator?.childDidFinish(self)
+        }
+        
+        if let _ = fromViewController as? CompletedRegistrationViewController {
+            self.parentCoordinator?.childDidFinish(self)
+        }
     }
 }

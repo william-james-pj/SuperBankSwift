@@ -135,7 +135,7 @@ public class CPFRegistrationViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func GoButtonTapped(_ sender: UIButton) {
+    @IBAction private func GoButtonTapped(_ sender: UIButton) {
         Task {
             self.settingLoadingButton(true)
             let isValid = await self.viewModel.validateCPF(cpf)
@@ -282,7 +282,11 @@ extension CPFRegistrationViewController: UITextFieldDelegate {
         if let updatedString = updatedString {
             if updatedString.count == 14 {
                 self.validateInput(true)
-            } else {
+            }
+            else if updatedString.count > 14 {
+                return false
+            }
+            else {
                 self.validateInput(false)
             }
         }

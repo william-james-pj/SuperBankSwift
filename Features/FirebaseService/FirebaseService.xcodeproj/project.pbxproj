@@ -9,11 +9,17 @@
 /* Begin PBXBuildFile section */
 		E008E0DE29367AC00051A4CC /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E008E0DD29367AC00051A4CC /* Common.framework */; };
 		E008E0DF29367AC00051A4CC /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E008E0DD29367AC00051A4CC /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E02A1DBF293E13C300F246A5 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02A1DBE293E13C300F246A5 /* HomeService.swift */; };
+		E02EE8FE2937736D00FD1C80 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02EE8FD2937736D00FD1C80 /* LoginService.swift */; };
+		E03375752951EAAE005C8524 /* CardDeliveryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03375742951EAAE005C8524 /* CardDeliveryService.swift */; };
+		E03375772951ED32005C8524 /* UtilityCardDelivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03375762951ED32005C8524 /* UtilityCardDelivery.swift */; };
+		E0C5CF50294C9ABE00A232D9 /* UtilityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C5CF4F294C9ABE00A232D9 /* UtilityCard.swift */; };
 		E0E20E07292D469700AB9A84 /* FirebaseService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20DFE292D469700AB9A84 /* FirebaseService.framework */; };
 		E0E20E0C292D469700AB9A84 /* FirebaseServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20E0B292D469700AB9A84 /* FirebaseServiceTests.swift */; };
 		E0E20E0D292D469700AB9A84 /* FirebaseService.h in Headers */ = {isa = PBXBuildFile; fileRef = E0E20E01292D469700AB9A84 /* FirebaseService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E0E20E18292D474000AB9A84 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E0E20E17292D474000AB9A84 /* FirebaseFirestore */; };
 		E0E20E1F292D4CFE00AB9A84 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20E1E292D4CFE00AB9A84 /* RegistrationService.swift */; };
+		E0E213332949EA5D00EFB851 /* CardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E213322949EA5D00EFB851 /* CardService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,11 +48,17 @@
 
 /* Begin PBXFileReference section */
 		E008E0DD29367AC00051A4CC /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E02A1DBE293E13C300F246A5 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
+		E02EE8FD2937736D00FD1C80 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		E03375742951EAAE005C8524 /* CardDeliveryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeliveryService.swift; sourceTree = "<group>"; };
+		E03375762951ED32005C8524 /* UtilityCardDelivery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityCardDelivery.swift; sourceTree = "<group>"; };
+		E0C5CF4F294C9ABE00A232D9 /* UtilityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityCard.swift; sourceTree = "<group>"; };
 		E0E20DFE292D469700AB9A84 /* FirebaseService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FirebaseService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20E01292D469700AB9A84 /* FirebaseService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirebaseService.h; sourceTree = "<group>"; };
 		E0E20E06292D469700AB9A84 /* FirebaseServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirebaseServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20E0B292D469700AB9A84 /* FirebaseServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseServiceTests.swift; sourceTree = "<group>"; };
 		E0E20E1E292D4CFE00AB9A84 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
+		E0E213322949EA5D00EFB851 /* CardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +90,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E0C5CF4E294C9A9800A232D9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E0C5CF4F294C9ABE00A232D9 /* UtilityCard.swift */,
+				E03375762951ED32005C8524 /* UtilityCardDelivery.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		E0E20DF4292D469700AB9A84 = {
 			isa = PBXGroup;
 			children = (
@@ -100,7 +121,12 @@
 		E0E20E00292D469700AB9A84 /* FirebaseService */ = {
 			isa = PBXGroup;
 			children = (
+				E0C5CF4E294C9A9800A232D9 /* Common */,
 				E0E20E1E292D4CFE00AB9A84 /* RegistrationService.swift */,
+				E02EE8FD2937736D00FD1C80 /* LoginService.swift */,
+				E02A1DBE293E13C300F246A5 /* HomeService.swift */,
+				E0E213322949EA5D00EFB851 /* CardService.swift */,
+				E03375742951EAAE005C8524 /* CardDeliveryService.swift */,
 				E0E20E01292D469700AB9A84 /* FirebaseService.h */,
 			);
 			path = FirebaseService;
@@ -231,7 +257,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0C5CF50294C9ABE00A232D9 /* UtilityCard.swift in Sources */,
+				E02A1DBF293E13C300F246A5 /* HomeService.swift in Sources */,
 				E0E20E1F292D4CFE00AB9A84 /* RegistrationService.swift in Sources */,
+				E02EE8FE2937736D00FD1C80 /* LoginService.swift in Sources */,
+				E0E213332949EA5D00EFB851 /* CardService.swift in Sources */,
+				E03375772951ED32005C8524 /* UtilityCardDelivery.swift in Sources */,
+				E03375752951EAAE005C8524 /* CardDeliveryService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,10 +431,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.james.FirebaseService;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -429,9 +462,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.james.FirebaseService;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

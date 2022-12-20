@@ -21,7 +21,8 @@ class RegistrationViewModel {
     private var phoneNumber: String = ""
     private var email: String = ""
     
-    var finishRegister: ((_ login: Login) -> Void)?
+    // MARK: - Closures
+    var finishRegister: ((_ login: LoginModel) -> Void)?
     
     // MARK: - Init
     private init() {
@@ -29,30 +30,47 @@ class RegistrationViewModel {
     }
     
     // MARK: - Methods
-    func registerCustomer() {
-        let customer = Customer(birthDate: birthDate, cpf: cpf, email: email, fullName: fullName, phoneNumber: phoneNumber)
-        let login = firebaseService.register(customer: customer)
-        self.finishRegister?(login)
+    func registerCustomer() async {
+        do {
+            let customer = CustomerModel(birthDate: birthDate, cpf: cpf, email: email, fullName: fullName, phoneNumber: phoneNumber)
+            let login = try await firebaseService.register(customer: customer)
+            self.finishRegister?(login)
+        }
+        catch {
+            print("Unexpected error: \(error).")
+        }
     }
     
     func validateCPF(_ cpf: String) async -> Bool {
-        let isValid = await self.firebaseService.validateCPF(cpf)
-        
-        if isValid {
-            self.cpf = cpf
+        do {
+            let isValid = try await self.firebaseService.validateCPF(cpf)
+            
+            if isValid {
+                self.cpf = cpf
+            }
+            
+            return isValid
         }
-        
-        return isValid
+        catch {
+            print("Unexpected error: \(error).")
+            return false
+        }
     }
     
     func validateEmail(_ email: String) async -> Bool {
-        let isValid = await self.firebaseService.validateEmail(email)
-        
-        if isValid {
-            self.email = email
+        do {
+            let isValid = try await self.firebaseService.validateEmail(email)
+            
+            if isValid {
+                self.email = email
+            }
+            
+            return isValid
         }
-        
-        return isValid
+        catch {
+            print("Unexpected error: \(error).")
+            return false
+        }
     }
     
     func setName(_ name: String) {

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E02EE902293773B100FD1C80 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02EE901293773B100FD1C80 /* LoginViewModel.swift */; };
+		E02EE904293773DD00FD1C80 /* FirebaseService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E02EE903293773DD00FD1C80 /* FirebaseService.framework */; };
+		E02EE905293773DD00FD1C80 /* FirebaseService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E02EE903293773DD00FD1C80 /* FirebaseService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E02EE9072937779500FD1C80 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02EE9062937779500FD1C80 /* LoginButton.swift */; };
+		E02EE90A2937848B00FD1C80 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E02EE9092937848B00FD1C80 /* RxSwift */; };
+		E09BF99F29391DF900D1034E /* PasswordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BF99E29391DF900D1034E /* PasswordButton.swift */; };
+		E0DB909A293A3CB400828677 /* LoginCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DB9099293A3CB400828677 /* LoginCoordinatorDelegate.swift */; };
 		E0E20CDF292D0AD200AB9A84 /* Login.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20CD6292D0AD200AB9A84 /* Login.framework */; };
 		E0E20CE4292D0AD200AB9A84 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20CE3292D0AD200AB9A84 /* LoginTests.swift */; };
 		E0E20CE5292D0AD200AB9A84 /* Login.h in Headers */ = {isa = PBXBuildFile; fileRef = E0E20CD9292D0AD200AB9A84 /* Login.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -35,6 +42,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E0E20D19292D0BF200AB9A84 /* Common.framework in Embed Frameworks */,
+				E02EE905293773DD00FD1C80 /* FirebaseService.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -42,6 +50,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E02EE901293773B100FD1C80 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		E02EE903293773DD00FD1C80 /* FirebaseService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E02EE9062937779500FD1C80 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
+		E09BF99E29391DF900D1034E /* PasswordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordButton.swift; sourceTree = "<group>"; };
+		E0DB9099293A3CB400828677 /* LoginCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		E0E20CD6292D0AD200AB9A84 /* Login.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Login.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20CD9292D0AD200AB9A84 /* Login.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
 		E0E20CDE292D0AD200AB9A84 /* LoginTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoginTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,7 +70,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E02EE90A2937848B00FD1C80 /* RxSwift in Frameworks */,
 				E0E20D18292D0BF200AB9A84 /* Common.framework in Frameworks */,
+				E02EE904293773DD00FD1C80 /* FirebaseService.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +87,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E02EE8FF2937739C00FD1C80 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E02EE901293773B100FD1C80 /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E0DB9098293A3C9E00828677 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				E0DB9099293A3CB400828677 /* LoginCoordinatorDelegate.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		E0E20CCC292D0AD200AB9A84 = {
 			isa = PBXGroup;
 			children = (
@@ -94,8 +125,10 @@
 		E0E20CD8292D0AD200AB9A84 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				E0DB9098293A3C9E00828677 /* Protocol */,
 				E0E20D1E292D0C8800AB9A84 /* Common */,
 				E0E20D1B292D0C5800AB9A84 /* UI */,
+				E02EE8FF2937739C00FD1C80 /* ViewModel */,
 				E0E20CEE292D0B5400AB9A84 /* View */,
 				E0E20CD9292D0AD200AB9A84 /* Login.h */,
 			);
@@ -121,6 +154,7 @@
 		E0E20D16292D0BF200AB9A84 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E02EE903293773DD00FD1C80 /* FirebaseService.framework */,
 				E0E20D17292D0BF200AB9A84 /* Common.framework */,
 			);
 			name = Frameworks;
@@ -130,6 +164,8 @@
 			isa = PBXGroup;
 			children = (
 				E0E20D1C292D0C6700AB9A84 /* PasswordButtons.swift */,
+				E09BF99E29391DF900D1034E /* PasswordButton.swift */,
+				E02EE9062937779500FD1C80 /* LoginButton.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -171,6 +207,9 @@
 			dependencies = (
 			);
 			name = Login;
+			packageProductDependencies = (
+				E02EE9092937848B00FD1C80 /* RxSwift */,
+			);
 			productName = Login;
 			productReference = E0E20CD6292D0AD200AB9A84 /* Login.framework */;
 			productType = "com.apple.product-type.framework";
@@ -221,6 +260,9 @@
 				Base,
 			);
 			mainGroup = E0E20CCC292D0AD200AB9A84;
+			packageReferences = (
+				E02EE9082937848B00FD1C80 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = E0E20CD7292D0AD200AB9A84 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -253,6 +295,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E09BF99F29391DF900D1034E /* PasswordButton.swift in Sources */,
+				E02EE9072937779500FD1C80 /* LoginButton.swift in Sources */,
+				E02EE902293773B100FD1C80 /* LoginViewModel.swift in Sources */,
+				E0DB909A293A3CB400828677 /* LoginCoordinatorDelegate.swift in Sources */,
 				E0E20D1D292D0C6700AB9A84 /* PasswordButtons.swift in Sources */,
 				E0E20D20292D0C9200AB9A84 /* GeneratePasswordButtonText.swift in Sources */,
 				E0E20CF0292D0B7000AB9A84 /* LoginViewController.swift in Sources */,
@@ -536,6 +582,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E02EE9082937848B00FD1C80 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 6.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E02EE9092937848B00FD1C80 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E02EE9082937848B00FD1C80 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E0E20CCD292D0AD200AB9A84 /* Project object */;
 }

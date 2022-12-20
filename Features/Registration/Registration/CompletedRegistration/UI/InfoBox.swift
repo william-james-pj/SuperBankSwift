@@ -11,7 +11,7 @@ class InfoBox: UIView {
     // MARK: - Constrants
     // MARK: - Variables
     // MARK: - Components
-    fileprivate let stackBase: UIStackView = {
+    private let stackBase: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 8
@@ -20,7 +20,7 @@ class InfoBox: UIView {
         return stack
     }()
     
-    fileprivate let labelTitle: UILabel = {
+    private let labelTitle: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.textColor = UIColor(named: "Text")
@@ -29,7 +29,7 @@ class InfoBox: UIView {
         return label
     }()
     
-    fileprivate let labelSubTitle: UILabel = {
+    private let labelSubTitle: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
         label.font = .systemFont(ofSize: 16, weight: .bold)
@@ -50,7 +50,7 @@ class InfoBox: UIView {
     }
     
     // MARK: - Setup
-    fileprivate func setupView() {
+    private func setupView() {
         buildHierarchy()
         buildConstraints()
     }
@@ -61,13 +61,13 @@ class InfoBox: UIView {
         self.labelSubTitle.text = subTitle
     }
     
-    fileprivate func buildHierarchy() {
+    private func buildHierarchy() {
         self.addSubview(stackBase)
         stackBase.addArrangedSubview(labelTitle)
         stackBase.addArrangedSubview(labelSubTitle)
     }
     
-    fileprivate func buildConstraints() {
+    private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: self.topAnchor),
             stackBase.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 24),

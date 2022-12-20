@@ -13,7 +13,7 @@ public class FirstInfoViewController: UIViewController {
     public weak var coordinatorDelegate: RegistrationCoordinatorDelegate?
     
     // MARK: - Components
-    fileprivate let stackBase: UIStackView = {
+    private let stackBase: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 32
@@ -22,13 +22,13 @@ public class FirstInfoViewController: UIViewController {
         return stack
     }()
     
-    fileprivate let viewImageContainer: UIView = {
+    private let viewImageContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    fileprivate let imageViewInfo: UIImageView = {
+    private let imageViewInfo: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "registrationInfo")
         imageView.contentMode = .scaleAspectFit
@@ -36,7 +36,7 @@ public class FirstInfoViewController: UIViewController {
         return imageView
     }()
     
-    fileprivate let stackText: UIStackView = {
+    private let stackText: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 32
@@ -45,7 +45,7 @@ public class FirstInfoViewController: UIViewController {
         return stack
     }()
     
-    fileprivate let labelOpenAccount: UILabel = {
+    private let labelOpenAccount: UILabel = {
         let attrString = NSMutableAttributedString(string: "Abra sua conta\ngratuitamente")
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3
@@ -61,7 +61,7 @@ public class FirstInfoViewController: UIViewController {
         return label
     }()
     
-    fileprivate let labelStart: UILabel = {
+    private let labelStart: UILabel = {
         let attrString = NSMutableAttributedString(string: "Você está preste a dar o primeiro passo em\nbusca da evolução financeira!.")
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3
@@ -77,7 +77,7 @@ public class FirstInfoViewController: UIViewController {
         return label
     }()
     
-    fileprivate let labelDocument: UILabel = {
+    private let labelDocument: UILabel = {
         let attrString = NSMutableAttributedString(string: "Para facilitar seu cadrastro, tenha em mãos um dos\nseus documentos de identidade: RG, CNH ou RNE.")
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3
@@ -93,7 +93,7 @@ public class FirstInfoViewController: UIViewController {
         return label
     }()
     
-    fileprivate let buttonOpenAccount: UIButton = {
+    private let buttonOpenAccount: UIButton = {
         var config = UIButton.Configuration.gray()
         config.baseForegroundColor = UIColor(named: "White")
         config.baseBackgroundColor = UIColor(named: "Primary")
@@ -117,18 +117,18 @@ public class FirstInfoViewController: UIViewController {
     }
     
     // MARK: - Setup
-    fileprivate func setupVC() {
+    private func setupVC() {
         view.backgroundColor = UIColor(named: "Background")
         buildHierarchy()
         buildConstraints()
     }
     
     // MARK: - Methods
-    @IBAction func OpenAccountButtonTapped(_ sender: UIButton) {
+    @IBAction private func OpenAccountButtonTapped(_ sender: UIButton) {
         self.coordinatorDelegate?.goToFullName()
     }
     
-    fileprivate func buildHierarchy() {
+    private func buildHierarchy() {
         view.addSubview(stackBase)
         
         stackBase.addArrangedSubview(stackText)
@@ -141,7 +141,7 @@ public class FirstInfoViewController: UIViewController {
         stackBase.addArrangedSubview(buttonOpenAccount)
     }
     
-    fileprivate func buildConstraints() {
+    private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             stackBase.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),

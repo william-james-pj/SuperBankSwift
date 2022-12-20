@@ -25,7 +25,7 @@ class RegistrationTextField: UITextField {
     }
     
     // MARK: - Setup
-    fileprivate func setupTextField() {
+    private func setupTextField() {
         self.font = UIFont.systemFont(ofSize: 16)
         self.textColor = UIColor(named: "Text")
         self.autocorrectionType = UITextAutocorrectionType.no

@@ -9,15 +9,15 @@ import UIKit
 
 public class RepeatEmailRegistrationViewController: UIViewController {
     // MARK: - Constrants
-    let viewModel = RegistrationViewModel.sharedRegistration
+    private let viewModel = RegistrationViewModel.sharedRegistration
     
     // MARK: - Variables
     public weak var coordinatorDelegate: RegistrationCoordinatorDelegate?
-    var email: String = ""
-    var repeatEmail: String = ""
+    private var email: String = ""
+    private var repeatEmail: String = ""
     
     // MARK: - Components
-    fileprivate let stackBase: UIStackView = {
+    private let stackBase: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 32
@@ -26,7 +26,7 @@ public class RepeatEmailRegistrationViewController: UIViewController {
         return stack
     }()
     
-    fileprivate let stackContent: UIStackView = {
+    private let stackContent: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 32
@@ -35,7 +35,7 @@ public class RepeatEmailRegistrationViewController: UIViewController {
         return stack
     }()
     
-    fileprivate let labelTitle: UILabel = {
+    private let labelTitle: UILabel = {
         let attrString = NSMutableAttributedString(string: "Para confirmar, digita novamente\nseu e-mail, por favor.")
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3
@@ -50,7 +50,7 @@ public class RepeatEmailRegistrationViewController: UIViewController {
         return label
     }()
     
-    fileprivate let labelInfo: UILabel = {
+    private let labelInfo: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.textColor = UIColor(named: "Disabled")
@@ -58,7 +58,7 @@ public class RepeatEmailRegistrationViewController: UIViewController {
         return label
     }()
     
-    fileprivate let textFieldEmail: UITextField = {
+    private let textFieldEmail: UITextField = {
         let textField = RegistrationTextField()
         textField.attributedPlaceholder = NSAttributedString(
             string: "meuemail@exemplo.com",
@@ -70,7 +70,7 @@ public class RepeatEmailRegistrationViewController: UIViewController {
         return textField
     }()
     
-    fileprivate let labelAgreeTerms: UITextView = {
+    private let labelAgreeTerms: UITextView = {
         let attrString = NSMutableAttributedString(string: "Ao cliclar em \"Finalizar\" você autoriza o SuperBank a coletar seus dados pessoais de acordo com a nossa Política de Privacidade, com o objetivo de comunicar informações sobre o proccesso de abertura da sua conta")
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 20
@@ -87,7 +87,7 @@ public class RepeatEmailRegistrationViewController: UIViewController {
         return textView
     }()
     
-    fileprivate let buttonGo: RegistrationButton = {
+    private let buttonGo: RegistrationButton = {
         let button = RegistrationButton()
         button.addTarget(self, action: #selector(GoButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -101,7 +101,7 @@ public class RepeatEmailRegistrationViewController: UIViewController {
     }
     
     // MARK: - Setup
-    fileprivate func setupVC() {
+    private func setupVC() {
         view.backgroundColor = UIColor(named: "Background")
         settingButton(isDisabled: true)
         buildHierarchy()
@@ -109,7 +109,9 @@ public class RepeatEmailRegistrationViewController: UIViewController {
         setTextWithLink()
         
         self.viewModel.finishRegister = { login in
-            self.coordinatorDelegate?.goToCompletedRegistration(login: login)
+            DispatchQueue.main.async {
+                self.coordinatorDelegate?.goToCompletedRegistration(login: login)
+            }
         }
         
         self.email = viewModel.getEmail()
@@ -121,15 +123,17 @@ public class RepeatEmailRegistrationViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func GoButtonTapped(_ sender: UIButton) {
+    @IBAction private func GoButtonTapped(_ sender: UIButton) {
         self.buttonGo.isEnabled = false
         self.buttonGo.setTitle("", for: .normal)
         self.buttonGo.configuration?.showsActivityIndicator = true
-        self.viewModel.registerCustomer()
+        Task {
+            await self.viewModel.registerCustomer()
+        }
     }
     
     // MARK: - Methods
-    fileprivate func validateInput(_ isValid: Bool) {
+    private func validateInput(_ isValid: Bool) {
         if isValid {
             self.textFieldEmail.textColor = UIColor(named: "Green")
             settingButton(isDisabled: false)
@@ -139,7 +143,7 @@ public class RepeatEmailRegistrationViewController: UIViewController {
         settingButton(isDisabled: true)
     }
     
-    fileprivate func settingButton(isDisabled: Bool) {
+    private func settingButton(isDisabled: Bool) {
         var container = AttributeContainer()
         container.font = .systemFont(ofSize: 14, weight: .bold)
         
@@ -157,7 +161,7 @@ public class RepeatEmailRegistrationViewController: UIViewController {
         self.buttonGo.isEnabled = true
     }
     
-    fileprivate func setTextWithLink() {
+    private func setTextWithLink() {
         let textViewAttributedString = NSMutableAttributedString(string: self.labelAgreeTerms.text)
         textViewAttributedString.addAttributes([.font: UIFont.systemFont(ofSize: 14), .foregroundColor : UIColor(named: "Text") ?? .red], range: NSRange(location: 0, length: textViewAttributedString.length))
         
@@ -174,7 +178,7 @@ public class RepeatEmailRegistrationViewController: UIViewController {
         self.labelAgreeTerms.linkTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary") ?? .black]
     }
     
-    @objc fileprivate func keyboardWillShow(notification: NSNotification) {
+    @objc private func keyboardWillShow(notification: NSNotification) {
         let info = notification.userInfo!
         let keyboardFrame: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
 
@@ -184,7 +188,7 @@ public class RepeatEmailRegistrationViewController: UIViewController {
         })
     }
     
-    @objc fileprivate func keyboardWillHide(notification: NSNotification) {
+    @objc private func keyboardWillHide(notification: NSNotification) {
         let info = notification.userInfo!
         let _: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
@@ -194,7 +198,7 @@ public class RepeatEmailRegistrationViewController: UIViewController {
         })
     }
     
-    fileprivate func buildHierarchy() {
+    private func buildHierarchy() {
         view.addSubview(stackBase)
         stackBase.addArrangedSubview(stackContent)
         stackContent.addArrangedSubview(labelTitle)
@@ -205,7 +209,7 @@ public class RepeatEmailRegistrationViewController: UIViewController {
         stackBase.addArrangedSubview(buttonGo)
     }
     
-    fileprivate func buildConstraints() {
+    private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             stackBase.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),

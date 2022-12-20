@@ -9,85 +9,110 @@ import Foundation
 import Common
 import Firebase
 
+public enum RegistrationError: Error {
+    case invalidCPF
+    case invalidEmail
+    case invalidDocument
+    case errorSaving
+}
+
 public class RegistrationService {
-    let db = Firestore.firestore()
+    // MARK: - Constrants
+    private let db = Firestore.firestore()
     
+    // MARK: - Init
     public init() {
-        
     }
     
-    public func register(customer: Customer) -> Login {
-        let id = self.saveCustomer(customer)
+    // MARK: - Methods
+    public func register(customer: CustomerModel) async throws -> LoginModel {
+        do {
+        let id = try await self.saveCustomer(customer)
         
         let account = self.createAccount(id)
-        let accountId = self.saveAccount(account)
+        let accountId = try await self.saveAccount(account)
         
-        let login = self.createLogin(accountId, account.accountNumber)
-        self.saveLogin(login)
+        let login = self.createLogin(accountId, id, account.accountNumber)
+        try await self.saveLogin(login)
         return login
-    }
-    
-    public func validateCPF(_ cpf: String) async -> Bool {
-        do {            
-            let q = db.collection("customers").whereField("cpf", isEqualTo: cpf)
-            let snapshot = try await q.getDocuments()
-            
-            if snapshot.documents.count > 0 {
-                return false
-            }
-            return true
         }
         catch {
-            print("Error getting documents")
-            return false
+            throw error
         }
     }
     
-    public func validateEmail(_ email: String) async -> Bool {
+    public func validateCPF(_ cpf: String) async throws -> Bool {
+        let q = db.collection("customers").whereField("cpf", isEqualTo: cpf)
+        let snapshot = try? await q.getDocuments()
+        
+        guard let snapshot = snapshot else {
+            throw RegistrationError.invalidCPF
+        }
+        
+        if snapshot.documents.count > 0 {
+            return false
+        }
+        return true
+    }
+    
+    public func validateEmail(_ email: String) async throws -> Bool {
+        let q = db.collection("customers").whereField("email", isEqualTo: email)
+        let snapshot = try? await q.getDocuments()
+        
+        guard let snapshot = snapshot else {
+            throw RegistrationError.invalidEmail
+        }
+        
+        if snapshot.documents.count > 0 {
+            return false
+        }
+        return true
+    }
+    
+    private func saveCustomer(_ customer: CustomerModel) async throws -> String {
         do {
-            let q = db.collection("customers").whereField("email", isEqualTo: email)
-            let snapshot = try await q.getDocuments()
-            
-            if snapshot.documents.count > 0 {
-                return false
-            }
-            return true
+            let newObjRef = db.collection("customers").document()
+            try await newObjRef.setData(customer.dictionary)
+            return newObjRef.documentID
         }
         catch {
-            print("Error getting documents")
-            return false
+            throw RegistrationError.errorSaving
         }
     }
     
-    private func saveCustomer(_ customer: Customer) -> String {
-        let newObjRef = db.collection("customers").document()
-        newObjRef.setData(customer.dictionary)
-        return newObjRef.documentID
+    private func saveAccount(_ account: AccountModel) async throws -> String {
+        do {
+            let newObjRef = db.collection("accounts").document()
+            try await newObjRef.setData(account.dictionary)
+            return newObjRef.documentID
+        }
+        catch {
+            throw RegistrationError.errorSaving
+        }
     }
     
-    private func saveAccount(_ account: Account) -> String {
-        let newObjRef = db.collection("accounts").document()
-        newObjRef.setData(account.dictionary)
-        return newObjRef.documentID
+    private func saveLogin(_ login: LoginModel) async throws {
+        do {
+            let newObjRef = db.collection("login").document()
+            try await newObjRef.setData(login.dictionary)
+        }
+        catch {
+            throw RegistrationError.errorSaving
+        }
     }
     
-    private func saveLogin(_ login: Login) {
-        let newObjRef = db.collection("login").document()
-        newObjRef.setData(login.dictionary)
-    }
-    
-    private func createAccount(_ customerId: String) -> Account {
+    private func createAccount(_ customerId: String) -> AccountModel {
         let code = self.generateAccountCode(7)
         let date = getCurrentDate()
         
-        let newAccount = Account(accountNumber: code, balance: 0, customerId: customerId, openDate: date)
+        let newAccount = AccountModel(accountNumber: code, balance: 0, customerId: customerId, openDate: date, hasCard: false, cardPin: "", hasCardDelivery: false)
         return newAccount
     }
     
-    private func createLogin(_ accountId: String, _ accountCode: String) -> Login {
+    private func createLogin(_ accountId: String, _ customerId: String, _ accountCode: String) -> LoginModel {
         let password = generateAccountCode(5)
         
-        let newLogin = Login(accountId: accountId, accountNumber: accountCode, password: password)
+        let newLogin = LoginModel(accountId: accountId, customerId: customerId, accountNumber: accountCode, password: password)
         return newLogin
     }
     

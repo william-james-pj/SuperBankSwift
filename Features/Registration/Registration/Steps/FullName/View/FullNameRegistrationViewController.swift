@@ -15,7 +15,7 @@ public class FullNameRegistrationViewController: UIViewController {
     public weak var coordinatorDelegate: RegistrationCoordinatorDelegate?
     
     // MARK: - Components
-    fileprivate let stackBase: UIStackView = {
+    private let stackBase: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 32
@@ -24,7 +24,7 @@ public class FullNameRegistrationViewController: UIViewController {
         return stack
     }()
     
-    fileprivate let stackContent: UIStackView = {
+    private let stackContent: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 32
@@ -33,7 +33,7 @@ public class FullNameRegistrationViewController: UIViewController {
         return stack
     }()
     
-    fileprivate let labelTitle: UILabel = {
+    private let labelTitle: UILabel = {
         let attrString = NSMutableAttributedString(string: "Antes de começarmos, qual seu\nnome completo?")
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3
@@ -48,7 +48,7 @@ public class FullNameRegistrationViewController: UIViewController {
         return label
     }()
     
-    fileprivate let textFieldName: UITextField = {
+    private let textFieldName: UITextField = {
         let textField = RegistrationTextField()
         textField.attributedPlaceholder = NSAttributedString(
             string: "Nome completo",
@@ -58,7 +58,7 @@ public class FullNameRegistrationViewController: UIViewController {
         return textField
     }()
     
-    fileprivate let buttonGo: RegistrationButton = {
+    private let buttonGo: RegistrationButton = {
         let button = RegistrationButton()
         button.addTarget(self, action: #selector(GoButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -72,7 +72,7 @@ public class FullNameRegistrationViewController: UIViewController {
     }
     
     // MARK: - Setup
-    fileprivate func setupVC() {
+    private func setupVC() {
         view.backgroundColor = UIColor(named: "Background")
         settingButton(isDisabled: true)
         buildHierarchy()
@@ -93,7 +93,7 @@ public class FullNameRegistrationViewController: UIViewController {
     }
     
     // MARK: - Methods
-    fileprivate func validateInput(_ isValid: Bool) {
+    private func validateInput(_ isValid: Bool) {
         if isValid {
             self.textFieldName.textColor = UIColor(named: "Green")
             settingButton(isDisabled: false)
@@ -103,7 +103,7 @@ public class FullNameRegistrationViewController: UIViewController {
         settingButton(isDisabled: true)
     }
     
-    fileprivate func settingButton(isDisabled: Bool) {
+    private func settingButton(isDisabled: Bool) {
         var container = AttributeContainer()
         container.font = .systemFont(ofSize: 14, weight: .bold)
         
@@ -121,7 +121,7 @@ public class FullNameRegistrationViewController: UIViewController {
         self.buttonGo.isEnabled = true
     }
     
-    @objc fileprivate func keyboardWillShow(notification: NSNotification) {
+    @objc private func keyboardWillShow(notification: NSNotification) {
         let info = notification.userInfo!
         let keyboardFrame: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
 
@@ -131,7 +131,7 @@ public class FullNameRegistrationViewController: UIViewController {
         })
     }
     
-    @objc fileprivate func keyboardWillHide(notification: NSNotification) {
+    @objc private func keyboardWillHide(notification: NSNotification) {
         let info = notification.userInfo!
         let _: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
@@ -141,7 +141,7 @@ public class FullNameRegistrationViewController: UIViewController {
         })
     }
     
-    fileprivate func buildHierarchy() {
+    private func buildHierarchy() {
         view.addSubview(stackBase)
         stackBase.addArrangedSubview(stackContent)
         stackContent.addArrangedSubview(labelTitle)
@@ -150,7 +150,7 @@ public class FullNameRegistrationViewController: UIViewController {
         stackBase.addArrangedSubview(buttonGo)
     }
     
-    fileprivate func buildConstraints() {
+    private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             stackBase.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
