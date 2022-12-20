@@ -40,6 +40,13 @@ Esse projeto consiste na criação de um banco digital, com a intenção de reun
 
     <img src=".github/Login.gif" width="300" />
 
+  * Solicitar cartão
+
+    Após abrir uma conta o cliente pode solicitar um cartão, onde ele ter um overview sobre os benefícios do cartão e em seguida ele escolher o valor de limite (o limite máximo é gerado de forma aleatória), depois o cliente seleciona o dia do vencimento da sua fatura e insere uma senha para cartão. Após isso é só confirmar os dados e o cliente já tem acesso a sua fatura de crédito, ao status do envio do cartão e aos seus cartões, onde é possível adicionar um cartão virtual.
+
+
+    <img src=".github/RequestCard.gif" width="300" />
+
 ### Construído com
 
 Na construção do projeto está sendo utilizado uma arquitetura modular, que traz como benefício o isolamento de alterações, a capacidade de trabalhar em partes isoladas e um menor tempo de compilação.
