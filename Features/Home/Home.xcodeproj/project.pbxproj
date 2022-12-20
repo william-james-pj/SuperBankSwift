@@ -16,6 +16,8 @@
 		E032B084293F63220091C75B /* DrawerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E032B083293F63220091C75B /* DrawerHeader.swift */; };
 		E032B086293F75260091C75B /* DrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E032B085293F75260091C75B /* DrawerTableViewCell.swift */; };
 		E05158182940D1C400322EE1 /* RequestCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05158172940D1C400322EE1 /* RequestCardCollectionViewCell.swift */; };
+		E09CAE0C2950E2C200717529 /* CardDeliveryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09CAE0B2950E2C200717529 /* CardDeliveryTableViewCell.swift */; };
+		E09CAE0F2950E77F00717529 /* DeliveryProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09CAE0E2950E77F00717529 /* DeliveryProgress.swift */; };
 		E0DB9097293A3BFE00828677 /* HomeCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DB9096293A3BFE00828677 /* HomeCoordinatorDelegate.swift */; };
 		E0DF030B294A3D1D00AA5721 /* RequestCardHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DF030A294A3D1D00AA5721 /* RequestCardHomeTableViewCell.swift */; };
 		E0DF030F294A3FFC00AA5721 /* CreditInvoiceHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DF030E294A3FFC00AA5721 /* CreditInvoiceHomeTableViewCell.swift */; };
@@ -62,6 +64,8 @@
 		E032B083293F63220091C75B /* DrawerHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerHeader.swift; sourceTree = "<group>"; };
 		E032B085293F75260091C75B /* DrawerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTableViewCell.swift; sourceTree = "<group>"; };
 		E05158172940D1C400322EE1 /* RequestCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		E09CAE0B2950E2C200717529 /* CardDeliveryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeliveryTableViewCell.swift; sourceTree = "<group>"; };
+		E09CAE0E2950E77F00717529 /* DeliveryProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryProgress.swift; sourceTree = "<group>"; };
 		E0DB9096293A3BFE00828677 /* HomeCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		E0DF030A294A3D1D00AA5721 /* RequestCardHomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCardHomeTableViewCell.swift; sourceTree = "<group>"; };
 		E0DF030E294A3FFC00AA5721 /* CreditInvoiceHomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditInvoiceHomeTableViewCell.swift; sourceTree = "<group>"; };
@@ -130,6 +134,23 @@
 				E032B085293F75260091C75B /* DrawerTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		E09CAE0A2950E29400717529 /* CardDelivery */ = {
+			isa = PBXGroup;
+			children = (
+				E09CAE0D2950E76A00717529 /* UI */,
+				E09CAE0B2950E2C200717529 /* CardDeliveryTableViewCell.swift */,
+			);
+			path = CardDelivery;
+			sourceTree = "<group>";
+		};
+		E09CAE0D2950E76A00717529 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E09CAE0E2950E77F00717529 /* DeliveryProgress.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		E0DB9093293A3BDF00828677 /* Protocol */ = {
@@ -227,6 +248,7 @@
 				E0E21346294A12FB00EFB851 /* Header */,
 				E0E21347294A130400EFB851 /* Balance */,
 				E0E21345294A12EC00EFB851 /* Options */,
+				E09CAE0A2950E29400717529 /* CardDelivery */,
 				E0DF0309294A3CF400AA5721 /* RequestCard */,
 				E0DF030D294A3FD600AA5721 /* CreditInvoice */,
 			);
@@ -378,8 +400,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E05158182940D1C400322EE1 /* RequestCardCollectionViewCell.swift in Sources */,
+				E09CAE0F2950E77F00717529 /* DeliveryProgress.swift in Sources */,
 				E0DB9097293A3BFE00828677 /* HomeCoordinatorDelegate.swift in Sources */,
 				E032B084293F63220091C75B /* DrawerHeader.swift in Sources */,
+				E09CAE0C2950E2C200717529 /* CardDeliveryTableViewCell.swift in Sources */,
 				E02A1DB5293E127600F246A5 /* HomeViewModel.swift in Sources */,
 				E0E2133F294A070800EFB851 /* HomeViewController.swift in Sources */,
 				E0DF030B294A3D1D00AA5721 /* RequestCardHomeTableViewCell.swift in Sources */,

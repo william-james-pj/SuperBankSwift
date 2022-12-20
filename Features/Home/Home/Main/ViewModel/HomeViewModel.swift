@@ -12,18 +12,20 @@ import Common
 class HomeViewModel {
     // MARK: - Constrants
     private let firebaseService = HomeService()
+    private let cardDeliveryService = CardDeliveryService()
     
     // MARK: - Variables
     private var customerId: String?
     private var accountId: String?
     private var customer: CustomerModel?
     private var account: AccountModel?
+    private var cardDeliver: CardDeliveryModel?
     
     // MARK: - Closures
     var updateCustomerUI: ((_ customer: CustomerModel) -> Void)?
     var updateAccountUI: ((_ account: AccountModel) -> Void)?
     var updateHideMoney: ((_ isHide: Bool) -> Void)?
-    var updateHasCard: ((_ hasCard: Bool) -> Void)?
+    var updateCardDelivery: ((_ cardDelivery: CardDeliveryModel) -> Void)?
     
     // MARK: - Init
     init() {
@@ -35,6 +37,7 @@ class HomeViewModel {
             return
         }
         await self.getAccount(accountId)
+        await self.getCardDelivery()
     }
     
     func getData(customerId: String, accountId: String) async {
@@ -42,6 +45,7 @@ class HomeViewModel {
         self.accountId = accountId
         await self.getCustomer(customerId)
         await self.getAccount(accountId)
+        await self.getCardDelivery()
     }
     
     func getMoneyIsHide() {
@@ -70,6 +74,25 @@ class HomeViewModel {
             let customer = try await self.firebaseService.getCustomer(id)
             self.customer = customer
             self.updateCustomerUI?(customer)
+        }
+        catch {
+            print("Unexpected error: \(error).")
+        }
+    }
+    
+    private func getCardDelivery() async {
+        do {
+            guard let account = account, let accountId = accountId else {
+                return
+            }
+            
+            if !account.hasCardDelivery {
+                return
+            }
+            
+            let cardDelivery = try await self.cardDeliveryService.getDeliveryCard(accountId: accountId)
+            self.cardDeliver = cardDelivery
+            self.updateCardDelivery?(cardDelivery)
         }
         catch {
             print("Unexpected error: \(error).")

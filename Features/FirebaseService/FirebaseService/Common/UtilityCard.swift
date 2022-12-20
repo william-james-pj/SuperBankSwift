@@ -8,6 +8,31 @@
 import Foundation
 
 class UtilityCard {
+    
+    static func generateCardname(fullName: String) -> String {
+        let nameArr = fullName.components(separatedBy: " ")
+        if nameArr.count == 2 {
+            return fullName
+        }
+        
+        var cardName = ""
+        for (index, element) in nameArr.enumerated() {
+            if index == 0 {
+                cardName += element
+                continue
+            }
+            
+            if index == nameArr.count - 1 {
+                cardName += " \(element)"
+                continue
+            }
+            
+            cardName += " \(element.prefix(1))"
+        }
+        
+        return cardName
+    }
+    
     static func generateCardNumber() -> String? {
         let numberLength = 16
         let prefixList = ["71", "72", "73", "74", "75"]

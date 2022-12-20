@@ -24,13 +24,13 @@ public class AplicationCoordinator: Coordinator {
     }
     
     public func start() {
-        self.goToMain(customerId: "XSL68swsjFjdZVSTT8j3", accountId: "6j1UBjtkp4G8p4lyKJFM")
+//        self.goToMain(customerId: "XSL68swsjFjdZVSTT8j3", accountId: "6j1UBjtkp4G8p4lyKJFM")
 //        if isLoggedIn {
 //            self.goToMain()
 //            return
 //        }
 
-//        self.goToAuthentication()
+        self.goToAuthentication()
     }
     
     // MARK: - Methods

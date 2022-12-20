@@ -18,7 +18,7 @@ public enum CardError: Error {
 
 public class CardService {
     // MARK: - Constrants
-    let db = Firestore.firestore()
+    private let db = Firestore.firestore()
     
     // MARK: - Init
     public init() {
@@ -122,27 +122,7 @@ public class CardService {
     private func generateCardName(accountId: String) async throws -> String {
         do {
             let fullName = try await self.getCustomerName(accountId: accountId)
-            let nameArr = fullName.components(separatedBy: " ")
-            if nameArr.count == 2 {
-                return fullName
-            }
-            
-            var cardName = ""
-            for (index, element) in nameArr.enumerated() {
-                if index == 0 {
-                    cardName += element
-                    continue
-                }
-                
-                if index == nameArr.count - 1 {
-                    cardName += " \(element)"
-                    continue
-                }
-                
-                cardName += " \(element.prefix(1))"
-            }
-            
-            return cardName
+            return UtilityCard.generateCardname(fullName: fullName)
         }
         catch {
             throw error

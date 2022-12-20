@@ -17,12 +17,14 @@ public enum RegistrationError: Error {
 }
 
 public class RegistrationService {
-    let db = Firestore.firestore()
+    // MARK: - Constrants
+    private let db = Firestore.firestore()
     
+    // MARK: - Init
     public init() {
-        
     }
     
+    // MARK: - Methods
     public func register(customer: CustomerModel) async throws -> LoginModel {
         do {
         let id = try await self.saveCustomer(customer)
@@ -103,7 +105,7 @@ public class RegistrationService {
         let code = self.generateAccountCode(7)
         let date = getCurrentDate()
         
-        let newAccount = AccountModel(accountNumber: code, balance: 0, customerId: customerId, openDate: date, hasCard: false, cardPin: "")
+        let newAccount = AccountModel(accountNumber: code, balance: 0, customerId: customerId, openDate: date, hasCard: false, cardPin: "", hasCardDelivery: false)
         return newAccount
     }
     

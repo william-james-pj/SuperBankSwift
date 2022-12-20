@@ -14,6 +14,7 @@ public struct AccountModel {
     public let openDate: String
     public let hasCard: Bool
     public let cardPin: String
+    public let hasCardDelivery: Bool
     
     public var dictionary: [String: Any] {
         return [
@@ -22,16 +23,18 @@ public struct AccountModel {
             "customerId": customerId,
             "openDate": openDate,
             "hasCard": hasCard,
-            "cardPin": cardPin
+            "cardPin": cardPin,
+            "hasCardDelivery": hasCardDelivery,
         ]
     }
     
-    public init(accountNumber: String, balance: Double, customerId: String, openDate: String, hasCard: Bool, cardPin: String) {
+    public init(accountNumber: String, balance: Double, customerId: String, openDate: String, hasCard: Bool, cardPin: String, hasCardDelivery: Bool) {
         self.accountNumber = accountNumber
         self.balance = balance
         self.customerId = customerId
         self.openDate = openDate
         self.hasCard = hasCard
         self.cardPin = cardPin
+        self.hasCardDelivery = hasCardDelivery
     }
 }

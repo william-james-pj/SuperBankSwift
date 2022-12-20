@@ -13,6 +13,7 @@ class JourneyRequestCardViewModel {
     // MARK: - Constrants
     static let sharedJourneyRequestCard = JourneyRequestCardViewModel()
     private let firebaseService = CardService()
+    private let cardDeliveryService = CardDeliveryService()
     
     // MARK: - Variables
     private var accountId: String?
@@ -40,6 +41,8 @@ class JourneyRequestCardViewModel {
             try await self.firebaseService.saveAccountHasCard(accountId: accountId, cardPin: cardPin)
             
             try await self.firebaseService.savePhysicalCard(accountId: accountId)
+            
+            try await self.cardDeliveryService.createDeliveryCard(accountId: accountId)
 
             self.finishSavingInvoice?()
         }

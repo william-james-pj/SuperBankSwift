@@ -16,12 +16,14 @@ public enum LoginError: Error {
 }
 
 public class LoginService {
-    let db = Firestore.firestore()
+    // MARK: - Constrants
+    private let db = Firestore.firestore()
     
+    // MARK: - Init
     public init() {
-        
     }
     
+    // MARK: - Methods
     public func getLogin(_ accountNumber: String) async throws -> LoginModel {
         let q = db.collection("login").whereField("accountNumber", isEqualTo: accountNumber)
         let documents = try? await q.getDocuments()

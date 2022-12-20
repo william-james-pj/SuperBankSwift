@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Common
 
 public class HomeViewController: UIViewController {
     // MARK: - Constrants
@@ -20,6 +21,9 @@ public class HomeViewController: UIViewController {
     private var accountHasCard: Bool = false
     private var moneyIsHide: Bool = false
     private var isLoading: Bool = true
+
+    private var accounthasCardDelivery = false
+    private var cardDelivery: CardDeliveryModel?
     
     // MARK: - Components
     private let tableView: UITableView = {
@@ -67,6 +71,7 @@ public class HomeViewController: UIViewController {
         tableView.register(HeaderHomeTableViewCell.self, forCellReuseIdentifier: HeaderHomeTableViewCell.resuseIdentifier)
         tableView.register(BalanceHomeTableViewCell.self, forCellReuseIdentifier: BalanceHomeTableViewCell.resuseIdentifier)
         tableView.register(OptionsHomeTableViewCell.self, forCellReuseIdentifier: OptionsHomeTableViewCell.resuseIdentifier)
+        tableView.register(CardDeliveryTableViewCell.self, forCellReuseIdentifier: CardDeliveryTableViewCell.resuseIdentifier)
         tableView.register(RequestCardHomeTableViewCell.self, forCellReuseIdentifier: RequestCardHomeTableViewCell.resuseIdentifier)
         tableView.register(CreditInvoiceHomeTableViewCell.self, forCellReuseIdentifier: CreditInvoiceHomeTableViewCell.resuseIdentifier)
     }
@@ -106,6 +111,7 @@ public class HomeViewController: UIViewController {
             DispatchQueue.main.async {
                 self.balance = account.balance
                 self.accountHasCard = account.hasCard
+                self.accounthasCardDelivery = account.hasCardDelivery
                 self.isLoading = false
                 self.tableView.reloadData()
             }
@@ -114,6 +120,13 @@ public class HomeViewController: UIViewController {
         self.viewModel.updateHideMoney = { isHide in
             self.moneyIsHide = isHide
             self.tableView.reloadData()
+        }
+        
+        self.viewModel.updateCardDelivery = { cardDelivery in
+            DispatchQueue.main.async {
+                self.cardDelivery = cardDelivery
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -139,7 +152,7 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: UITableViewDataSource {
     // Sections
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -148,8 +161,6 @@ extension HomeViewController: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
-        case 3:
-            return 16
         default:
             return 0
         }
@@ -158,6 +169,13 @@ extension HomeViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 0:
+            return nil
+        case 3: // CardDelivery
+            if accounthasCardDelivery {
+                let headerView = UIView()
+                headerView.backgroundColor = UIColor.clear
+                return headerView
+            }
             return nil
         default:
             let headerView = UIView()
@@ -173,7 +191,7 @@ extension HomeViewController: UITableViewDataSource {
     // Cells
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case 0:
+        case 0: // Header
             let cell = tableView.dequeueReusableCell(withIdentifier: HeaderHomeTableViewCell.resuseIdentifier, for: indexPath) as! HeaderHomeTableViewCell
             cell.settingView(fullName: self.fullName)
             cell.settingMoneyIsHide(to: self.moneyIsHide)
@@ -181,20 +199,32 @@ extension HomeViewController: UITableViewDataSource {
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             return cell
-        case 1:
+        case 1: //Balance
             let cell = tableView.dequeueReusableCell(withIdentifier: BalanceHomeTableViewCell.resuseIdentifier, for: indexPath) as! BalanceHomeTableViewCell
             cell.settingCell("\(self.balance)", isHide: self.moneyIsHide)
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             return cell
-        case 2:
+        case 2: // Options
             let cell = tableView.dequeueReusableCell(withIdentifier: OptionsHomeTableViewCell.resuseIdentifier, for: indexPath) as! OptionsHomeTableViewCell
             cell.options = [.pix, .transfer, .pay, .card, .edit]
             cell.delegate = self
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             return cell
-        case 3:
+        case 3: // CardDelivery
+            if accounthasCardDelivery {
+                let cell = tableView.dequeueReusableCell(withIdentifier: CardDeliveryTableViewCell.resuseIdentifier, for: indexPath) as! CardDeliveryTableViewCell
+                cell.settingCell(cardDelivery)
+                cell.backgroundColor = .clear
+                cell.selectionStyle = .none
+                return cell
+            }
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+            cell.isHidden = true
+            return cell
+        case 4: // ResquestCard and CreditInvoice
             if accountHasCard {
                 let cell = tableView.dequeueReusableCell(withIdentifier: CreditInvoiceHomeTableViewCell.resuseIdentifier, for: indexPath) as! CreditInvoiceHomeTableViewCell
                 cell.backgroundColor = .clear
@@ -217,13 +247,18 @@ extension HomeViewController: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
-        case 0:
+        case 0: // Header
             return 40
-        case 1:
+        case 1: //Balance
             return 45
-        case 2:
+        case 2: // Options
             return 120
-        case 3:
+        case 3: // CardDelivery
+            if accounthasCardDelivery {
+                return 135
+            }
+            return 0
+        case 4: // ResquestCard and CreditInvoice
             if accountHasCard {
                 return 92
             }

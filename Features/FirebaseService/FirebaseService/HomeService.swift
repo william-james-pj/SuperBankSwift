@@ -17,7 +17,7 @@ public enum HomeError: Error {
 
 public class HomeService {
     // MARK: - Constrants
-    let db = Firestore.firestore()
+    private let db = Firestore.firestore()
     
     // MARK: - Init
     public init() {
@@ -71,6 +71,7 @@ public class HomeService {
         let openDate = data?["openDate"] as? String ?? ""
         let hasCard = data?["hasCard"] as? Bool ?? false
         let cardPin = data?["cardPin"] as? String ?? ""
+        let hasCardDelivery = data?["hasCardDelivery"] as? Bool ?? false
         
         return AccountModel(
             accountNumber: accountNumber,
@@ -78,7 +79,8 @@ public class HomeService {
             customerId: customerId,
             openDate: openDate,
             hasCard: hasCard,
-            cardPin: cardPin
+            cardPin: cardPin,
+            hasCardDelivery: hasCardDelivery
         )
     }
 }
