@@ -276,7 +276,7 @@ extension HomeViewController: HeaderHomeTableViewCellDelegate {
     }
     
     func openDrawerMenu() {
-        self.coordinatorDelegate?.goToDrawerMenu()
+        self.coordinatorDelegate?.goToDrawerMenu(customerName: fullName)
     }
 }
 

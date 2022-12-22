@@ -10,8 +10,10 @@ import UIKit
 public class DrawerMenuViewController: UIViewController {
     // MARK: - Constrants
     private let items: [DrawerTableViewCellType] = [.profile, .logoff]
+    
     // MARK: - Variables
     public weak var coordinatorDelegate: HomeCoordinatorDelegate?
+    public var customerName: String?
     
     // MARK: - Components
     private let tableView: UITableView = {
@@ -38,7 +40,7 @@ public class DrawerMenuViewController: UIViewController {
         buildConstraints()
     }
     
-    func setupTableView() {
+    private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(DrawerTableViewCell.self, forCellReuseIdentifier: DrawerTableViewCell.resuseIdentifier)
@@ -64,6 +66,7 @@ public class DrawerMenuViewController: UIViewController {
 extension DrawerMenuViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: DrawerHeader.resuseIdentifier) as! DrawerHeader
+        view.settingView(customerName: customerName)
         view.delegate = self
         return view
     }

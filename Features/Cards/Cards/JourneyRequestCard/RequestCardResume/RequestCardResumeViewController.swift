@@ -14,8 +14,8 @@ public class RequestCardResumeViewController: UIViewController {
     // MARK: - Variables
     public weak var coordinatorDelegate: CardCoordinatorDelegate?
     
-    var creditLimit: String = ""
-    var dueDate: String = ""
+    private var creditLimit: String = ""
+    private var dueDate: String = ""
     
     // MARK: - Components
     private let scrollView: UIScrollView = {

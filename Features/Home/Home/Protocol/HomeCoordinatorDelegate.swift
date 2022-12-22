@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol HomeCoordinatorDelegate: AnyObject {
-    func goToDrawerMenu()
+    func goToDrawerMenu(customerName: String)
     func closeDrawerMenu()
     func logoff()
     

@@ -122,25 +122,12 @@ public class MyCardsViewController: UIViewController {
 
 // MARK: - extension UITableViewDelegate
 extension MyCardsViewController: UITableViewDelegate {
-    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = UIColor.clear
-    }
-    
-    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 0
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            self.coordinatorDelegate?.goToCardDetails(self.physicalCards[indexPath.row], delegate: self)
+            return
         }
-        return 56
-    }
-    
-    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if section == 0 {
-            return nil
-        }
-        
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: VirtualCardFooter.resuseIdentifier) as! VirtualCardFooter
-        view.delegate = self
-        return view
+        self.coordinatorDelegate?.goToCardDetails(self.virtualCards[indexPath.row], delegate: self)
     }
 }
 
@@ -161,10 +148,14 @@ extension MyCardsViewController: UITableViewDataSource {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: MyCardsTableViewCell.resuseIdentifier, for: indexPath) as! MyCardsTableViewCell
             cell.settingView(card: self.physicalCards[indexPath.row])
+            cell.backgroundColor = .clear
+            cell.selectionStyle = .none
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: MyCardsTableViewCell.resuseIdentifier, for: indexPath) as! MyCardsTableViewCell
         cell.settingView(card: self.virtualCards[indexPath.row])
+        cell.backgroundColor = .clear
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -174,11 +165,42 @@ extension MyCardsViewController: UITableViewDataSource {
         }
         return "Cartões virtuais"
     }
+    
+    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0
+        }
+        return 56
+    }
+    
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 0 {
+            return nil
+        }
+        
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: VirtualCardFooter.resuseIdentifier) as! VirtualCardFooter
+        view.delegate = self
+        return view
+    }
 }
 
 // MARK: - extension VirtualCardFooterDelegate
 extension MyCardsViewController: VirtualCardFooterDelegate {
     func newCardButtonPressed() {
-        self.coordinatorDelegate?.goToNewVirtualCard()
+        self.coordinatorDelegate?.goToNewVirtualCard(self)
+    }
+}
+
+// MARK: - extension NewVirtualCardVCDelegate
+extension MyCardsViewController: NewVirtualCardVCDelegate {
+    public func finalizeSavingCard() {
+        getCards()
+    }
+}
+
+// MARK: - extension CardDetailsVCDelegate
+extension MyCardsViewController: CardDetailsVCDelegate {
+    public func reloadCards() {
+        getCards()
     }
 }

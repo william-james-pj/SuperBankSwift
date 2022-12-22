@@ -49,9 +49,10 @@ class HomeCoordinator: Coordinator {
 
 // MARK: - extension HomeCoordinatorDelegate
 extension HomeCoordinator: HomeCoordinatorDelegate {
-    func goToDrawerMenu() {
+    func goToDrawerMenu(customerName: String) {
         let drawerVC = DrawerMenuViewController()
         drawerVC.coordinatorDelegate = self
+        drawerVC.customerName = customerName
         drawerVC.modalPresentationStyle = .fullScreen
         self.navigationController.present(drawerVC, animated: true, completion: nil)
     }
@@ -69,19 +70,8 @@ extension HomeCoordinator: HomeCoordinatorDelegate {
     func goToCard(hasCard: Bool) {
         let coordinator = CardCoordinator(navigationController: navigationController)
         coordinator.parentCoordinator = self
-        coordinator.delegate = self
         coordinator.accountId = accountId
         childCoordinators.append(coordinator)
         coordinator.start(hasCard: hasCard)
-    }
-}
-
-// MARK: - ReloadHomeDelegate
-extension HomeCoordinator: ReloadHomeDelegate {
-    func reloadHome() {
-        guard let aux = self.navigationController.viewControllers[0] as? HomeViewController else {
-            return
-        }
-        aux.reloadTableHome()
     }
 }

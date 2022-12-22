@@ -56,7 +56,18 @@ public class CardService {
                 return
             }
             
-            let newCard = CardModel(accountId: accountId, cardName: cardName, cardNumber: cardNumber, cvc: cvc, expireDate: expireDate, isEnabled: true, cardType: .physical, nickname: cardName)
+            let newCard = CardModel(
+                cardId: nil,
+                accountId: accountId,
+                cardName: cardName,
+                cardNumber: cardNumber,
+                cvc: cvc,
+                expireDate: expireDate,
+                isEnabled: true,
+                isInternationPurchasesEnabled: true,
+                cardType: .physical,
+                nickname: cardName
+            )
             
             let newObjRef = db.collection("cards").document()
             try await newObjRef.setData(newCard.dictionary)
@@ -77,7 +88,18 @@ public class CardService {
                 return
             }
             
-            let newCard = CardModel(accountId: accountId, cardName: cardName, cardNumber: cardNumber, cvc: cvc, expireDate: expireDate, isEnabled: true, cardType: .virtual, nickname: nickname)
+            let newCard = CardModel(
+                cardId: nil,
+                accountId: accountId,
+                cardName: cardName,
+                cardNumber: cardNumber,
+                cvc: cvc,
+                expireDate: expireDate,
+                isEnabled: true,
+                isInternationPurchasesEnabled: true,
+                cardType: .virtual,
+                nickname: nickname
+            )
             
             let newObjRef = db.collection("cards").document()
             try await newObjRef.setData(newCard.dictionary)
@@ -109,13 +131,35 @@ public class CardService {
             let cvc = data["cvc"] as? String ?? ""
             let expireDate = data["expireDate"] as? String ?? ""
             let isEnabled = data["isEnabled"] as? Bool ?? false
+            let isInternationPurchasesEnabled = data["isInternationPurchasesEnabled"] as? Bool ?? false
             let nickname = data["nickname"] as? String ?? ""
             let typeEnum = ECardType(rawValue: cardType) ?? .virtual
-            let newObj = CardModel(accountId: accountId, cardName: cardName, cardNumber: cardNumber, cvc: cvc, expireDate: expireDate, isEnabled: isEnabled, cardType: typeEnum, nickname: nickname)
+            let newObj = CardModel(
+                cardId: document.documentID,
+                accountId: accountId,
+                cardName: cardName,
+                cardNumber: cardNumber,
+                cvc: cvc,
+                expireDate: expireDate,
+                isEnabled: isEnabled,
+                isInternationPurchasesEnabled: isInternationPurchasesEnabled,
+                cardType: typeEnum,
+                nickname: nickname
+            )
             aux.append(newObj)
         }
         
         return aux
+    }
+    
+    public func updateBlockers(cardId: String, keyName: String, value: Bool) async throws {
+        do {
+            let newObjRef = db.collection("cards").document(cardId)
+            try await newObjRef.updateData([keyName: value])
+        }
+        catch {
+            throw CardError.errorSaving
+        }
     }
     
     // Functions Aux
