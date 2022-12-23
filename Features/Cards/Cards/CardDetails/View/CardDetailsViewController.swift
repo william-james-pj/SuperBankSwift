@@ -210,6 +210,10 @@ extension CardDetailsViewController: CardLockTableViewCellDelegate {
         self.viewShadow.isHidden = false
         self.indicatorView.startAnimating()
         
+        if let header = self.tableView.headerView(forSection: 0) as? CardDetailsHeader {
+            header.settingShadowCard(value)
+        }
+        
         Task {
             await self.viewModel.updateBlockerCard(cardId: cardId, keyName: keyName, value: value)
         }

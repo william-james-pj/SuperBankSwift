@@ -55,6 +55,8 @@ public class HomeViewController: UIViewController {
         view.backgroundColor = UIColor(named: "Background")
         
         settingClosures()
+        self.viewModel.getMoneyIsHide()
+        
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         refreshControl.tintColor = UIColor(named: "Primary")
         
