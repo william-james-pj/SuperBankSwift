@@ -210,7 +210,7 @@ extension CardDetailsViewController: CardLockTableViewCellDelegate {
         self.viewShadow.isHidden = false
         self.indicatorView.startAnimating()
         
-        if let header = self.tableView.headerView(forSection: 0) as? CardDetailsHeader {
+        if keyName == "isEnabled", let header = self.tableView.headerView(forSection: 0) as? CardDetailsHeader {
             header.settingShadowCard(value)
         }
         
