@@ -63,7 +63,6 @@ class DrawerHeader: UITableViewHeaderFooterView {
     
     private let labelUserBox: UILabel = {
         let label = UILabel()
-        label.text = "W"
         label.font = .systemFont(ofSize: 12, weight: .bold)
         label.textColor = UIColor(named: "Text")
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -72,7 +71,6 @@ class DrawerHeader: UITableViewHeaderFooterView {
     
     private let labelUserName: UILabel = {
         let label = UILabel()
-        label.text = "William James"
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.textColor = UIColor(named: "Text")
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -123,6 +121,19 @@ class DrawerHeader: UITableViewHeaderFooterView {
     }
     
     // MARK: - Methods
+    func settingView(customerName: String?) {
+        guard let customerName = customerName else {
+            return
+        }
+        
+        var nameArr = customerName.components(separatedBy: " ")
+        if nameArr.count < 2 {
+            return
+        }
+        self.labelUserName.text = "\(nameArr[0]) \(nameArr[1])"
+        self.labelUserBox.text = String(nameArr[0].remove(at: nameArr[0].startIndex))
+    }
+    
     private func buildHierarchy() {
         self.addSubview(stackBase)
         stackBase.addArrangedSubview(stackRow)

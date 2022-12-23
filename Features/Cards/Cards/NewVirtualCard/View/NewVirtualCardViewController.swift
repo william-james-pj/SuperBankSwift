@@ -8,12 +8,17 @@
 import UIKit
 import Common
 
+public protocol NewVirtualCardVCDelegate {
+    func finalizeSavingCard()
+}
+
 public class NewVirtualCardViewController: UIViewController {
     // MARK: - Constrants
     private let viewModel = NewVirtualCardViewModel()
     
     // MARK: - Variables
     public weak var coordinatorDelegate: CardCoordinatorDelegate?
+    public var delegate: NewVirtualCardVCDelegate?
     public var accountId: String?
     private var charactersTyped = 0
     
@@ -182,6 +187,7 @@ public class NewVirtualCardViewController: UIViewController {
         self.viewModel.finishSavingCard = {
             DispatchQueue.main.async {
                 self.buttonNewCard.settingLoading(false)
+                self.delegate?.finalizeSavingCard()
                 self.coordinatorDelegate?.finalizeSavingCard()
             }
         }

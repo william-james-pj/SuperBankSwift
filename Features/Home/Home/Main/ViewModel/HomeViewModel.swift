@@ -49,12 +49,12 @@ class HomeViewModel {
     }
     
     func getMoneyIsHide() {
-        let isHide = HideMoney().getIsHide()
+        let isHide = UtilityHideMoney.getIsHide()
         self.updateHideMoney?(isHide)
     }
     
     func setMoneyIsHide(to isHide: Bool) {
-        HideMoney().setIsHide(to: isHide)
+        UtilityHideMoney.setIsHide(to: isHide)
         self.updateHideMoney?(isHide)
     }
     

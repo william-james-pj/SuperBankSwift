@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Common
 
 public protocol CardCoordinatorDelegate: AnyObject {
     func goToPresentCard()
@@ -18,6 +19,8 @@ public protocol CardCoordinatorDelegate: AnyObject {
     func finalizeRequest()
     
     func goToMyCards()
-    func goToNewVirtualCard()
+    func goToCardDetails(_ card: CardModel, delegate: CardDetailsVCDelegate)
+    
+    func goToNewVirtualCard(_ delegate: NewVirtualCardVCDelegate)
     func finalizeSavingCard()
 }

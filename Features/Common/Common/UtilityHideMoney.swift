@@ -1,5 +1,5 @@
 //
-//  HideMoney.swift
+//  UtilityHideMoney.swift
 //  Common
 //
 //  Created by Pinto Junior, William James on 06/12/22.
@@ -7,13 +7,9 @@
 
 import Foundation
 
-public class HideMoney {
-    // MARK: - Init
-    public init() {
-    }
-    
+public class UtilityHideMoney {
     // MARK: - Methods
-    public func getIsHide() -> Bool {
+    static public func getIsHide() -> Bool {
         let userDefaults = UserDefaults.standard
         do {
             let isHide = try userDefaults.getObject(forKey: "moneyIsHide", castTo: Bool.self)
@@ -23,11 +19,12 @@ public class HideMoney {
         }
     }
     
-    public func setIsHide(to isHide: Bool) {
+    static public func setIsHide(to isHide: Bool) {
         let userDefaults = UserDefaults.standard
         do {
             try userDefaults.setObject(isHide, forKey: "moneyIsHide")
         } catch {
+            print("Error savin moneyIsHide")
         }
     }
 }

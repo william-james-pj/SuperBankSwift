@@ -211,7 +211,7 @@ class HeaderHomeTableViewCell: UITableViewCell {
             stackBase.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             stackBase.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
-            viewUserBoxContainer.widthAnchor.constraint(equalToConstant: 28),
+            viewUserBoxContainer.widthAnchor.constraint(equalToConstant: 35),
             buttonUser.widthAnchor.constraint(equalToConstant: 35),
             buttonUser.heightAnchor.constraint(equalToConstant: 35),
             buttonUser.centerXAnchor.constraint(equalTo: viewUserBoxContainer.centerXAnchor),

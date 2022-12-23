@@ -47,6 +47,12 @@ Esse projeto consiste na criação de um banco digital, com a intenção de reun
 
     <img src=".github/RequestCard.gif" width="300" />
 
+  * Meus cartões
+  
+    Nessa tela o cliente pode ver seus cartões físicos e virtuais, podendo criar um novo cartão virtual com um nome personalizado para facilitar a identificação das compras. O cliente também pode bloquear o cartão e/ou bloquear as compras internacionais, tanto do cartão físico como do virtual.
+
+    <img src=".github/MyCards.gif" width="300" />
+    
 ### Construído com
 
 Na construção do projeto está sendo utilizado uma arquitetura modular, que traz como benefício o isolamento de alterações, a capacidade de trabalhar em partes isoladas e um menor tempo de compilação.

@@ -13,12 +13,14 @@ public enum ECardType: String {
 }
 
 public struct CardModel {
+    public let cardId: String?
     public let accountId: String
     public let cardName: String
     public let cardNumber: String
     public let cvc: String
     public let expireDate: String
     public let isEnabled: Bool
+    public let isInternationPurchasesEnabled: Bool
     public let cardType: ECardType
     public let nickname: String
     
@@ -30,18 +32,21 @@ public struct CardModel {
             "cvc": cvc,
             "expireDate": expireDate,
             "isEnabled": isEnabled,
+            "isInternationPurchasesEnabled": isInternationPurchasesEnabled,
             "cardType": cardType.rawValue,
             "nickname": nickname,
         ]
     }
     
-    public init(accountId: String, cardName: String, cardNumber: String, cvc: String, expireDate: String, isEnabled: Bool, cardType: ECardType, nickname: String) {
+    public init(cardId: String?, accountId: String, cardName: String, cardNumber: String, cvc: String, expireDate: String, isEnabled: Bool, isInternationPurchasesEnabled: Bool, cardType: ECardType, nickname: String) {
+        self.cardId = cardId
         self.accountId = accountId
         self.cardName = cardName
         self.cardNumber = cardNumber
         self.cvc = cvc
         self.expireDate = expireDate
         self.isEnabled = isEnabled
+        self.isInternationPurchasesEnabled = isInternationPurchasesEnabled
         self.cardType = cardType
         self.nickname = nickname
     }

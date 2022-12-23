@@ -11,6 +11,11 @@
 		E032B091293FBB7B0091C75B /* CardCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E032B090293FBB7B0091C75B /* CardCoordinatorDelegate.swift */; };
 		E03B83C5294CE74C0000D488 /* ButtonPrimary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03B83C4294CE74C0000D488 /* ButtonPrimary.swift */; };
 		E051581A294113FA00322EE1 /* MyCardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0515819294113FA00322EE1 /* MyCardsTableViewCell.swift */; };
+		E09BA66D295324D500BC47E8 /* CardDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BA66C295324D500BC47E8 /* CardDetailsViewController.swift */; };
+		E09BA67029532CC100BC47E8 /* CardDetailsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BA66F29532CC100BC47E8 /* CardDetailsHeader.swift */; };
+		E09BA672295332E100BC47E8 /* CardLockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BA671295332E100BC47E8 /* CardLockTableViewCell.swift */; };
+		E09BA67529534B6800BC47E8 /* CardLockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BA67429534B6800BC47E8 /* CardLockModel.swift */; };
+		E0B81544295483CE003A72ED /* CardDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B81543295483CE003A72ED /* CardDetailsViewModel.swift */; };
 		E0BA939129474BF200A8AE06 /* CardTermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BA939029474BF200A8AE06 /* CardTermViewController.swift */; };
 		E0BA93942947504500A8AE06 /* CardTermTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BA93932947504500A8AE06 /* CardTermTableViewCell.swift */; };
 		E0BA9397294754F500A8AE06 /* CardTermModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BA9396294754F500A8AE06 /* CardTermModel.swift */; };
@@ -68,6 +73,11 @@
 		E032B090293FBB7B0091C75B /* CardCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		E03B83C4294CE74C0000D488 /* ButtonPrimary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPrimary.swift; sourceTree = "<group>"; };
 		E0515819294113FA00322EE1 /* MyCardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsTableViewCell.swift; sourceTree = "<group>"; };
+		E09BA66C295324D500BC47E8 /* CardDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsViewController.swift; sourceTree = "<group>"; };
+		E09BA66F29532CC100BC47E8 /* CardDetailsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsHeader.swift; sourceTree = "<group>"; };
+		E09BA671295332E100BC47E8 /* CardLockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLockTableViewCell.swift; sourceTree = "<group>"; };
+		E09BA67429534B6800BC47E8 /* CardLockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLockModel.swift; sourceTree = "<group>"; };
+		E0B81543295483CE003A72ED /* CardDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsViewModel.swift; sourceTree = "<group>"; };
 		E0BA939029474BF200A8AE06 /* CardTermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTermViewController.swift; sourceTree = "<group>"; };
 		E0BA93932947504500A8AE06 /* CardTermTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTermTableViewCell.swift; sourceTree = "<group>"; };
 		E0BA9396294754F500A8AE06 /* CardTermModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTermModel.swift; sourceTree = "<group>"; };
@@ -145,6 +155,50 @@
 				E03B83C4294CE74C0000D488 /* ButtonPrimary.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		E09BA66A295324A300BC47E8 /* CardDetails */ = {
+			isa = PBXGroup;
+			children = (
+				E09BA67329534B5400BC47E8 /* Model */,
+				E0B81542295483B4003A72ED /* ViewModel */,
+				E09BA66B295324B000BC47E8 /* View */,
+			);
+			path = CardDetails;
+			sourceTree = "<group>";
+		};
+		E09BA66B295324B000BC47E8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E09BA66E29532CA800BC47E8 /* Cell */,
+				E09BA66C295324D500BC47E8 /* CardDetailsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E09BA66E29532CA800BC47E8 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E09BA66F29532CC100BC47E8 /* CardDetailsHeader.swift */,
+				E09BA671295332E100BC47E8 /* CardLockTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		E09BA67329534B5400BC47E8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E09BA67429534B6800BC47E8 /* CardLockModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E0B81542295483B4003A72ED /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E0B81543295483CE003A72ED /* CardDetailsViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		E0BA938E29474BB200A8AE06 /* CardTerm */ = {
@@ -298,6 +352,7 @@
 				E0E25EC42942167A00E20822 /* JourneyRequestCard */,
 				E0E20DE8292D131400AB9A84 /* MyCards */,
 				E0C5CF52294CB40F00A232D9 /* NewVirtualCard */,
+				E09BA66A295324A300BC47E8 /* CardDetails */,
 				E0E20DD3292D130600AB9A84 /* Cards.h */,
 			);
 			path = Cards;
@@ -522,7 +577,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0D713B129489DA8002C9EC1 /* CheckTerm.swift in Sources */,
+				E09BA66D295324D500BC47E8 /* CardDetailsViewController.swift in Sources */,
 				E0C5CF5C294CB58800A232D9 /* MyCardsViewModel.swift in Sources */,
+				E09BA67529534B6800BC47E8 /* CardLockModel.swift in Sources */,
 				E03B83C5294CE74C0000D488 /* ButtonPrimary.swift in Sources */,
 				E0D021E229434ECE00DBCF33 /* CreditLimitViewController.swift in Sources */,
 				E0E25EC3294204C000E20822 /* VirtualCardFooter.swift in Sources */,
@@ -536,9 +593,12 @@
 				E0C5CF5A294CB51900A232D9 /* NewVirtualCardViewModel.swift in Sources */,
 				E0E20DEA292D132A00AB9A84 /* MyCardsViewController.swift in Sources */,
 				E0D713B52948A5F4002C9EC1 /* CompletedRequestCardViewController.swift in Sources */,
+				E09BA67029532CC100BC47E8 /* CardDetailsHeader.swift in Sources */,
 				E0BA93942947504500A8AE06 /* CardTermTableViewCell.swift in Sources */,
+				E0B81544295483CE003A72ED /* CardDetailsViewModel.swift in Sources */,
 				E0E25ECE2942225800E20822 /* ChooseDueDate.swift in Sources */,
 				E032B08E293FB82C0091C75B /* PresentCardViewController.swift in Sources */,
+				E09BA672295332E100BC47E8 /* CardLockTableViewCell.swift in Sources */,
 				E0BA9397294754F500A8AE06 /* CardTermModel.swift in Sources */,
 				E0E25ED629422AD400E20822 /* JourneyRequestCardViewModel.swift in Sources */,
 				E051581A294113FA00322EE1 /* MyCardsTableViewCell.swift in Sources */,
