@@ -20,11 +20,11 @@ class LoginViewModelTests: XCTestCase {
     
     func testFormatAccountMask_WhenAccountProvided_ShouldReturnFormatted() {
         // Given
-        let modelView = LoginViewModel(service: LoginServiceMock())
+        let viewModel = LoginViewModel(service: LoginServiceMock())
         let account = "1111111"
         
         // When
-        let accountFormatted = modelView.formatAccountMask(account)
+        let accountFormatted = viewModel.formatAccountMask(account)
         
         // Then
         XCTAssertEqual(account, accountFormatted)
@@ -32,11 +32,11 @@ class LoginViewModelTests: XCTestCase {
     
     func testFormatAccountMask_WhenAccountProvidedSmaller_ShouldReturnFormatted() {
         // Given
-        let modelView = LoginViewModel(service: LoginServiceMock())
+        let viewModel = LoginViewModel(service: LoginServiceMock())
         let account = "11111"
         
         // When
-        let accountFormatted = modelView.formatAccountMask(account)
+        let accountFormatted = viewModel.formatAccountMask(account)
         
         // Then
         XCTAssertEqual(account, accountFormatted)
@@ -46,13 +46,13 @@ class LoginViewModelTests: XCTestCase {
         // Given
         var hasAppend = false
         
-        let modelView = LoginViewModel(service: LoginServiceMock())
-        modelView.updatePasswordTextField = { isRemoving in
+        let viewModel = LoginViewModel(service: LoginServiceMock())
+        viewModel.updatePasswordTextField = { isRemoving in
             hasAppend = true
         }
         
         // When
-        modelView.setTypedPassword(ButtonPasswordText(first: 1, second: 2))
+        viewModel.setTypedPassword(ButtonPasswordText(first: 1, second: 2))
         
         //Then
         XCTAssertTrue(hasAppend)
@@ -62,14 +62,14 @@ class LoginViewModelTests: XCTestCase {
         // Given
         var isFinalized = false
         
-        let modelView = LoginViewModel(service: LoginServiceMock())
-        modelView.finalizedPassword = {
+        let viewModel = LoginViewModel(service: LoginServiceMock())
+        viewModel.finalizedPassword = {
             isFinalized = true
         }
         
         // When
         for _ in 0...4 {
-            modelView.setTypedPassword(ButtonPasswordText(first: 1, second: 2))
+            viewModel.setTypedPassword(ButtonPasswordText(first: 1, second: 2))
         }
         
         //Then
@@ -80,13 +80,13 @@ class LoginViewModelTests: XCTestCase {
         // Given
         var hasUpdated = false
         
-        let modelView = LoginViewModel(service: LoginServiceMock())
-        modelView.updatePasswordTextField = { _ in
+        let viewModel = LoginViewModel(service: LoginServiceMock())
+        viewModel.updatePasswordTextField = { _ in
             hasUpdated = true
         }
         
         // When
-        modelView.removeLastTypedPassword()
+        viewModel.removeLastTypedPassword()
         
         //Then
         XCTAssertFalse(hasUpdated)
@@ -96,14 +96,14 @@ class LoginViewModelTests: XCTestCase {
         // Given
         var hasUpdated = false
         
-        let modelView = LoginViewModel(service: LoginServiceMock())
-        modelView.updatePasswordTextField = { isRemoving in
+        let viewModel = LoginViewModel(service: LoginServiceMock())
+        viewModel.updatePasswordTextField = { isRemoving in
             hasUpdated = true
         }
         
         // When
-        modelView.setTypedPassword(ButtonPasswordText(first: 1, second: 2))
-        modelView.removeLastTypedPassword()
+        viewModel.setTypedPassword(ButtonPasswordText(first: 1, second: 2))
+        viewModel.removeLastTypedPassword()
         
         //Then
         XCTAssertTrue(hasUpdated)
@@ -113,12 +113,12 @@ class LoginViewModelTests: XCTestCase {
         // Given
         var hasUpdated = false
         
-        let modelView = LoginViewModel(service: LoginServiceMock())
-        modelView.updateAccountUI = { _, _ in
+        let viewModel = LoginViewModel(service: LoginServiceMock())
+        viewModel.updateAccountUI = { _, _ in
             hasUpdated = true
         }
         // When
-        await modelView.getAccount("1122334")
+        await viewModel.getAccount("1122334")
         
         //Then
         XCTAssertTrue(hasUpdated)
@@ -128,12 +128,12 @@ class LoginViewModelTests: XCTestCase {
         // Given
         var hasUpdated = false
         
-        let modelView = LoginViewModel(service: LoginServiceMock())
-        modelView.updateAccountUI = { _, _ in
+        let viewModel = LoginViewModel(service: LoginServiceMock())
+        viewModel.updateAccountUI = { _, _ in
             hasUpdated = true
         }
         // When
-        await modelView.getAccount("1122335")
+        await viewModel.getAccount("1122335")
         
         //Then
         XCTAssertFalse(hasUpdated)
@@ -143,18 +143,18 @@ class LoginViewModelTests: XCTestCase {
         // Given
         var hasCalled = false
         
-        let modelView = LoginViewModel(service: LoginServiceMock())
-        modelView.invalidPassword = {
+        let viewModel = LoginViewModel(service: LoginServiceMock())
+        viewModel.invalidPassword = {
             hasCalled = true
         }
         
         // When
-        await modelView.getAccount("1122334")
+        await viewModel.getAccount("1122334")
         
         for _ in 0...4 {
-            modelView.setTypedPassword(ButtonPasswordText(first: 1, second: 2))
+            viewModel.setTypedPassword(ButtonPasswordText(first: 1, second: 2))
         }
-        modelView.logIn()
+        viewModel.logIn()
         //Then
         XCTAssertTrue(hasCalled)
     }
@@ -163,20 +163,20 @@ class LoginViewModelTests: XCTestCase {
         // Given
         var hasCalled = false
         
-        let modelView = LoginViewModel(service: LoginServiceMock())
-        modelView.loggedIn = { _, _ in
+        let viewModel = LoginViewModel(service: LoginServiceMock())
+        viewModel.loggedIn = { _, _ in
             hasCalled = true
         }
         
         // When
-        await modelView.getAccount("1122334")
+        await viewModel.getAccount("1122334")
         
-        modelView.setTypedPassword(ButtonPasswordText(first: 1, second: 9))
-        modelView.setTypedPassword(ButtonPasswordText(first: 8, second: 2))
-        modelView.setTypedPassword(ButtonPasswordText(first: 3, second: 7))
-        modelView.setTypedPassword(ButtonPasswordText(first: 6, second: 4))
-        modelView.setTypedPassword(ButtonPasswordText(first: 5, second: 0))
-        modelView.logIn()
+        viewModel.setTypedPassword(ButtonPasswordText(first: 1, second: 9))
+        viewModel.setTypedPassword(ButtonPasswordText(first: 8, second: 2))
+        viewModel.setTypedPassword(ButtonPasswordText(first: 3, second: 7))
+        viewModel.setTypedPassword(ButtonPasswordText(first: 6, second: 4))
+        viewModel.setTypedPassword(ButtonPasswordText(first: 5, second: 0))
+        viewModel.logIn()
         //Then
         XCTAssertTrue(hasCalled)
     }

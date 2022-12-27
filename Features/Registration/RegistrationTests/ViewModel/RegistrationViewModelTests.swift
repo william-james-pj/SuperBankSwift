@@ -20,17 +20,17 @@ class RegistrationViewModelTests: XCTestCase {
     
     func testRegisterCustomer_WhenValidCustomerProvided_ShouldCallFinishRegister() async {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         
         var hasCalled = false
-        modelView.finishRegister = { _ in
+        viewModel.finishRegister = { _ in
             hasCalled = true
         }
         
         // When
-        modelView.setName("João Pedro")
-        await modelView.registerCustomer()
+        viewModel.setName("João Pedro")
+        await viewModel.registerCustomer()
         
         // Then
         XCTAssertTrue(hasCalled)
@@ -38,17 +38,17 @@ class RegistrationViewModelTests: XCTestCase {
     
     func testRegisterCustomer_WhenInvalidCustomerProvided_ShouldNotCallFinishRegister() async {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         
         var hasCalled = false
-        modelView.finishRegister = { _ in
+        viewModel.finishRegister = { _ in
             hasCalled = true
         }
         
         // When
-        modelView.setName("")
-        await modelView.registerCustomer()
+        viewModel.setName("")
+        await viewModel.registerCustomer()
         
         // Then
         XCTAssertFalse(hasCalled)
@@ -56,11 +56,11 @@ class RegistrationViewModelTests: XCTestCase {
     
     func testValidateCPF_WhenValidCPFProvided_ShouldReturnTrue() async {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         
         // When
-        let isValid = await modelView.validateCPF("11111111111")
+        let isValid = await viewModel.validateCPF("11111111111")
         
         // Then
         XCTAssertTrue(isValid)
@@ -68,11 +68,11 @@ class RegistrationViewModelTests: XCTestCase {
     
     func testValidateCPF_WhenInvalidCPFProvided_ShouldReturnFalse() async {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         
         // When
-        let isValid = await modelView.validateCPF("1111111")
+        let isValid = await viewModel.validateCPF("1111111")
         
         // Then
         XCTAssertFalse(isValid)
@@ -80,11 +80,11 @@ class RegistrationViewModelTests: XCTestCase {
     
     func testValidateEmail_WhenValidEmailProvided_ShouldReturnTrue() async {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         
         // When
-        let isValid = await modelView.validateEmail("email@aa.aaa")
+        let isValid = await viewModel.validateEmail("email@aa.aaa")
         
         // Then
         XCTAssertTrue(isValid)
@@ -92,11 +92,11 @@ class RegistrationViewModelTests: XCTestCase {
     
     func testValidateEmail_WhenInvalidEmailProvided_ShouldReturnFalse() async {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         
         // When
-        let isValid = await modelView.validateEmail("invalidemail@aa.aaa")
+        let isValid = await viewModel.validateEmail("invalidemail@aa.aaa")
         
         // Then
         XCTAssertFalse(isValid)
@@ -104,13 +104,13 @@ class RegistrationViewModelTests: XCTestCase {
     
     func testGetFirstAndSecondName_WhenOneNameProvided_ShouldReturnFirstName() {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         let fullName = "João"
         
         // When
-        modelView.setName(fullName)
-        let nameAbbreviation = modelView.getFirstAndSecondName()
+        viewModel.setName(fullName)
+        let nameAbbreviation = viewModel.getFirstAndSecondName()
         
         // Then
         XCTAssertEqual(nameAbbreviation, "João")
@@ -118,13 +118,13 @@ class RegistrationViewModelTests: XCTestCase {
 
     func testGetFirstAndSecondName_WhenTwoNameProvided_ShouldReturnFirstAndSecondName() {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         let fullName = "João Pedro"
         
         // When
-        modelView.setName(fullName)
-        let nameAbbreviation = modelView.getFirstAndSecondName()
+        viewModel.setName(fullName)
+        let nameAbbreviation = viewModel.getFirstAndSecondName()
         
         // Then
         XCTAssertEqual(nameAbbreviation, "João Pedro")
@@ -132,13 +132,13 @@ class RegistrationViewModelTests: XCTestCase {
     
     func testGetFirstAndSecondName_WhenThreeNameProvided_ShouldReturnFirstAndSecondName() {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         let fullName = "João Pedro Victor"
         
         // When
-        modelView.setName(fullName)
-        let nameAbbreviation = modelView.getFirstAndSecondName()
+        viewModel.setName(fullName)
+        let nameAbbreviation = viewModel.getFirstAndSecondName()
         
         // Then
         XCTAssertEqual(nameAbbreviation, "João Pedro")
@@ -146,12 +146,12 @@ class RegistrationViewModelTests: XCTestCase {
     
     func testValidateName_WhenValidNameProvided_ShouldReturnTrue() {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         let fullName = "João Pedro"
         
         // When
-        let isValid = modelView.validateName(fullName)
+        let isValid = viewModel.validateName(fullName)
         
         // Then
         XCTAssertTrue(isValid)
@@ -159,12 +159,12 @@ class RegistrationViewModelTests: XCTestCase {
     
     func testValidateName_WhenInvalidNameProvided_ShouldReturnFalse() {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         let fullName = "João"
         
         // When
-        let isValid = modelView.validateName(fullName)
+        let isValid = viewModel.validateName(fullName)
         
         // Then
         XCTAssertFalse(isValid)
@@ -172,12 +172,12 @@ class RegistrationViewModelTests: XCTestCase {
     
     func testValidateName_WhenShortNameProvided_ShouldReturnFalse() {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         let fullName = "João Pe"
         
         // When
-        let isValid = modelView.validateName(fullName)
+        let isValid = viewModel.validateName(fullName)
         
         // Then
         XCTAssertFalse(isValid)
@@ -185,12 +185,12 @@ class RegistrationViewModelTests: XCTestCase {
     
     func testFormartCPFMask_WhenValidCPFProvided_ShouldReturnFormatted() {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         let cpf = "11111111111"
         
         // When
-        let cpfFormatted = modelView.formartCPFMask(cpf)
+        let cpfFormatted = viewModel.formartCPFMask(cpf)
         
         // Then
         XCTAssertEqual(cpfFormatted, "111.111.111-11")
@@ -198,12 +198,12 @@ class RegistrationViewModelTests: XCTestCase {
     
     func testFormartCPFMask_WhenShortCPFProvided_ShouldReturnFormatted() {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         let cpf = "111111"
         
         // When
-        let cpfFormatted = modelView.formartCPFMask(cpf)
+        let cpfFormatted = viewModel.formartCPFMask(cpf)
         
         // Then
         XCTAssertEqual(cpfFormatted, "111.111")
@@ -211,12 +211,12 @@ class RegistrationViewModelTests: XCTestCase {
     
     func testFormartBirthDateMask_WhenValidBirthDateProvided_ShouldReturnFormatted() {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         let birthDate = "02012022"
         
         // When
-        let birthDateFormatted = modelView.formartBirthDateMask(birthDate)
+        let birthDateFormatted = viewModel.formartBirthDateMask(birthDate)
         
         // Then
         XCTAssertEqual(birthDateFormatted, "02/01/2022")
@@ -224,12 +224,12 @@ class RegistrationViewModelTests: XCTestCase {
     
     func testFormartBirthDateMask_WhenShortBirthDateProvided_ShouldReturnFormatted() {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         let birthDate = "0201"
         
         // When
-        let birthDateFormatted = modelView.formartBirthDateMask(birthDate)
+        let birthDateFormatted = viewModel.formartBirthDateMask(birthDate)
         
         // Then
         XCTAssertEqual(birthDateFormatted, "02/01")
@@ -237,12 +237,12 @@ class RegistrationViewModelTests: XCTestCase {
     
     func testFormartPhoneNumberMask_WhenValidPhoneNumberProvided_ShouldReturnFormatted() {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         let phoneNumber = "11111111111"
         
         // When
-        let phoneNumberFormatted = modelView.formartPhoneNumberMask(phoneNumber)
+        let phoneNumberFormatted = viewModel.formartPhoneNumberMask(phoneNumber)
         
         // Then
         XCTAssertEqual(phoneNumberFormatted, "(11) 11111-1111")
@@ -250,12 +250,12 @@ class RegistrationViewModelTests: XCTestCase {
     
     func testFormartPhoneNumberMask_WhenShortPhoneNumberProvided_ShouldReturnFormatted() {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         let phoneNumber = "1111111"
         
         // When
-        let phoneNumberFormatted = modelView.formartPhoneNumberMask(phoneNumber)
+        let phoneNumberFormatted = viewModel.formartPhoneNumberMask(phoneNumber)
         
         // Then
         XCTAssertEqual(phoneNumberFormatted, "(11) 11111")
@@ -263,12 +263,12 @@ class RegistrationViewModelTests: XCTestCase {
     
     func testValidateEmail_WhenValidEmailProvided_ShouldReturnTrue() {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         let email = "meuemail@gmail.com"
         
         // When
-        let isValid = modelView.validateName(email)
+        let isValid = viewModel.validateName(email)
         
         // Then
         XCTAssertTrue(isValid)
@@ -276,12 +276,12 @@ class RegistrationViewModelTests: XCTestCase {
     
     func testValidateEmail_WhenInvalidEmailProvided_ShouldReturnFalse() {
         // Given
-        let modelView = RegistrationViewModel.sharedRegistration
-        modelView.settingFirebaseService(service: RegistrationServiceMock())
+        let viewModel = RegistrationViewModel.sharedRegistration
+        viewModel.settingFirebaseService(service: RegistrationServiceMock())
         let email = "meuemailemail.com"
         
         // When
-        let isValid = modelView.validateName(email)
+        let isValid = viewModel.validateName(email)
         
         // Then
         XCTAssertFalse(isValid)

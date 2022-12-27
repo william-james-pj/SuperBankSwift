@@ -25,7 +25,7 @@ class LoginViewModel {
     var invalidPassword: (() -> Void)?
     
     // MARK: - Init
-    init( service: LoginNetwork) {
+    init(service: LoginNetwork = LoginService()) {
         self.firebaseService = service
     }
     

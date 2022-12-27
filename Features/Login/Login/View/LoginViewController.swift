@@ -12,7 +12,7 @@ import FirebaseService
 
 public class LoginViewController: UIViewController {
     // MARK: - Constrants
-    private let viewModel = LoginViewModel(service: LoginService())
+    private let viewModel = LoginViewModel()
     private let isPerformingTask = PublishSubject<Bool>()
     private let disposeBag = DisposeBag()
     

@@ -15,7 +15,7 @@ public enum HomeError: Error {
     case invalidAccount
 }
 
-public class HomeService {
+public class HomeService: HomeNetwork {
     // MARK: - Constrants
     private let db = Firestore.firestore()
     

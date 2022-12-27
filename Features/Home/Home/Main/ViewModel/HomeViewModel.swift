@@ -11,8 +11,8 @@ import Common
 
 class HomeViewModel {
     // MARK: - Constrants
-    private let firebaseService = HomeService()
-    private let cardDeliveryService = CardDeliveryService()
+    private let firebaseService: HomeNetwork?
+    private let cardDeliveryService: CardDeliveryNetwork?
     
     // MARK: - Variables
     private var customerId: String?
@@ -28,7 +28,9 @@ class HomeViewModel {
     var updateCardDelivery: ((_ cardDelivery: CardDeliveryModel) -> Void)?
     
     // MARK: - Init
-    init() {
+    init(service: HomeNetwork = HomeService(), deliveryService: CardDeliveryNetwork = CardDeliveryService()) {
+        self.firebaseService = service
+        self.cardDeliveryService = deliveryService
     }
     
     // MARK: - Methods
@@ -60,7 +62,11 @@ class HomeViewModel {
     
     private func getAccount(_ id: String) async {
         do {
-            let account = try await self.firebaseService.getAccount(id)
+            guard let firebaseService = firebaseService else {
+                return
+            }
+            
+            let account = try await firebaseService.getAccount(id)
             self.account = account
             self.updateAccountUI?(account)
         }
@@ -71,7 +77,11 @@ class HomeViewModel {
     
     private func getCustomer(_ id: String) async {
         do {
-            let customer = try await self.firebaseService.getCustomer(id)
+            guard let firebaseService = firebaseService else {
+                return
+            }
+            
+            let customer = try await firebaseService.getCustomer(id)
             self.customer = customer
             self.updateCustomerUI?(customer)
         }
@@ -82,7 +92,7 @@ class HomeViewModel {
     
     private func getCardDelivery() async {
         do {
-            guard let account = account, let accountId = accountId else {
+            guard let cardDeliveryService = cardDeliveryService, let account = account, let accountId = accountId else {
                 return
             }
             
@@ -90,7 +100,7 @@ class HomeViewModel {
                 return
             }
             
-            let cardDelivery = try await self.cardDeliveryService.getDeliveryCard(accountId: accountId)
+            let cardDelivery = try await cardDeliveryService.getDeliveryCard(accountId: accountId)
             self.cardDeliver = cardDelivery
             self.updateCardDelivery?(cardDelivery)
         }
