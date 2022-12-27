@@ -7,12 +7,11 @@
 
 import Foundation
 import Common
-import RxSwift
 import FirebaseService
 
 class LoginViewModel {
     // MARK: - Constrants
-    private let firebaseService = LoginService()
+    private let firebaseService: LoginNetwork?
     
     // MARK: - Variables
     private var loginSaved: LoginModel?
@@ -26,7 +25,8 @@ class LoginViewModel {
     var invalidPassword: (() -> Void)?
     
     // MARK: - Init
-    init() {
+    init( service: LoginNetwork) {
+        self.firebaseService = service
     }
     
     // MARK: - Methods
@@ -47,6 +47,22 @@ class LoginViewModel {
         self.updatePasswordTextField?(true)
     }
     
+    func formatAccountMask(_ text: String) -> String {
+        let cleanPhoneNumber = text.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        let mask = "#######"
+        var result = ""
+        var index = cleanPhoneNumber.startIndex
+        for ch in mask where index < cleanPhoneNumber.endIndex {
+            if ch == "#" {
+                result.append(cleanPhoneNumber[index])
+                index = cleanPhoneNumber.index(after: index)
+            } else {
+                result.append(ch)
+            }
+        }
+        return result
+    }
+    
     func logIn() {
         let isLoggedIn = self.validatePassword()
         
@@ -64,6 +80,10 @@ class LoginViewModel {
     }
     
     func getAccount(_ accountNumber: String) async {
+        guard let firebaseService = firebaseService else {
+            return
+        }
+        
         self.loginSaved = nil
         do {
             let login = try await firebaseService.getLogin(accountNumber)

@@ -8,10 +8,11 @@
 import UIKit
 import Common
 import RxSwift
+import FirebaseService
 
 public class LoginViewController: UIViewController {
     // MARK: - Constrants
-    private let viewModel = LoginViewModel()
+    private let viewModel = LoginViewModel(service: LoginService())
     private let isPerformingTask = PublishSubject<Bool>()
     private let disposeBag = DisposeBag()
     
@@ -376,19 +377,7 @@ public class LoginViewController: UIViewController {
     
     @objc fileprivate func formattedAccountMask(_ textField: UITextField){
         if let text = textField.text {
-            let cleanPhoneNumber = text.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-            let mask = "#######"
-            var result = ""
-            var index = cleanPhoneNumber.startIndex
-            for ch in mask where index < cleanPhoneNumber.endIndex {
-                if ch == "#" {
-                    result.append(cleanPhoneNumber[index])
-                    index = cleanPhoneNumber.index(after: index)
-                } else {
-                    result.append(ch)
-                }
-            }
-            textField.text = result
+            textField.text = self.viewModel.formatAccountMask(text)
         }
     }
     

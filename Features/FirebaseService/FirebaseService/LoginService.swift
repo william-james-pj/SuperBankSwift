@@ -15,7 +15,7 @@ public enum LoginError: Error {
     case invalidCustomer
 }
 
-public class LoginService {
+public class LoginService: LoginNetwork {
     // MARK: - Constrants
     private let db = Firestore.firestore()
     
