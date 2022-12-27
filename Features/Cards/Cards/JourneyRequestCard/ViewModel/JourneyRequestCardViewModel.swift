@@ -12,8 +12,8 @@ import FirebaseService
 class JourneyRequestCardViewModel {
     // MARK: - Constrants
     static let sharedJourneyRequestCard = JourneyRequestCardViewModel()
-    private let firebaseService = CardService()
-    private let cardDeliveryService = CardDeliveryService()
+    private let firebaseService: CardNetwork?
+    private let cardDeliveryService: CardDeliveryNetwork?
     
     // MARK: - Variables
     private var accountId: String?
@@ -25,24 +25,32 @@ class JourneyRequestCardViewModel {
     var finishSavingInvoice: (() -> Void)?
     
     // MARK: - Init
-    private init() {
+    init(service: CardNetwork = CardService(), deliveryService: CardDeliveryNetwork = CardDeliveryService()) {
+        self.firebaseService = service
+        self.cardDeliveryService = deliveryService
     }
     
     // MARK: - Methods
     func createInvoice() async {
         do {
-            guard let creditValue = creditValue, let invoiceDueDate = invoiceDueDate, let accountId = accountId, let cardPin = cardPin else {
+            guard let firebaseService = firebaseService,
+                    let cardDeliveryService = cardDeliveryService,
+                    let creditValue = creditValue,
+                    let invoiceDueDate = invoiceDueDate,
+                    let accountId = accountId,
+                    let cardPin = cardPin
+            else {
                 return
             }
             
             let newInvoice = InvoiceModel(accountId: accountId, dueDate: invoiceDueDate, limitTotal: creditValue, limitUsed: 0)
-            try await self.firebaseService.saveInvoice(newInvoice)
+            try await firebaseService.saveInvoice(newInvoice)
             
-            try await self.firebaseService.saveAccountHasCard(accountId: accountId, cardPin: cardPin)
+            try await firebaseService.saveAccountHasCard(accountId: accountId, cardPin: cardPin)
             
-            try await self.firebaseService.savePhysicalCard(accountId: accountId)
+            try await firebaseService.savePhysicalCard(accountId: accountId)
             
-            try await self.cardDeliveryService.createDeliveryCard(accountId: accountId)
+            try await cardDeliveryService.createDeliveryCard(accountId: accountId)
 
             self.finishSavingInvoice?()
         }

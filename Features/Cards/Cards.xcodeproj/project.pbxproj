@@ -11,6 +11,12 @@
 		E032B091293FBB7B0091C75B /* CardCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E032B090293FBB7B0091C75B /* CardCoordinatorDelegate.swift */; };
 		E03B83C5294CE74C0000D488 /* ButtonPrimary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03B83C4294CE74C0000D488 /* ButtonPrimary.swift */; };
 		E051581A294113FA00322EE1 /* MyCardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0515819294113FA00322EE1 /* MyCardsTableViewCell.swift */; };
+		E075FFEA295B27CA00CD102A /* JourneyRequestCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E075FFE9295B27CA00CD102A /* JourneyRequestCardViewModelTests.swift */; };
+		E075FFEE295B2A1800CD102A /* MyCardsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E075FFED295B2A1800CD102A /* MyCardsViewModelTests.swift */; };
+		E075FFF2295B2A8900CD102A /* NewVirtualCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E075FFF1295B2A8900CD102A /* NewVirtualCardViewModelTests.swift */; };
+		E075FFF6295B2B1D00CD102A /* CardDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E075FFF5295B2B1D00CD102A /* CardDetailsViewModelTests.swift */; };
+		E075FFF9295B2EDF00CD102A /* CardServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E075FFF8295B2EDF00CD102A /* CardServiceMock.swift */; };
+		E075FFFB295B374C00CD102A /* CardDeliveryServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E075FFFA295B374C00CD102A /* CardDeliveryServiceMock.swift */; };
 		E09BA66D295324D500BC47E8 /* CardDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BA66C295324D500BC47E8 /* CardDetailsViewController.swift */; };
 		E09BA67029532CC100BC47E8 /* CardDetailsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BA66F29532CC100BC47E8 /* CardDetailsHeader.swift */; };
 		E09BA672295332E100BC47E8 /* CardLockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09BA671295332E100BC47E8 /* CardLockTableViewCell.swift */; };
@@ -27,7 +33,6 @@
 		E0D713B129489DA8002C9EC1 /* CheckTerm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D713B029489DA8002C9EC1 /* CheckTerm.swift */; };
 		E0D713B52948A5F4002C9EC1 /* CompletedRequestCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D713B42948A5F4002C9EC1 /* CompletedRequestCardViewController.swift */; };
 		E0E20DD9292D130600AB9A84 /* Cards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20DD0292D130600AB9A84 /* Cards.framework */; };
-		E0E20DDE292D130600AB9A84 /* CardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20DDD292D130600AB9A84 /* CardsTests.swift */; };
 		E0E20DDF292D130600AB9A84 /* Cards.h in Headers */ = {isa = PBXBuildFile; fileRef = E0E20DD3292D130600AB9A84 /* Cards.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E0E20DEA292D132A00AB9A84 /* MyCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20DE9292D132A00AB9A84 /* MyCardsViewController.swift */; };
 		E0E213362949EBA200EFB851 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E213352949EBA200EFB851 /* Common.framework */; };
@@ -73,6 +78,12 @@
 		E032B090293FBB7B0091C75B /* CardCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		E03B83C4294CE74C0000D488 /* ButtonPrimary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPrimary.swift; sourceTree = "<group>"; };
 		E0515819294113FA00322EE1 /* MyCardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsTableViewCell.swift; sourceTree = "<group>"; };
+		E075FFE9295B27CA00CD102A /* JourneyRequestCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyRequestCardViewModelTests.swift; sourceTree = "<group>"; };
+		E075FFED295B2A1800CD102A /* MyCardsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsViewModelTests.swift; sourceTree = "<group>"; };
+		E075FFF1295B2A8900CD102A /* NewVirtualCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVirtualCardViewModelTests.swift; sourceTree = "<group>"; };
+		E075FFF5295B2B1D00CD102A /* CardDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsViewModelTests.swift; sourceTree = "<group>"; };
+		E075FFF8295B2EDF00CD102A /* CardServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardServiceMock.swift; sourceTree = "<group>"; };
+		E075FFFA295B374C00CD102A /* CardDeliveryServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeliveryServiceMock.swift; sourceTree = "<group>"; };
 		E09BA66C295324D500BC47E8 /* CardDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsViewController.swift; sourceTree = "<group>"; };
 		E09BA66F29532CC100BC47E8 /* CardDetailsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsHeader.swift; sourceTree = "<group>"; };
 		E09BA671295332E100BC47E8 /* CardLockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLockTableViewCell.swift; sourceTree = "<group>"; };
@@ -91,7 +102,6 @@
 		E0E20DD0292D130600AB9A84 /* Cards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20DD3292D130600AB9A84 /* Cards.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cards.h; sourceTree = "<group>"; };
 		E0E20DD8292D130600AB9A84 /* CardsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0E20DDD292D130600AB9A84 /* CardsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsTests.swift; sourceTree = "<group>"; };
 		E0E20DE9292D132A00AB9A84 /* MyCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsViewController.swift; sourceTree = "<group>"; };
 		E0E213352949EBA200EFB851 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E213392949EBA800EFB851 /* FirebaseService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +165,79 @@
 				E03B83C4294CE74C0000D488 /* ButtonPrimary.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		E075FFE5295B278900CD102A /* JourneyRequestCard */ = {
+			isa = PBXGroup;
+			children = (
+				E075FFE6295B279F00CD102A /* ViewModel */,
+			);
+			path = JourneyRequestCard;
+			sourceTree = "<group>";
+		};
+		E075FFE6295B279F00CD102A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E075FFE9295B27CA00CD102A /* JourneyRequestCardViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E075FFEB295B29F400CD102A /* MyCards */ = {
+			isa = PBXGroup;
+			children = (
+				E075FFEC295B29FD00CD102A /* ViewModel */,
+			);
+			path = MyCards;
+			sourceTree = "<group>";
+		};
+		E075FFEC295B29FD00CD102A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E075FFED295B2A1800CD102A /* MyCardsViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E075FFEF295B2A6900CD102A /* NewVirtualCard */ = {
+			isa = PBXGroup;
+			children = (
+				E075FFF0295B2A7600CD102A /* ViewModel */,
+			);
+			path = NewVirtualCard;
+			sourceTree = "<group>";
+		};
+		E075FFF0295B2A7600CD102A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E075FFF1295B2A8900CD102A /* NewVirtualCardViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E075FFF3295B2AF800CD102A /* CardDetails */ = {
+			isa = PBXGroup;
+			children = (
+				E075FFF4295B2B0400CD102A /* ViewModel */,
+			);
+			path = CardDetails;
+			sourceTree = "<group>";
+		};
+		E075FFF4295B2B0400CD102A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E075FFF5295B2B1D00CD102A /* CardDetailsViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E075FFF7295B2EBF00CD102A /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				E075FFF8295B2EDF00CD102A /* CardServiceMock.swift */,
+				E075FFFA295B374C00CD102A /* CardDeliveryServiceMock.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		E09BA66A295324A300BC47E8 /* CardDetails */ = {
@@ -361,7 +444,11 @@
 		E0E20DDC292D130600AB9A84 /* CardsTests */ = {
 			isa = PBXGroup;
 			children = (
-				E0E20DDD292D130600AB9A84 /* CardsTests.swift */,
+				E075FFF7295B2EBF00CD102A /* Mock */,
+				E075FFE5295B278900CD102A /* JourneyRequestCard */,
+				E075FFEB295B29F400CD102A /* MyCards */,
+				E075FFEF295B2A6900CD102A /* NewVirtualCard */,
+				E075FFF3295B2AF800CD102A /* CardDetails */,
 			);
 			path = CardsTests;
 			sourceTree = "<group>";
@@ -609,7 +696,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0E20DDE292D130600AB9A84 /* CardsTests.swift in Sources */,
+				E075FFF2295B2A8900CD102A /* NewVirtualCardViewModelTests.swift in Sources */,
+				E075FFF9295B2EDF00CD102A /* CardServiceMock.swift in Sources */,
+				E075FFF6295B2B1D00CD102A /* CardDetailsViewModelTests.swift in Sources */,
+				E075FFFB295B374C00CD102A /* CardDeliveryServiceMock.swift in Sources */,
+				E075FFEE295B2A1800CD102A /* MyCardsViewModelTests.swift in Sources */,
+				E075FFEA295B27CA00CD102A /* JourneyRequestCardViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

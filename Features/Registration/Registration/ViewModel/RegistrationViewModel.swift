@@ -26,7 +26,8 @@ class RegistrationViewModel {
     var finishRegister: ((_ login: LoginModel) -> Void)?
     
     // MARK: - Init
-    private init() {
+    init(service: RegistrationNetwork = RegistrationService()) {
+        self.firebaseService = service
     }
     
     // MARK: - Methods

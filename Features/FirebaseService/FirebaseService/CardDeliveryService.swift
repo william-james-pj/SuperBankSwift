@@ -16,7 +16,7 @@ public enum CardDeliveryError: Error {
     case invalidAccount
 }
 
-public class CardDeliveryService {
+public class CardDeliveryService: CardDeliveryNetwork {
     // MARK: - Constrants
     private let db = Firestore.firestore()
     

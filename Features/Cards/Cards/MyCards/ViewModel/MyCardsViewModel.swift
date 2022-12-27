@@ -11,19 +11,24 @@ import FirebaseService
 
 class MyCardsViewModel {
     // MARK: - Constrants
-    private let firebaseService = CardService()
+    private let firebaseService: CardNetwork?
     
     // MARK: - Variables
     // MARK: - Closures
     var finishGetCards: ((_ physicalCards: [CardModel], _ virtualCards: [CardModel]) -> Void)?
     
     // MARK: - Init
-    init() {
+    init(service: CardNetwork = CardService()) {
+        self.firebaseService = service
     }
     
     // MARK: - Methods
     func getCards(accountId: String) async {
         do {
+            guard let firebaseService = firebaseService else {
+                return
+            }
+            
             let cards = try await firebaseService.getAllCard(accountId: accountId)
             
             let physicalCards = cards.filter { $0.cardType == .physical }

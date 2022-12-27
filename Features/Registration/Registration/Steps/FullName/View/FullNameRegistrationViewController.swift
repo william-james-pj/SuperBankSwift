@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseService
 
 public class FullNameRegistrationViewController: UIViewController {
     // MARK: - Constrants
@@ -75,9 +74,6 @@ public class FullNameRegistrationViewController: UIViewController {
     // MARK: - Setup
     private func setupVC() {
         view.backgroundColor = UIColor(named: "Background")
-        
-        self.viewModel.settingFirebaseService(service: RegistrationService())
-        
         settingButton(isDisabled: true)
         buildHierarchy()
         buildConstraints()
