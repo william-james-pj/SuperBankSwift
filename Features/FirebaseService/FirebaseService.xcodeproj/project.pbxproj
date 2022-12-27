@@ -13,6 +13,7 @@
 		E02EE8FE2937736D00FD1C80 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02EE8FD2937736D00FD1C80 /* LoginService.swift */; };
 		E03375752951EAAE005C8524 /* CardDeliveryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03375742951EAAE005C8524 /* CardDeliveryService.swift */; };
 		E03375772951ED32005C8524 /* UtilityCardDelivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03375762951ED32005C8524 /* UtilityCardDelivery.swift */; };
+		E075FFE0295B166F00CD102A /* RegistrationNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E075FFDF295B166F00CD102A /* RegistrationNetwork.swift */; };
 		E0AA30692959CAA100069D19 /* LoginNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AA30682959CAA100069D19 /* LoginNetwork.swift */; };
 		E0C5CF50294C9ABE00A232D9 /* UtilityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C5CF4F294C9ABE00A232D9 /* UtilityCard.swift */; };
 		E0E20E07292D469700AB9A84 /* FirebaseService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20DFE292D469700AB9A84 /* FirebaseService.framework */; };
@@ -53,6 +54,7 @@
 		E02EE8FD2937736D00FD1C80 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		E03375742951EAAE005C8524 /* CardDeliveryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeliveryService.swift; sourceTree = "<group>"; };
 		E03375762951ED32005C8524 /* UtilityCardDelivery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityCardDelivery.swift; sourceTree = "<group>"; };
+		E075FFDF295B166F00CD102A /* RegistrationNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNetwork.swift; sourceTree = "<group>"; };
 		E0AA30682959CAA100069D19 /* LoginNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetwork.swift; sourceTree = "<group>"; };
 		E0C5CF4F294C9ABE00A232D9 /* UtilityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityCard.swift; sourceTree = "<group>"; };
 		E0E20DFE292D469700AB9A84 /* FirebaseService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FirebaseService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				E0AA30682959CAA100069D19 /* LoginNetwork.swift */,
+				E075FFDF295B166F00CD102A /* RegistrationNetwork.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E075FFE0295B166F00CD102A /* RegistrationNetwork.swift in Sources */,
 				E0C5CF50294C9ABE00A232D9 /* UtilityCard.swift in Sources */,
 				E0AA30692959CAA100069D19 /* LoginNetwork.swift in Sources */,
 				E02A1DBF293E13C300F246A5 /* HomeService.swift in Sources */,

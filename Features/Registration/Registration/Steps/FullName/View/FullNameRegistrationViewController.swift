@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseService
 
 public class FullNameRegistrationViewController: UIViewController {
     // MARK: - Constrants
@@ -58,8 +59,8 @@ public class FullNameRegistrationViewController: UIViewController {
         return textField
     }()
     
-    private let buttonGo: RegistrationButton = {
-        let button = RegistrationButton()
+    private let buttonGo: ButtonPrimary = {
+        let button = ButtonPrimary()
         button.addTarget(self, action: #selector(GoButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -74,6 +75,9 @@ public class FullNameRegistrationViewController: UIViewController {
     // MARK: - Setup
     private func setupVC() {
         view.backgroundColor = UIColor(named: "Background")
+        
+        self.viewModel.settingFirebaseService(service: RegistrationService())
+        
         settingButton(isDisabled: true)
         buildHierarchy()
         buildConstraints()
@@ -104,21 +108,11 @@ public class FullNameRegistrationViewController: UIViewController {
     }
     
     private func settingButton(isDisabled: Bool) {
-        var container = AttributeContainer()
-        container.font = .systemFont(ofSize: 14, weight: .bold)
-        
         if isDisabled {
-            self.buttonGo.configuration?.baseForegroundColor = .gray
-            self.buttonGo.configuration?.baseBackgroundColor = UIColor(named: "DisabledLight")
-            self.buttonGo.configuration?.attributedTitle = AttributedString("Digite seu nome para continuar", attributes: container)
-            self.buttonGo.isEnabled = false
+            self.buttonGo.settingDisabled(true, text: "Digite seu nome para continuar")
             return
         }
-        
-        self.buttonGo.configuration?.baseForegroundColor = UIColor(named: "White")
-        self.buttonGo.configuration?.baseBackgroundColor = UIColor(named: "Primary")
-        self.buttonGo.configuration?.attributedTitle = AttributedString("Avançar", attributes: container)
-        self.buttonGo.isEnabled = true
+        self.buttonGo.settingDisabled(false, text: "Avançar")
     }
     
     @objc private func keyboardWillShow(notification: NSNotification) {
@@ -168,17 +162,8 @@ extension FullNameRegistrationViewController: UITextFieldDelegate {
         let updatedString = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
         
         if let updatedString = updatedString {
-            let textArr = updatedString.components(separatedBy: " ")
-            if textArr.count > 1 {
-                let length = textArr[1].count
-                if length >= 3 {
-                    self.validateInput(true)
-                } else {
-                    self.validateInput(false)
-                }
-            } else {
-                self.validateInput(false)
-            }
+            let isValid = self.viewModel.validateName(updatedString)
+            self.validateInput(isValid)
         }
         
         return true

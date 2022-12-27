@@ -89,12 +89,9 @@ public class CompletedRegistrationViewController: UIViewController {
         return view
     }()
     
-    private let buttonGo: RegistrationButton = {
-        var container = AttributeContainer()
-        container.font = .systemFont(ofSize: 14, weight: .bold)
-        
-        let button = RegistrationButton()
-        button.configuration?.attributedTitle = AttributedString("Acessar sua conta", attributes: container)
+    private let buttonGo: ButtonPrimary = {
+        let button = ButtonPrimary()
+        button.settingTitle("Acessar sua conta")
         button.addTarget(self, action: #selector(GoButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

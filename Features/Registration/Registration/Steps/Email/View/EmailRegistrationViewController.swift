@@ -95,8 +95,8 @@ public class EmailRegistrationViewController: UIViewController {
         return label
     }()
     
-    private let buttonGo: RegistrationButton = {
-        let button = RegistrationButton()
+    private let buttonGo: ButtonPrimary = {
+        let button = ButtonPrimary()
         button.addTarget(self, action: #selector(GoButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -116,7 +116,7 @@ public class EmailRegistrationViewController: UIViewController {
         buildConstraints()
         
         self.finishedVerification.subscribe { e in
-            self.settingLoadingButton(false)
+            self.buttonGo.settingLoading(false)
             self.coordinatorDelegate?.goToRepeatEmail()
         }.disposed(by: disposeBag)
         
@@ -131,7 +131,7 @@ public class EmailRegistrationViewController: UIViewController {
             guard let email = self.textFieldEmail.text else {
                 return
             }
-            self.settingLoadingButton(true)
+            self.buttonGo.settingLoading(true)
             let isValid = await self.viewModel.validateEmail(email)
             
             if isValid {
@@ -139,7 +139,7 @@ public class EmailRegistrationViewController: UIViewController {
                 return
             }
             
-            self.settingLoadingButton(false)
+            self.buttonGo.settingLoading(false)
             self.settingError(to: true)
         }
     }
@@ -172,33 +172,10 @@ public class EmailRegistrationViewController: UIViewController {
     
     private func settingButton(isDisabled: Bool) {
         if isDisabled {
-            self.buttonGo.configuration?.baseForegroundColor = .gray
-            self.buttonGo.configuration?.baseBackgroundColor = UIColor(named: "DisabledLight")
-            self.buttonGo.setTitle("Informe um e-mail", for: .normal)
-            self.buttonGo.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
-            self.buttonGo.isEnabled = false
+            self.buttonGo.settingDisabled(true, text: "Informe um e-mail")
             return
         }
-        
-        self.buttonGo.configuration?.baseForegroundColor = UIColor(named: "White")
-        self.buttonGo.configuration?.baseBackgroundColor = UIColor(named: "Primary")
-        self.buttonGo.setTitle("Avançar", for: .normal)
-        self.buttonGo.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
-        self.buttonGo.isEnabled = true
-    }
-    
-    private func settingLoadingButton(_ isLoading: Bool) {
-        if isLoading {
-            self.textFieldEmail.isEnabled = false
-            self.buttonGo.isEnabled = false
-            self.buttonGo.setTitle("", for: .normal)
-            self.buttonGo.configuration?.showsActivityIndicator = true
-            return
-        }
-        self.textFieldEmail.isEnabled = true
-        self.buttonGo.configuration?.showsActivityIndicator = false
-        self.settingButton(isDisabled: true)
-        return
+        self.buttonGo.settingDisabled(false, text: "Avançar")
     }
     
     @objc private func keyboardWillShow(notification: NSNotification) {
@@ -250,13 +227,8 @@ extension EmailRegistrationViewController: UITextFieldDelegate {
         let updatedString = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
         
         if let updatedString = updatedString {
-            let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-            let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-            if emailPred.evaluate(with: updatedString) {
-                self.validateInput(true)
-            } else {
-                self.validateInput(false)
-            }
+            let isValid = self.viewModel.validateEmail(updatedString)
+            self.validateInput(isValid)
         }
         
         return true

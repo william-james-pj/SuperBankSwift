@@ -87,8 +87,8 @@ public class RepeatEmailRegistrationViewController: UIViewController {
         return textView
     }()
     
-    private let buttonGo: RegistrationButton = {
-        let button = RegistrationButton()
+    private let buttonGo: ButtonPrimary = {
+        let button = ButtonPrimary()
         button.addTarget(self, action: #selector(GoButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -110,6 +110,7 @@ public class RepeatEmailRegistrationViewController: UIViewController {
         
         self.viewModel.finishRegister = { login in
             DispatchQueue.main.async {
+                self.buttonGo.settingLoading(false)
                 self.coordinatorDelegate?.goToCompletedRegistration(login: login)
             }
         }
@@ -124,9 +125,7 @@ public class RepeatEmailRegistrationViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction private func GoButtonTapped(_ sender: UIButton) {
-        self.buttonGo.isEnabled = false
-        self.buttonGo.setTitle("", for: .normal)
-        self.buttonGo.configuration?.showsActivityIndicator = true
+        self.buttonGo.settingLoading(true)
         Task {
             await self.viewModel.registerCustomer()
         }
@@ -144,21 +143,11 @@ public class RepeatEmailRegistrationViewController: UIViewController {
     }
     
     private func settingButton(isDisabled: Bool) {
-        var container = AttributeContainer()
-        container.font = .systemFont(ofSize: 14, weight: .bold)
-        
         if isDisabled {
-            self.buttonGo.configuration?.baseForegroundColor = .gray
-            self.buttonGo.configuration?.baseBackgroundColor = UIColor(named: "DisabledLight")
-            self.buttonGo.configuration?.attributedTitle = AttributedString("Digite novamente o seu e-mail", attributes: container)
-            self.buttonGo.isEnabled = false
+            self.buttonGo.settingDisabled(true, text: "Digite novamente o seu e-mail")
             return
         }
-        
-        self.buttonGo.configuration?.baseForegroundColor = UIColor(named: "White")
-        self.buttonGo.configuration?.baseBackgroundColor = UIColor(named: "Primary")
-        self.buttonGo.configuration?.attributedTitle = AttributedString("Finalizar", attributes: container)
-        self.buttonGo.isEnabled = true
+        self.buttonGo.settingDisabled(false, text: "Avançar")
     }
     
     private func setTextWithLink() {

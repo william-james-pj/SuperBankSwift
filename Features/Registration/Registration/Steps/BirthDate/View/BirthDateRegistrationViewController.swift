@@ -59,8 +59,8 @@ public class BirthDateRegistrationViewController: UIViewController {
         return textField
     }()
     
-    private let buttonGo: RegistrationButton = {
-        let button = RegistrationButton()
+    private let buttonGo: ButtonPrimary = {
+        let button = ButtonPrimary()
         button.addTarget(self, action: #selector(GoButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -103,39 +103,16 @@ public class BirthDateRegistrationViewController: UIViewController {
     }
     
     private func settingButton(isDisabled: Bool) {
-        var container = AttributeContainer()
-        container.font = .systemFont(ofSize: 14, weight: .bold)
-        
         if isDisabled {
-            self.buttonGo.configuration?.baseForegroundColor = .gray
-            self.buttonGo.configuration?.baseBackgroundColor = UIColor(named: "DisabledLight")
-            self.buttonGo.configuration?.attributedTitle = AttributedString("Digite sua data de nascimento", attributes: container)
-            self.buttonGo.isEnabled = false
+            self.buttonGo.settingDisabled(true, text: "Digite sua data de nascimento")
             return
         }
-        
-        self.buttonGo.configuration?.baseForegroundColor = UIColor(named: "White")
-        self.buttonGo.configuration?.baseBackgroundColor = UIColor(named: "Primary")
-        self.buttonGo.configuration?.attributedTitle = AttributedString("Avançar", attributes: container)
-        self.buttonGo.isEnabled = true
+        self.buttonGo.settingDisabled(false, text: "Avançar")
     }
     
     @objc private func formattedBirthDateMask(_ textField: UITextField){
         if let text = textField.text {
-            let cleanBirthDate = text.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-            self.birthDate = cleanBirthDate
-            let mask = "##/##/####"
-            var result = ""
-            var index = cleanBirthDate.startIndex
-            for ch in mask where index < cleanBirthDate.endIndex {
-                if ch == "#" {
-                    result.append(cleanBirthDate[index])
-                    index = cleanBirthDate.index(after: index)
-                } else {
-                    result.append(ch)
-                }
-            }
-            textField.text = result
+            textField.text = self.viewModel.formartBirthDateMask(text)
         }
     }
     

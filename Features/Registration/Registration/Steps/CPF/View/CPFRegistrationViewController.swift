@@ -102,8 +102,8 @@ public class CPFRegistrationViewController: UIViewController {
         return label
     }()
     
-    private let buttonGo: RegistrationButton = {
-        let button = RegistrationButton()
+    private let buttonGo: ButtonPrimary = {
+        let button = ButtonPrimary()
         button.addTarget(self, action: #selector(GoButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -124,7 +124,7 @@ public class CPFRegistrationViewController: UIViewController {
         buildConstraints()
         
         self.finishedVerification.subscribe { e in
-            self.settingLoadingButton(false)
+            self.buttonGo.settingLoading(false)
             self.coordinatorDelegate?.goToBirthDate()
         }.disposed(by: disposeBag)
         
@@ -137,7 +137,7 @@ public class CPFRegistrationViewController: UIViewController {
     // MARK: - Actions
     @IBAction private func GoButtonTapped(_ sender: UIButton) {
         Task {
-            self.settingLoadingButton(true)
+            self.buttonGo.settingLoading(true)
             let isValid = await self.viewModel.validateCPF(cpf)
             
             if isValid {
@@ -145,7 +145,7 @@ public class CPFRegistrationViewController: UIViewController {
                 return
             }
             
-            self.settingLoadingButton(false)
+            self.buttonGo.settingLoading(false)
             self.settingError(to: true)
         }
     }
@@ -183,50 +183,15 @@ public class CPFRegistrationViewController: UIViewController {
     
     private func settingButton(isDisabled: Bool) {
         if isDisabled {
-            self.buttonGo.configuration?.baseForegroundColor = .gray
-            self.buttonGo.configuration?.baseBackgroundColor = UIColor(named: "DisabledLight")
-            self.buttonGo.setTitle("Digite o número do CPF", for: .normal)
-            self.buttonGo.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
-            self.buttonGo.isEnabled = false
+            self.buttonGo.settingDisabled(true, text: "Digite o número do CPF")
             return
         }
-        self.buttonGo.configuration?.baseForegroundColor = UIColor(named: "White")
-        self.buttonGo.configuration?.baseBackgroundColor = UIColor(named: "Primary")
-        self.buttonGo.setTitle("Avançar", for: .normal)
-        self.buttonGo.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
-        self.buttonGo.isEnabled = true
-    }
-    
-    private func settingLoadingButton(_ isLoading: Bool) {
-        if isLoading {
-            self.textFieldCPF.isEnabled = false
-            self.buttonGo.isEnabled = false
-            self.buttonGo.setTitle("", for: .normal)
-            self.buttonGo.configuration?.showsActivityIndicator = true
-            return
-        }
-        self.textFieldCPF.isEnabled = true
-        self.buttonGo.configuration?.showsActivityIndicator = false
-        self.settingButton(isDisabled: true)
-        return
+        self.buttonGo.settingDisabled(false, text: "Avançar")
     }
     
     @objc private func formattedCPFMask(_ textField: UITextField){
         if let text = textField.text {
-            let cleanCPF = text.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-            self.cpf = cleanCPF
-            let mask = "###.###.###-##"
-            var result = ""
-            var index = cleanCPF.startIndex
-            for ch in mask where index < cleanCPF.endIndex {
-                if ch == "#" {
-                    result.append(cleanCPF[index])
-                    index = cleanCPF.index(after: index)
-                } else {
-                    result.append(ch)
-                }
-            }
-            textField.text = result
+            textField.text = self.viewModel.formartCPFMask(text)
         }
     }
     

@@ -16,7 +16,7 @@ public enum RegistrationError: Error {
     case errorSaving
 }
 
-public class RegistrationService {
+public class RegistrationService: RegistrationNetwork {
     // MARK: - Constrants
     private let db = Firestore.firestore()
     

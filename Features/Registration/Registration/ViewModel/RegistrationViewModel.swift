@@ -12,9 +12,10 @@ import FirebaseService
 class RegistrationViewModel {
     // MARK: - Constrants
     static let sharedRegistration = RegistrationViewModel()
-    private let firebaseService = RegistrationService()
     
     // MARK: - Variables
+    private var firebaseService: RegistrationNetwork?
+    
     private var fullName: String = ""
     private var cpf: String = ""
     private var birthDate: String = ""
@@ -26,12 +27,20 @@ class RegistrationViewModel {
     
     // MARK: - Init
     private init() {
-        
     }
     
     // MARK: - Methods
+    func settingFirebaseService(service: RegistrationNetwork) {
+        // Há dois RegistrationNetwork, o do teste e o service do firebase
+        self.firebaseService = service
+    }
+    
     func registerCustomer() async {
         do {
+            guard let firebaseService = firebaseService else {
+                return
+            }
+            
             let customer = CustomerModel(birthDate: birthDate, cpf: cpf, email: email, fullName: fullName, phoneNumber: phoneNumber)
             let login = try await firebaseService.register(customer: customer)
             self.finishRegister?(login)
@@ -43,7 +52,11 @@ class RegistrationViewModel {
     
     func validateCPF(_ cpf: String) async -> Bool {
         do {
-            let isValid = try await self.firebaseService.validateCPF(cpf)
+            guard let firebaseService = firebaseService else {
+                return false
+            }
+            
+            let isValid = try await firebaseService.validateCPF(cpf)
             
             if isValid {
                 self.cpf = cpf
@@ -59,7 +72,11 @@ class RegistrationViewModel {
     
     func validateEmail(_ email: String) async -> Bool {
         do {
-            let isValid = try await self.firebaseService.validateEmail(email)
+            guard let firebaseService = firebaseService else {
+                return false
+            }
+            
+            let isValid = try await firebaseService.validateEmail(email)
             
             if isValid {
                 self.email = email
@@ -97,4 +114,75 @@ class RegistrationViewModel {
         return self.email
     }
     
+    func validateName(_ name: String) -> Bool {
+        let textArr = name.components(separatedBy: " ")
+        if textArr.count == 1 {
+            return false
+        }
+        let length = textArr[1].count
+        if length < 3 {
+            return false
+        }
+        return true
+    }
+    
+    func formartCPFMask(_ cpf: String) -> String {
+        let cleanCPF = cpf.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        self.cpf = cleanCPF
+        let mask = "###.###.###-##"
+        var result = ""
+        var index = cleanCPF.startIndex
+        for ch in mask where index < cleanCPF.endIndex {
+            if ch == "#" {
+                result.append(cleanCPF[index])
+                index = cleanCPF.index(after: index)
+            } else {
+                result.append(ch)
+            }
+        }
+        return result
+    }
+    
+    func formartBirthDateMask(_ birthDate: String) -> String {
+        let cleanBirthDate = birthDate.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        self.birthDate = cleanBirthDate
+        let mask = "##/##/####"
+        var result = ""
+        var index = cleanBirthDate.startIndex
+        for ch in mask where index < cleanBirthDate.endIndex {
+            if ch == "#" {
+                result.append(cleanBirthDate[index])
+                index = cleanBirthDate.index(after: index)
+            } else {
+                result.append(ch)
+            }
+        }
+        return result
+    }
+    
+    func formartPhoneNumberMask(_ phoneNumber: String) -> String {
+        let cleanPhoneNumber = phoneNumber.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        self.phoneNumber = cleanPhoneNumber
+        let mask = "(##) #####-####"
+        var result = ""
+        var index = cleanPhoneNumber.startIndex
+        for ch in mask where index < cleanPhoneNumber.endIndex {
+            if ch == "#" {
+                result.append(cleanPhoneNumber[index])
+                index = cleanPhoneNumber.index(after: index)
+            } else {
+                result.append(ch)
+            }
+        }
+        return result
+    }
+    
+    func validateEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        if emailPred.evaluate(with: email) {
+            return true
+        }
+        return false
+    }
 }

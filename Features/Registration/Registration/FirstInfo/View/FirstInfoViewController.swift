@@ -93,18 +93,9 @@ public class FirstInfoViewController: UIViewController {
         return label
     }()
     
-    private let buttonOpenAccount: UIButton = {
-        var config = UIButton.Configuration.gray()
-        config.baseForegroundColor = UIColor(named: "White")
-        config.baseBackgroundColor = UIColor(named: "Primary")
-        config.buttonSize = .large
-        
-        var container = AttributeContainer()
-        container.font = .systemFont(ofSize: 14, weight: .bold)
-        config.attributedTitle = AttributedString("ABRIR CONTA", attributes: container)
-        
-        let button = UIButton()
-        button.configuration = config
+    private let buttonOpenAccount: ButtonPrimary = {
+        let button = ButtonPrimary()
+        button.settingTitle("ABRIR CONTA")
         button.addTarget(self, action: #selector(OpenAccountButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

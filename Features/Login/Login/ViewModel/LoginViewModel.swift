@@ -48,14 +48,14 @@ class LoginViewModel {
     }
     
     func formatAccountMask(_ text: String) -> String {
-        let cleanPhoneNumber = text.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        let cleanAccount = text.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
         let mask = "#######"
         var result = ""
-        var index = cleanPhoneNumber.startIndex
-        for ch in mask where index < cleanPhoneNumber.endIndex {
+        var index = cleanAccount.startIndex
+        for ch in mask where index < cleanAccount.endIndex {
             if ch == "#" {
-                result.append(cleanPhoneNumber[index])
-                index = cleanPhoneNumber.index(after: index)
+                result.append(cleanAccount[index])
+                index = cleanAccount.index(after: index)
             } else {
                 result.append(ch)
             }
