@@ -14,7 +14,7 @@ class RegistrationViewModel {
     static let sharedRegistration = RegistrationViewModel()
     
     // MARK: - Variables
-    private var firebaseService: RegistrationNetwork?
+    private var firebaseService: RegistrationNetwork!
     
     private var fullName: String = ""
     private var cpf: String = ""
@@ -31,19 +31,10 @@ class RegistrationViewModel {
     }
     
     // MARK: - Methods
-    func settingFirebaseService(service: RegistrationNetwork) {
-        // Há dois RegistrationNetwork, o do teste e o service do firebase
-        self.firebaseService = service
-    }
-    
     func registerCustomer() async {
         do {
-            guard let firebaseService = firebaseService else {
-                return
-            }
-            
             let customer = CustomerModel(birthDate: birthDate, cpf: cpf, email: email, fullName: fullName, phoneNumber: phoneNumber)
-            let login = try await firebaseService.register(customer: customer)
+            let login = try await self.firebaseService.register(customer: customer)
             self.finishRegister?(login)
         }
         catch {
@@ -53,11 +44,7 @@ class RegistrationViewModel {
     
     func validateCPF(_ cpf: String) async -> Bool {
         do {
-            guard let firebaseService = firebaseService else {
-                return false
-            }
-            
-            let isValid = try await firebaseService.validateCPF(cpf)
+            let isValid = try await self.firebaseService.validateCPF(cpf)
             
             if isValid {
                 self.cpf = cpf
@@ -73,11 +60,7 @@ class RegistrationViewModel {
     
     func validateEmail(_ email: String) async -> Bool {
         do {
-            guard let firebaseService = firebaseService else {
-                return false
-            }
-            
-            let isValid = try await firebaseService.validateEmail(email)
+            let isValid = try await self.firebaseService.validateEmail(email)
             
             if isValid {
                 self.email = email
@@ -178,7 +161,7 @@ class RegistrationViewModel {
         return result
     }
     
-    func validateEmail(_ email: String) -> Bool {
+    func validateEmailMask(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         if emailPred.evaluate(with: email) {

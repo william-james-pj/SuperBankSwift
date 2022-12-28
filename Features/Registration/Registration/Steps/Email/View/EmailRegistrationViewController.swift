@@ -227,7 +227,7 @@ extension EmailRegistrationViewController: UITextFieldDelegate {
         let updatedString = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
         
         if let updatedString = updatedString {
-            let isValid = self.viewModel.validateEmail(updatedString)
+            let isValid = self.viewModel.validateEmailMask(updatedString)
             self.validateInput(isValid)
         }
         

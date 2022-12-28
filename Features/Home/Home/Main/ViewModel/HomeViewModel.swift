@@ -11,8 +11,8 @@ import Common
 
 class HomeViewModel {
     // MARK: - Constrants
-    private let firebaseService: HomeNetwork?
-    private let cardDeliveryService: CardDeliveryNetwork?
+    private let firebaseService: HomeNetwork!
+    private let cardDeliveryService: CardDeliveryNetwork!
     
     // MARK: - Variables
     private var customerId: String?
@@ -62,11 +62,7 @@ class HomeViewModel {
     
     private func getAccount(_ id: String) async {
         do {
-            guard let firebaseService = firebaseService else {
-                return
-            }
-            
-            let account = try await firebaseService.getAccount(id)
+            let account = try await self.firebaseService.getAccount(id)
             self.account = account
             self.updateAccountUI?(account)
         }
@@ -77,11 +73,7 @@ class HomeViewModel {
     
     private func getCustomer(_ id: String) async {
         do {
-            guard let firebaseService = firebaseService else {
-                return
-            }
-            
-            let customer = try await firebaseService.getCustomer(id)
+            let customer = try await self.firebaseService.getCustomer(id)
             self.customer = customer
             self.updateCustomerUI?(customer)
         }
@@ -92,7 +84,7 @@ class HomeViewModel {
     
     private func getCardDelivery() async {
         do {
-            guard let cardDeliveryService = cardDeliveryService, let account = account, let accountId = accountId else {
+            guard let account = account, let accountId = accountId else {
                 return
             }
             
@@ -100,7 +92,7 @@ class HomeViewModel {
                 return
             }
             
-            let cardDelivery = try await cardDeliveryService.getDeliveryCard(accountId: accountId)
+            let cardDelivery = try await self.cardDeliveryService.getDeliveryCard(accountId: accountId)
             self.cardDeliver = cardDelivery
             self.updateCardDelivery?(cardDelivery)
         }

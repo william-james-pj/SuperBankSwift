@@ -11,7 +11,7 @@ import FirebaseService
 
 class LoginViewModel {
     // MARK: - Constrants
-    private let firebaseService: LoginNetwork?
+    private let firebaseService: LoginNetwork!
     
     // MARK: - Variables
     private var loginSaved: LoginModel?
@@ -80,14 +80,10 @@ class LoginViewModel {
     }
     
     func getAccount(_ accountNumber: String) async {
-        guard let firebaseService = firebaseService else {
-            return
-        }
-        
         self.loginSaved = nil
         do {
-            let login = try await firebaseService.getLogin(accountNumber)
-            let fullName = try await firebaseService.getCustomerName(login.customerId)
+            let login = try await self.firebaseService.getLogin(accountNumber)
+            let fullName = try await self.firebaseService.getCustomerName(login.customerId)
             self.updateAccountUI?(fullName, login.accountNumber)
             self.loginSaved = login
         }

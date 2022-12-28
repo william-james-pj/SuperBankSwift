@@ -9,19 +9,19 @@ import XCTest
 @testable import Home
 
 class HomeViewModelTests: XCTestCase {
+    
+    var viewModel: HomeViewModel!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        viewModel = HomeViewModel(service: HomeServiceMock(), deliveryService: CardDeliveryServiceMock())
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        viewModel = nil
     }
 
     func testGetData_WhenCustomerEndAccountProvided_ShouldCallUpdateAccountUI() async {
         // Given
-        let viewModel = HomeViewModel(service: HomeServiceMock(), deliveryService: CardDeliveryServiceMock())
-        
         var hasCalled = false
         viewModel.updateAccountUI = { _ in
             hasCalled = true
@@ -35,8 +35,6 @@ class HomeViewModelTests: XCTestCase {
     
     func testGetData_WhenInvalidAccountProvided_ShouldNotCallUpdateAccountUI() async {
         // Given
-        let viewModel = HomeViewModel(service: HomeServiceMock(), deliveryService: CardDeliveryServiceMock())
-        
         var hasCalled = false
         viewModel.updateAccountUI = { _ in
             hasCalled = true
@@ -50,8 +48,6 @@ class HomeViewModelTests: XCTestCase {
     
     func testGetData_WhenInvalidCustomerProvided_ShouldNotCallUpdateCustomerUI() async {
         // Given
-        let viewModel = HomeViewModel(service: HomeServiceMock(), deliveryService: CardDeliveryServiceMock())
-        
         var hasCalled = false
         viewModel.updateCustomerUI = { _ in
             hasCalled = true
@@ -65,8 +61,6 @@ class HomeViewModelTests: XCTestCase {
     
     func testGetData_WhenCustomerHasNotCardDelivery_ShouldNotCallCardDelivery() async {
         // Given
-        let viewModel = HomeViewModel(service: HomeServiceMock(), deliveryService: CardDeliveryServiceMock())
-        
         var hasCalled = false
         viewModel.updateCardDelivery = { _ in
             hasCalled = true
@@ -80,8 +74,6 @@ class HomeViewModelTests: XCTestCase {
     
     func testSetMoneyIsHide_WhenSetToHide_ShouldReturnTrue() {
         // Given
-        let viewModel = HomeViewModel(service: HomeServiceMock(), deliveryService: CardDeliveryServiceMock())
-        
         var hasHide = false
         viewModel.updateHideMoney = { isHide in
             hasHide = isHide
@@ -96,8 +88,6 @@ class HomeViewModelTests: XCTestCase {
     
     func testSetMoneyIsHide_WhenSetToNotHide_ShouldReturnFalse() {
         // Given
-        let viewModel = HomeViewModel(service: HomeServiceMock(), deliveryService: CardDeliveryServiceMock())
-        
         var hasHide = true
         viewModel.updateHideMoney = { isHide in
             hasHide = isHide

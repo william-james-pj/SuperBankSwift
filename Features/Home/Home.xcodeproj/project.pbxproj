@@ -21,6 +21,7 @@
 		E0750008295B635F00CD102A /* HomeServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0750007295B635F00CD102A /* HomeServiceMock.swift */; };
 		E09CAE0C2950E2C200717529 /* CardDeliveryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09CAE0B2950E2C200717529 /* CardDeliveryTableViewCell.swift */; };
 		E09CAE0F2950E77F00717529 /* DeliveryProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09CAE0E2950E77F00717529 /* DeliveryProgress.swift */; };
+		E0CCC50F295C603000A3D1CB /* HomeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CCC50E295C603000A3D1CB /* HomeViewControllerTests.swift */; };
 		E0DB9097293A3BFE00828677 /* HomeCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DB9096293A3BFE00828677 /* HomeCoordinatorDelegate.swift */; };
 		E0DF030B294A3D1D00AA5721 /* RequestCardHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DF030A294A3D1D00AA5721 /* RequestCardHomeTableViewCell.swift */; };
 		E0DF030F294A3FFC00AA5721 /* CreditInvoiceHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DF030E294A3FFC00AA5721 /* CreditInvoiceHomeTableViewCell.swift */; };
@@ -71,6 +72,7 @@
 		E0750007295B635F00CD102A /* HomeServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeServiceMock.swift; sourceTree = "<group>"; };
 		E09CAE0B2950E2C200717529 /* CardDeliveryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeliveryTableViewCell.swift; sourceTree = "<group>"; };
 		E09CAE0E2950E77F00717529 /* DeliveryProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryProgress.swift; sourceTree = "<group>"; };
+		E0CCC50E295C603000A3D1CB /* HomeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTests.swift; sourceTree = "<group>"; };
 		E0DB9096293A3BFE00828677 /* HomeCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		E0DF030A294A3D1D00AA5721 /* RequestCardHomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCardHomeTableViewCell.swift; sourceTree = "<group>"; };
 		E0DF030E294A3FFC00AA5721 /* CreditInvoiceHomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditInvoiceHomeTableViewCell.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				E0750001295B620400CD102A /* ViewModel */,
+				E0CCC50D295C5FF200A3D1CB /* View */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -180,6 +183,14 @@
 				E09CAE0E2950E77F00717529 /* DeliveryProgress.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		E0CCC50D295C5FF200A3D1CB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E0CCC50E295C603000A3D1CB /* HomeViewControllerTests.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		E0DB9093293A3BDF00828677 /* Protocol */ = {
@@ -454,6 +465,7 @@
 				E0750003295B621800CD102A /* HomeViewModelTests.swift in Sources */,
 				E0750008295B635F00CD102A /* HomeServiceMock.swift in Sources */,
 				E0750006295B634200CD102A /* CardDeliveryServiceMock.swift in Sources */,
+				E0CCC50F295C603000A3D1CB /* HomeViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

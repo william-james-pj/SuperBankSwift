@@ -12,8 +12,8 @@ import FirebaseService
 class JourneyRequestCardViewModel {
     // MARK: - Constrants
     static let sharedJourneyRequestCard = JourneyRequestCardViewModel()
-    private let firebaseService: CardNetwork?
-    private let cardDeliveryService: CardDeliveryNetwork?
+    private let firebaseService: CardNetwork!
+    private let cardDeliveryService: CardDeliveryNetwork!
     
     // MARK: - Variables
     private var accountId: String?
@@ -33,24 +33,18 @@ class JourneyRequestCardViewModel {
     // MARK: - Methods
     func createInvoice() async {
         do {
-            guard let firebaseService = firebaseService,
-                    let cardDeliveryService = cardDeliveryService,
-                    let creditValue = creditValue,
-                    let invoiceDueDate = invoiceDueDate,
-                    let accountId = accountId,
-                    let cardPin = cardPin
-            else {
+            guard let creditValue = creditValue, let invoiceDueDate = invoiceDueDate, let accountId = accountId, let cardPin = cardPin else {
                 return
             }
             
             let newInvoice = InvoiceModel(accountId: accountId, dueDate: invoiceDueDate, limitTotal: creditValue, limitUsed: 0)
-            try await firebaseService.saveInvoice(newInvoice)
+            try await self.firebaseService.saveInvoice(newInvoice)
             
-            try await firebaseService.saveAccountHasCard(accountId: accountId, cardPin: cardPin)
+            try await self.firebaseService.saveAccountHasCard(accountId: accountId, cardPin: cardPin)
             
-            try await firebaseService.savePhysicalCard(accountId: accountId)
+            try await self.firebaseService.savePhysicalCard(accountId: accountId)
             
-            try await cardDeliveryService.createDeliveryCard(accountId: accountId)
+            try await self.cardDeliveryService.createDeliveryCard(accountId: accountId)
 
             self.finishSavingInvoice?()
         }

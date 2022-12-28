@@ -9,18 +9,19 @@ import XCTest
 @testable import Login
 
 class LoginViewModelTests: XCTestCase {
+    
+    var viewModel: LoginViewModel!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        viewModel = LoginViewModel(service: LoginServiceMock())
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        viewModel = nil
     }
     
     func testFormatAccountMask_WhenAccountProvided_ShouldReturnFormatted() {
         // Given
-        let viewModel = LoginViewModel(service: LoginServiceMock())
         let account = "1111111"
         
         // When
@@ -32,7 +33,6 @@ class LoginViewModelTests: XCTestCase {
     
     func testFormatAccountMask_WhenAccountProvidedSmaller_ShouldReturnFormatted() {
         // Given
-        let viewModel = LoginViewModel(service: LoginServiceMock())
         let account = "11111"
         
         // When
@@ -45,8 +45,6 @@ class LoginViewModelTests: XCTestCase {
     func testTypePassword_WhenFirstCharacterTyped_ShouldUpdateTextField() {
         // Given
         var hasAppend = false
-        
-        let viewModel = LoginViewModel(service: LoginServiceMock())
         viewModel.updatePasswordTextField = { isRemoving in
             hasAppend = true
         }
@@ -61,8 +59,6 @@ class LoginViewModelTests: XCTestCase {
     func testTypePassword_WhenLastCharacterTyped_ShouldFinishPassword() {
         // Given
         var isFinalized = false
-        
-        let viewModel = LoginViewModel(service: LoginServiceMock())
         viewModel.finalizedPassword = {
             isFinalized = true
         }
@@ -79,8 +75,6 @@ class LoginViewModelTests: XCTestCase {
     func testRemoveLastTypedPassword_WhenTypedPasswordIsEmpty_ShouldNotUpdateTextField() {
         // Given
         var hasUpdated = false
-        
-        let viewModel = LoginViewModel(service: LoginServiceMock())
         viewModel.updatePasswordTextField = { _ in
             hasUpdated = true
         }
@@ -95,8 +89,6 @@ class LoginViewModelTests: XCTestCase {
     func testRemoveLastTypedPassword_WhenTypedPasswordIsNotEmpty_ShouldUpdateTextField() {
         // Given
         var hasUpdated = false
-        
-        let viewModel = LoginViewModel(service: LoginServiceMock())
         viewModel.updatePasswordTextField = { isRemoving in
             hasUpdated = true
         }
@@ -111,14 +103,14 @@ class LoginViewModelTests: XCTestCase {
     
     func testGetAccount_WhenAccountProvided_ShouldUpdateAccountUI() async {
         // Given
-        var hasUpdated = false
+        let account = "1122334"
         
-        let viewModel = LoginViewModel(service: LoginServiceMock())
+        var hasUpdated = false
         viewModel.updateAccountUI = { _, _ in
             hasUpdated = true
         }
         // When
-        await viewModel.getAccount("1122334")
+        await viewModel.getAccount(account)
         
         //Then
         XCTAssertTrue(hasUpdated)
@@ -126,14 +118,14 @@ class LoginViewModelTests: XCTestCase {
     
     func testGetAccount_WhenInvalidAccountProvided_ShouldNotUpdateAccountUI() async {
         // Given
-        var hasUpdated = false
+        let account = "1122335"
         
-        let viewModel = LoginViewModel(service: LoginServiceMock())
+        var hasUpdated = false
         viewModel.updateAccountUI = { _, _ in
             hasUpdated = true
         }
         // When
-        await viewModel.getAccount("1122335")
+        await viewModel.getAccount(account)
         
         //Then
         XCTAssertFalse(hasUpdated)
@@ -141,15 +133,15 @@ class LoginViewModelTests: XCTestCase {
     
     func testLogin_WhenInvalidPasswordProvided_ShouldCallInvalidPassword() async {
         // Given
-        var hasCalled = false
+        let account = "1122334"
         
-        let viewModel = LoginViewModel(service: LoginServiceMock())
+        var hasCalled = false
         viewModel.invalidPassword = {
             hasCalled = true
         }
         
         // When
-        await viewModel.getAccount("1122334")
+        await viewModel.getAccount(account)
         
         for _ in 0...4 {
             viewModel.setTypedPassword(ButtonPasswordText(first: 1, second: 2))
@@ -161,15 +153,15 @@ class LoginViewModelTests: XCTestCase {
     
     func testLogin_WhenCorrectPasswordProvided_ShouldCallLoggedIn() async {
         // Given
-        var hasCalled = false
+        let account = "1122334"
         
-        let viewModel = LoginViewModel(service: LoginServiceMock())
+        var hasCalled = false
         viewModel.loggedIn = { _, _ in
             hasCalled = true
         }
         
         // When
-        await viewModel.getAccount("1122334")
+        await viewModel.getAccount(account)
         
         viewModel.setTypedPassword(ButtonPasswordText(first: 1, second: 9))
         viewModel.setTypedPassword(ButtonPasswordText(first: 8, second: 2))

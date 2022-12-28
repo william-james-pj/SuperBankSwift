@@ -9,19 +9,19 @@ import XCTest
 @testable import Cards
 
 class JourneyRequestCardViewModelTests: XCTestCase {
+    
+    var viewModel: JourneyRequestCardViewModel!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        viewModel = JourneyRequestCardViewModel(service: CardServiceMock(), deliveryService: CardDeliveryServiceMock())
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        viewModel = nil
     }
     
     func testCreateInvoice_WhenCreateSucecessfully_ShouldCallFinishSavingInvoice() async {
         // Given
-        let viewModel = JourneyRequestCardViewModel(service: CardServiceMock(), deliveryService: CardDeliveryServiceMock())
-        
         var hasCalled = false
         viewModel.finishSavingInvoice = {
             hasCalled = true
@@ -40,7 +40,6 @@ class JourneyRequestCardViewModelTests: XCTestCase {
     
     func testGetCreditValue_WhenCreditValueProvided_ShouldReturnDueDate() {
         // Given
-        let viewModel = JourneyRequestCardViewModel(service: CardServiceMock(), deliveryService: CardDeliveryServiceMock())
         let creditValueProvided = 500.00
         
         // When
@@ -53,7 +52,6 @@ class JourneyRequestCardViewModelTests: XCTestCase {
     
     func testCreditValue_WhenCreditValueNotProvided_ShouldReturnEmpty() {
         // Given
-        let viewModel = JourneyRequestCardViewModel(service: CardServiceMock(), deliveryService: CardDeliveryServiceMock())
         
         // When
         let creditValue = viewModel.getCreditValue()
@@ -64,7 +62,6 @@ class JourneyRequestCardViewModelTests: XCTestCase {
     
     func testGetDueDate_WhenDueDateProvided_ShouldReturnDueDate() {
         // Given
-        let viewModel = JourneyRequestCardViewModel(service: CardServiceMock(), deliveryService: CardDeliveryServiceMock())
         let dueDateProvided = "02"
         
         // When
@@ -77,7 +74,6 @@ class JourneyRequestCardViewModelTests: XCTestCase {
     
     func testGetDueDate_WhenDueDateNotProvided_ShouldReturnEmpty() {
         // Given
-        let viewModel = JourneyRequestCardViewModel(service: CardServiceMock(), deliveryService: CardDeliveryServiceMock())
         
         // When
         let dueDate = viewModel.getDueDate()
@@ -88,7 +84,6 @@ class JourneyRequestCardViewModelTests: XCTestCase {
     
     func testFormatCurrency_WhenNumberProvided_ShouldReturnFormated() {
         // Given
-        let viewModel = JourneyRequestCardViewModel(service: CardServiceMock(), deliveryService: CardDeliveryServiceMock())
         let money = 5300.30
         
         // When

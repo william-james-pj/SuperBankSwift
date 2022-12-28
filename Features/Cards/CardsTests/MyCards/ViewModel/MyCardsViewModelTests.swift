@@ -11,18 +11,20 @@ import XCTest
 import Common
 
 class MyCardsViewModelTests: XCTestCase {
+    
+    var viewModel: MyCardsViewModel!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        viewModel = MyCardsViewModel(service: CardServiceMock())
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        viewModel = nil
     }
 
     func testGetCards_WhenAccountIdProvided_ShouldGetOnePysicalCard() async {
         // Given
-        let viewModel = MyCardsViewModel(service: CardServiceMock())
+        let accountId = ""
         
         var cards: [CardModel] = []
         viewModel.finishGetCards = { physicalCards, _ in
@@ -30,7 +32,7 @@ class MyCardsViewModelTests: XCTestCase {
         }
         
         // When
-        await viewModel.getCards(accountId: "")
+        await viewModel.getCards(accountId: accountId)
         
         // Then
         XCTAssertEqual(cards.count, 1)
@@ -38,7 +40,7 @@ class MyCardsViewModelTests: XCTestCase {
     
     func testGetCards_WhenAccountIdProvided_ShouldGetOneVirtualCard() async {
         // Given
-        let viewModel = MyCardsViewModel(service: CardServiceMock())
+        let accountId = ""
         
         var cards: [CardModel] = []
         viewModel.finishGetCards = { _, virtualCards in
@@ -46,7 +48,7 @@ class MyCardsViewModelTests: XCTestCase {
         }
         
         // When
-        await viewModel.getCards(accountId: "")
+        await viewModel.getCards(accountId: accountId)
         
         // Then
         XCTAssertEqual(cards.count, 1)

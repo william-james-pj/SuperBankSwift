@@ -9,18 +9,21 @@ import XCTest
 @testable import Cards
 
 class NewVirtualCardViewModelTests: XCTestCase {
+    
+    var viewModel: NewVirtualCardViewModel!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        viewModel = NewVirtualCardViewModel(service: CardServiceMock())
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        viewModel = nil
     }
     
     func testCreateVirtualCard_WhenValidCardProvided_ShouldCallFinishSavingCard() async {
         // Given
-        let viewModel = NewVirtualCardViewModel(service: CardServiceMock())
+        let accountId = "11111"
+        let nickName = ""
         
         var hasCalled = false
         viewModel.finishSavingCard = {
@@ -28,7 +31,7 @@ class NewVirtualCardViewModelTests: XCTestCase {
         }
         
         // When
-        await viewModel.createVirtualCard(accountId: "11111", nickname: "")
+        await viewModel.createVirtualCard(accountId: accountId, nickname: nickName)
         
         // Then
         XCTAssertTrue(hasCalled)
@@ -36,7 +39,8 @@ class NewVirtualCardViewModelTests: XCTestCase {
 
     func testCreateVirtualCard_WhenInvalidCardProvided_ShouldNotCallFinishSavingCard() async {
         // Given
-        let viewModel = NewVirtualCardViewModel(service: CardServiceMock())
+        let accountId = ""
+        let nickName = ""
         
         var hasCalled = false
         viewModel.finishSavingCard = {
@@ -44,7 +48,7 @@ class NewVirtualCardViewModelTests: XCTestCase {
         }
         
         // When
-        await viewModel.createVirtualCard(accountId: "", nickname: "")
+        await viewModel.createVirtualCard(accountId: accountId, nickname: nickName)
         
         // Then
         XCTAssertFalse(hasCalled)
