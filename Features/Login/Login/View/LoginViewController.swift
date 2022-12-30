@@ -82,6 +82,7 @@ public class LoginViewController: UIViewController {
         
         let button = UIButton()
         button.configuration = config
+        button.accessibilityIdentifier = "Login_Button_NewAccount"
         button.addTarget(self, action: #selector(RegistrationButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -153,6 +154,7 @@ public class LoginViewController: UIViewController {
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Disabled") ?? .gray]
         )
         textField.keyboardType = .numberPad
+        textField.accessibilityIdentifier = "Login_TextField_Account"
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -185,6 +187,7 @@ public class LoginViewController: UIViewController {
             string: "* * * * *",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Disabled") ?? .gray]
         )
+        textField.accessibilityIdentifier = "Login_TextField_Password"
         textField.isEnabled = false
         textField.isSecureTextEntry = true
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -218,6 +221,7 @@ public class LoginViewController: UIViewController {
         container.font = .systemFont(ofSize: 14, weight: .bold)
         
         let button = LoginButton()
+        button.accessibilityIdentifier = "Login_Button_Access"
         button.configuration?.attributedTitle = AttributedString("CONTINUAR", attributes: container)
         button.addTarget(self, action: #selector(AccontbuttonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false

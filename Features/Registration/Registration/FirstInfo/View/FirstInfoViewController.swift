@@ -109,6 +109,7 @@ public class FirstInfoViewController: UIViewController {
     
     // MARK: - Setup
     private func setupVC() {
+        view.accessibilityIdentifier = "Registration-VC-FirstInfo"
         view.backgroundColor = UIColor(named: "Background")
         buildHierarchy()
         buildConstraints()

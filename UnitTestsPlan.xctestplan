@@ -1,0 +1,45 @@
+{
+  "configurations" : [
+    {
+      "id" : "F82350EF-6263-4C87-8924-441343E5D928",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Features\/Login\/Login.xcodeproj",
+        "identifier" : "E0E20CDD292D0AD200AB9A84",
+        "name" : "LoginTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Features\/Registration\/Registration.xcodeproj",
+        "identifier" : "E0E20D65292D0F5D00AB9A84",
+        "name" : "RegistrationTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Features\/Home\/Home.xcodeproj",
+        "identifier" : "E0E20D9F292D11C200AB9A84",
+        "name" : "HomeTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Features\/Cards\/Cards.xcodeproj",
+        "identifier" : "E0E20DD7292D130600AB9A84",
+        "name" : "CardsTests"
+      }
+    }
+  ],
+  "version" : 1
+}

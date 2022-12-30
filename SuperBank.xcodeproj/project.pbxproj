@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E081D074295F24780074FD7A /* LoginUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E081D073295F24780074FD7A /* LoginUITests.swift */; };
 		E0E20CB9292D0A7D00AB9A84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20CB8292D0A7D00AB9A84 /* AppDelegate.swift */; };
 		E0E20CBB292D0A7D00AB9A84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20CBA292D0A7D00AB9A84 /* SceneDelegate.swift */; };
 		E0E20CBD292D0A7D00AB9A84 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20CBC292D0A7D00AB9A84 /* ViewController.swift */; };
@@ -19,6 +20,16 @@
 		E0E20E1C292D485800AB9A84 /* FirebaseService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20E1B292D485800AB9A84 /* FirebaseService.framework */; };
 		E0E20E1D292D485800AB9A84 /* FirebaseService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E0E20E1B292D485800AB9A84 /* FirebaseService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E081D06D295F24250074FD7A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E0E20CAD292D0A7D00AB9A84 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E0E20CB4292D0A7D00AB9A84;
+			remoteInfo = SuperBank;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		E0E20D53292D0DC100AB9A84 /* Embed Frameworks */ = {
@@ -36,6 +47,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E081D060295F215C0074FD7A /* UITestsPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UITestsPlan.xctestplan; sourceTree = "<group>"; };
+		E081D061295F220D0074FD7A /* UnitTestsPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTestsPlan.xctestplan; sourceTree = "<group>"; };
+		E081D062295F22400074FD7A /* MainTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MainTestPlan.xctestplan; sourceTree = "<group>"; };
+		E081D067295F24250074FD7A /* SuperBankUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperBankUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E081D073295F24780074FD7A /* LoginUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUITests.swift; sourceTree = "<group>"; };
 		E0E20CB5292D0A7D00AB9A84 /* SuperBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20CB8292D0A7D00AB9A84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0E20CBA292D0A7D00AB9A84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +66,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E081D064295F24250074FD7A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E0E20CB2292D0A7D00AB9A84 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -62,10 +85,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E081D068295F24250074FD7A /* SuperBankUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E081D072295F24390074FD7A /* Login */,
+			);
+			path = SuperBankUITests;
+			sourceTree = "<group>";
+		};
+		E081D072295F24390074FD7A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				E081D073295F24780074FD7A /* LoginUITests.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		E0E20CAC292D0A7D00AB9A84 = {
 			isa = PBXGroup;
 			children = (
+				E081D062295F22400074FD7A /* MainTestPlan.xctestplan */,
+				E081D061295F220D0074FD7A /* UnitTestsPlan.xctestplan */,
+				E081D060295F215C0074FD7A /* UITestsPlan.xctestplan */,
 				E0E20CB7292D0A7D00AB9A84 /* SuperBank */,
+				E081D068295F24250074FD7A /* SuperBankUITests */,
 				E0E20CB6292D0A7D00AB9A84 /* Products */,
 				E0E20D4F292D0DC100AB9A84 /* Frameworks */,
 			);
@@ -75,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				E0E20CB5292D0A7D00AB9A84 /* SuperBank.app */,
+				E081D067295F24250074FD7A /* SuperBankUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -106,6 +150,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E081D066295F24250074FD7A /* SuperBankUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E081D06F295F24250074FD7A /* Build configuration list for PBXNativeTarget "SuperBankUITests" */;
+			buildPhases = (
+				E081D063295F24250074FD7A /* Sources */,
+				E081D064295F24250074FD7A /* Frameworks */,
+				E081D065295F24250074FD7A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E081D06E295F24250074FD7A /* PBXTargetDependency */,
+			);
+			name = SuperBankUITests;
+			productName = SuperBankUITests;
+			productReference = E081D067295F24250074FD7A /* SuperBankUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		E0E20CB4292D0A7D00AB9A84 /* SuperBank */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E0E20CC9292D0A7E00AB9A84 /* Build configuration list for PBXNativeTarget "SuperBank" */;
@@ -134,6 +196,11 @@
 				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
+					E081D066295F24250074FD7A = {
+						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1310;
+						TestTargetID = E0E20CB4292D0A7D00AB9A84;
+					};
 					E0E20CB4292D0A7D00AB9A84 = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -153,11 +220,19 @@
 			projectRoot = "";
 			targets = (
 				E0E20CB4292D0A7D00AB9A84 /* SuperBank */,
+				E081D066295F24250074FD7A /* SuperBankUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E081D065295F24250074FD7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E0E20CB3292D0A7D00AB9A84 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -172,6 +247,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E081D063295F24250074FD7A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E081D074295F24780074FD7A /* LoginUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E0E20CB1292D0A7D00AB9A84 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -183,6 +266,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E081D06E295F24250074FD7A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E0E20CB4292D0A7D00AB9A84 /* SuperBank */;
+			targetProxy = E081D06D295F24250074FD7A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E0E20CBE292D0A7D00AB9A84 /* Main.storyboard */ = {
@@ -204,6 +295,53 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E081D070295F24250074FD7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MZK2Y22TFS;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.james.SuperBankUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SuperBank;
+			};
+			name = Debug;
+		};
+		E081D071295F24250074FD7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MZK2Y22TFS;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.james.SuperBankUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SuperBank;
+			};
+			name = Release;
+		};
 		E0E20CC7292D0A7E00AB9A84 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -381,6 +519,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E081D06F295F24250074FD7A /* Build configuration list for PBXNativeTarget "SuperBankUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E081D070295F24250074FD7A /* Debug */,
+				E081D071295F24250074FD7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E0E20CB0292D0A7D00AB9A84 /* Build configuration list for PBXProject "SuperBank" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

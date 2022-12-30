@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "1E27AFB6-AB7E-4890-AF8E-A416FF572F9F",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:SuperBank.xcodeproj",
+        "identifier" : "E081D066295F24250074FD7A",
+        "name" : "SuperBankUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
