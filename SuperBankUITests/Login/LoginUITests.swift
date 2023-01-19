@@ -29,6 +29,9 @@ class LoginUITests: XCTestCase {
 
     override func tearDownWithError() throws {
         app = nil
+        textFieldAccount = nil
+        buttonAccess = nil
+        buttonGoToRegistration = nil
         try super.tearDownWithError()
     }
 
@@ -57,7 +60,7 @@ class LoginUITests: XCTestCase {
     func testLoginVC_WhenNewAccountTapped_PresentsRegistrationVC() {
         // Act
         buttonGoToRegistration.tap()
-        let isExistence = app.otherElements["Registration-VC-FirstInfo"].waitForExistence(timeout: 1)
+        let isExistence = app.otherElements["Registration_VC_FirstInfo"].waitForExistence(timeout: 1)
         
         // Assert
         XCTAssertTrue(isExistence, "The FirstInfoViewController was not presented when the NewAccount Button was tapped")

@@ -82,6 +82,7 @@ public class CPFRegistrationViewController: UIViewController {
             string: "000.000.00-00",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Disabled") ?? UIColor.black]
         )
+        textField.accessibilityIdentifier = "CPFRegistration_TextField_CPF"
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -104,6 +105,7 @@ public class CPFRegistrationViewController: UIViewController {
     
     private let buttonGo: ButtonPrimary = {
         let button = ButtonPrimary()
+        button.accessibilityIdentifier = "CPFRegistration_Button_GO"
         button.addTarget(self, action: #selector(GoButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -117,6 +119,7 @@ public class CPFRegistrationViewController: UIViewController {
     
     // MARK: - Setup
     private func setupVC() {
+        view.accessibilityIdentifier = "Registration_VC_CPF"
         view.backgroundColor = UIColor(named: "Background")
         settingButton(isDisabled: true)
         settingLabeText()

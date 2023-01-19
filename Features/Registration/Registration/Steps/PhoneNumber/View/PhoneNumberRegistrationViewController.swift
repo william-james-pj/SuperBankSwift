@@ -70,12 +70,14 @@ public class PhoneNumberRegistrationViewController: UIViewController {
             string: "(00) 00000-0000",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Disabled") ?? UIColor.black]
         )
+        textField.accessibilityIdentifier = "PhoneNumberRegistration_TextField_BirthDate"
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
     private let buttonGo: ButtonPrimary = {
         let button = ButtonPrimary()
+        button.accessibilityIdentifier = "PhoneNumberRegistration_Button_GO"
         button.addTarget(self, action: #selector(GoButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -89,6 +91,7 @@ public class PhoneNumberRegistrationViewController: UIViewController {
     
     // MARK: - Setup
     private func setupVC() {
+        view.accessibilityIdentifier = "Registration_VC_PhoneNumber"
         view.backgroundColor = UIColor(named: "Background")
         settingButton(isDisabled: true)
         buildHierarchy()

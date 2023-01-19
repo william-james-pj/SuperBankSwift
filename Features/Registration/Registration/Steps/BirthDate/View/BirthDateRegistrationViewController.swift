@@ -55,12 +55,14 @@ public class BirthDateRegistrationViewController: UIViewController {
             string: "dd/mm/yyyy",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Disabled") ?? UIColor.black]
         )
+        textField.accessibilityIdentifier = "BirthDateRegistration_TextField_BirthDate"
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
     private let buttonGo: ButtonPrimary = {
         let button = ButtonPrimary()
+        button.accessibilityIdentifier = "BirthDateRegistration_Button_GO"
         button.addTarget(self, action: #selector(GoButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -74,6 +76,7 @@ public class BirthDateRegistrationViewController: UIViewController {
     
     // MARK: - Setup
     private func setupVC() {
+        view.accessibilityIdentifier = "Registration_VC_BirthDate"
         view.backgroundColor = UIColor(named: "Background")
         settingButton(isDisabled: true)
         buildHierarchy()

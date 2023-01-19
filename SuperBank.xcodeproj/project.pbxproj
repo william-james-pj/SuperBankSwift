@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E081D074295F24780074FD7A /* LoginUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E081D073295F24780074FD7A /* LoginUITests.swift */; };
+		E09619EF2963532A0008BC3B /* RegistrationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09619EE2963532A0008BC3B /* RegistrationUITests.swift */; };
 		E0E20CB9292D0A7D00AB9A84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20CB8292D0A7D00AB9A84 /* AppDelegate.swift */; };
 		E0E20CBB292D0A7D00AB9A84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20CBA292D0A7D00AB9A84 /* SceneDelegate.swift */; };
 		E0E20CBD292D0A7D00AB9A84 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E20CBC292D0A7D00AB9A84 /* ViewController.swift */; };
@@ -51,6 +52,7 @@
 		E081D062295F22400074FD7A /* MainTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MainTestPlan.xctestplan; sourceTree = "<group>"; };
 		E081D067295F24250074FD7A /* SuperBankUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperBankUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E081D073295F24780074FD7A /* LoginUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUITests.swift; sourceTree = "<group>"; };
+		E09619EE2963532A0008BC3B /* RegistrationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationUITests.swift; sourceTree = "<group>"; };
 		E0E20CB5292D0A7D00AB9A84 /* SuperBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E20CB8292D0A7D00AB9A84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0E20CBA292D0A7D00AB9A84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				E081D072295F24390074FD7A /* Login */,
+				E09619EB296352C20008BC3B /* Registration */,
 			);
 			path = SuperBankUITests;
 			sourceTree = "<group>";
@@ -97,6 +100,14 @@
 				E081D073295F24780074FD7A /* LoginUITests.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		E09619EB296352C20008BC3B /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				E09619EE2963532A0008BC3B /* RegistrationUITests.swift */,
+			);
+			path = Registration;
 			sourceTree = "<group>";
 		};
 		E0E20CAC292D0A7D00AB9A84 = {
@@ -247,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E09619EF2963532A0008BC3B /* RegistrationUITests.swift in Sources */,
 				E081D074295F24780074FD7A /* LoginUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

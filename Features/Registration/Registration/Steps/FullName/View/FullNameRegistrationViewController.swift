@@ -54,12 +54,14 @@ public class FullNameRegistrationViewController: UIViewController {
             string: "Nome completo",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Disabled") ?? UIColor.black]
         )
+        textField.accessibilityIdentifier = "FullNameRegistration_TextField_FullName"
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
     private let buttonGo: ButtonPrimary = {
         let button = ButtonPrimary()
+        button.accessibilityIdentifier = "FullNameRegistration_Button_GO"
         button.addTarget(self, action: #selector(GoButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -73,6 +75,7 @@ public class FullNameRegistrationViewController: UIViewController {
     
     // MARK: - Setup
     private func setupVC() {
+        view.accessibilityIdentifier = "Registration_VC_FullName"
         view.backgroundColor = UIColor(named: "Background")
         settingButton(isDisabled: true)
         buildHierarchy()

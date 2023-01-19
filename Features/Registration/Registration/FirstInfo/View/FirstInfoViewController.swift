@@ -96,6 +96,7 @@ public class FirstInfoViewController: UIViewController {
     private let buttonOpenAccount: ButtonPrimary = {
         let button = ButtonPrimary()
         button.settingTitle("ABRIR CONTA")
+        button.accessibilityIdentifier = "FirstInfo_Button_OpenAccount"
         button.addTarget(self, action: #selector(OpenAccountButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -109,7 +110,7 @@ public class FirstInfoViewController: UIViewController {
     
     // MARK: - Setup
     private func setupVC() {
-        view.accessibilityIdentifier = "Registration-VC-FirstInfo"
+        view.accessibilityIdentifier = "Registration_VC_FirstInfo"
         view.backgroundColor = UIColor(named: "Background")
         buildHierarchy()
         buildConstraints()
