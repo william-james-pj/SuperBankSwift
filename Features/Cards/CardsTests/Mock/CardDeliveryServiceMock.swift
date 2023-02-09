@@ -11,11 +11,11 @@ import FirebaseService
 
 class CardDeliveryServiceMock: CardDeliveryNetwork {
     func createDeliveryCard(accountId: String) async throws {
-        
+
     }
-    
+
     func getDeliveryCard(accountId: String) async throws -> CardDeliveryModel {
         return CardDeliveryModel(accountId: "", deliveryDate: "", status: .delivered)
     }
-    
+
 }

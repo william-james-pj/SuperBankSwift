@@ -14,16 +14,16 @@ class RegistrationTextField: UITextField {
         self.init(frame: CGRect(x: 0, y: 0, width: 0, height: 50))
         self.setupTextField()
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupTextField()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Setup
     private func setupTextField() {
         self.font = UIFont.systemFont(ofSize: 16)
@@ -32,4 +32,3 @@ class RegistrationTextField: UITextField {
         self.keyboardType = UIKeyboardType.default
     }
 }
-

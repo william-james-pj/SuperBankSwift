@@ -9,25 +9,24 @@ import Foundation
 import FirebaseService
 
 class NewVirtualCardViewModel {
-    // MARK: - Constrants
+    // MARK: - Constraints
     private let firebaseService: CardNetwork!
-    
+
     // MARK: - Variables
     // MARK: - Closures
     var finishSavingCard: (() -> Void)?
-    
+
     // MARK: - Init
     init(service: CardNetwork = CardService()) {
         self.firebaseService = service
     }
-    
+
     // MARK: - Methods
     func createVirtualCard(accountId: String, nickname: String) async {
         do {
             try await self.firebaseService.saveVirtualCard(accountId: accountId, nickname: nickname)
             self.finishSavingCard?()
-        }
-        catch {
+        } catch {
             print("Unexpected error: \(error).")
         }
     }

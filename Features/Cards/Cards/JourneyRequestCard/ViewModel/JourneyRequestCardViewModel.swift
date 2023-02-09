@@ -10,49 +10,57 @@ import Common
 import FirebaseService
 
 class JourneyRequestCardViewModel {
-    // MARK: - Constrants
+    // MARK: - Constraints
     static let sharedJourneyRequestCard = JourneyRequestCardViewModel()
     private let firebaseService: CardNetwork!
     private let cardDeliveryService: CardDeliveryNetwork!
-    
+
     // MARK: - Variables
     private var accountId: String?
     private var creditValue: Double?
     private var invoiceDueDate: String?
     private var cardPin: String?
-    
+
     // MARK: - Closures
     var finishSavingInvoice: (() -> Void)?
-    
+
     // MARK: - Init
     init(service: CardNetwork = CardService(), deliveryService: CardDeliveryNetwork = CardDeliveryService()) {
         self.firebaseService = service
         self.cardDeliveryService = deliveryService
     }
-    
+
     // MARK: - Methods
     func createInvoice() async {
         do {
-            guard let creditValue = creditValue, let invoiceDueDate = invoiceDueDate, let accountId = accountId, let cardPin = cardPin else {
+            guard let creditValue = creditValue,
+                    let invoiceDueDate = invoiceDueDate,
+                    let accountId = accountId,
+                    let cardPin = cardPin
+            else {
                 return
             }
-            
-            let newInvoice = InvoiceModel(accountId: accountId, dueDate: invoiceDueDate, limitTotal: creditValue, limitUsed: 0)
+
+            let newInvoice = InvoiceModel(
+                accountId: accountId,
+                dueDate: invoiceDueDate,
+                limitTotal: creditValue,
+                limitUsed: 0
+            )
             try await self.firebaseService.saveInvoice(newInvoice)
-            
+
             try await self.firebaseService.saveAccountHasCard(accountId: accountId, cardPin: cardPin)
-            
+
             try await self.firebaseService.savePhysicalCard(accountId: accountId)
-            
+
             try await self.cardDeliveryService.createDeliveryCard(accountId: accountId)
 
             self.finishSavingInvoice?()
-        }
-        catch {
+        } catch {
             print("Unexpected error: \(error).")
         }
     }
-    
+
     func generationCreditValue() -> Double {
         if let creditValue = creditValue {
             return creditValue
@@ -63,30 +71,30 @@ class JourneyRequestCardViewModel {
         self.creditValue = credit
         return credit
     }
-    
+
     func setAccountId(_ accountId: String) {
         self.accountId = accountId
     }
-    
+
     func setCreditValue(_ value: Double) {
         self.creditValue = value
     }
-    
+
     func setInvoiceDueDate(_ invoiceDueDate: String) {
         self.invoiceDueDate = invoiceDueDate
     }
-    
+
     func setCardPin(_ cardPin: String) {
         self.cardPin = cardPin
     }
-    
+
     func getCreditValue() -> String {
         guard let creditValue = creditValue else {
             return ""
         }
         return formatCurrency(creditValue)
     }
-    
+
     func getDueDate() -> String {
         guard let invoiceDueDate = invoiceDueDate else {
             return ""
@@ -94,7 +102,7 @@ class JourneyRequestCardViewModel {
 
         return invoiceDueDate
     }
-    
+
     func formatCurrency(_ number: Double) -> String {
         let formatter = NumberFormatter()
         formatter.locale = Locale.init(identifier: "pt_BR")

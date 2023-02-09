@@ -8,7 +8,7 @@
 import UIKit
 
 class InfoBox: UIView {
-    // MARK: - Constrants
+    // MARK: - Constraints
     // MARK: - Variables
     // MARK: - Components
     private let stackBase: UIStackView = {
@@ -19,7 +19,7 @@ class InfoBox: UIView {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
+
     private let labelTitle: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .regular)
@@ -28,7 +28,7 @@ class InfoBox: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let labelSubTitle: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
@@ -38,41 +38,41 @@ class InfoBox: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Setup
     private func setupView() {
         buildHierarchy()
         buildConstraints()
     }
-    
+
     // MARK: - Methods
     func settingView(_ title: String, _ subTitle: String) {
         self.labelTitle.text = title
         self.labelSubTitle.text = subTitle
     }
-    
+
     private func buildHierarchy() {
         self.addSubview(stackBase)
         stackBase.addArrangedSubview(labelTitle)
         stackBase.addArrangedSubview(labelSubTitle)
     }
-    
+
     private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: self.topAnchor),
             stackBase.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 24),
             stackBase.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -24),
-            stackBase.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            stackBase.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
 }

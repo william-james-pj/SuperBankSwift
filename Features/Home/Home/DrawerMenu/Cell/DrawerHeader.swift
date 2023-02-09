@@ -7,17 +7,17 @@
 
 import UIKit
 
-protocol DrawerHeaderDelegate {
+protocol DrawerHeaderDelegate: AnyObject {
     func closeDrawer()
 }
 
 class DrawerHeader: UITableViewHeaderFooterView {
-    // MARK: - Constrants
-    static let resuseIdentifier: String = "DrawerHeader"
-    
+    // MARK: - Constraints
+    static let reuseIdentifier: String = "DrawerHeader"
+
     // MARK: - Variables
-    var delegate: DrawerHeaderDelegate?
-    
+    weak var delegate: DrawerHeaderDelegate?
+
     // MARK: - Components
     private let stackBase: UIStackView = {
         let stack = UIStackView()
@@ -27,7 +27,7 @@ class DrawerHeader: UITableViewHeaderFooterView {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
+
     private let stackRow: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
@@ -36,7 +36,7 @@ class DrawerHeader: UITableViewHeaderFooterView {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
+
     private let stackUser: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
@@ -45,13 +45,13 @@ class DrawerHeader: UITableViewHeaderFooterView {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
+
     private let viewUserBoxContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private let viewUserBox: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(named: "Card")
@@ -60,7 +60,7 @@ class DrawerHeader: UITableViewHeaderFooterView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private let labelUserBox: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .bold)
@@ -68,7 +68,7 @@ class DrawerHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let labelUserName: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .bold)
@@ -76,8 +76,8 @@ class DrawerHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    private let buttonClose: UIButton = {
+
+    private lazy var buttonClose: UIButton = {
         var config = UIButton.Configuration.gray()
         config.baseForegroundColor = UIColor(named: "Text")
         config.baseBackgroundColor = UIColor(named: "Background")
@@ -85,11 +85,11 @@ class DrawerHeader: UITableViewHeaderFooterView {
 
         let button = UIButton()
         button.configuration = config
-        button.addTarget(self, action: #selector(CloseButtonTapped(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(closeButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     private let labelBank: UILabel = {
         let label = UILabel()
         label.text = "Super Bank - Instituição de Pagamento"
@@ -98,34 +98,34 @@ class DrawerHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     // MARK: - Init
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setupView()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Actions
-    @IBAction private func CloseButtonTapped(_ sender: UIButton) {
+    @IBAction private func closeButtonTapped(_ sender: UIButton) {
         self.delegate?.closeDrawer()
     }
-    
+
     // MARK: - Setup
     private func setupView() {
         buildHierarchy()
         buildConstraints()
     }
-    
+
     // MARK: - Methods
     func settingView(customerName: String?) {
         guard let customerName = customerName else {
             return
         }
-        
+
         var nameArr = customerName.components(separatedBy: " ")
         if nameArr.count < 2 {
             return
@@ -133,7 +133,7 @@ class DrawerHeader: UITableViewHeaderFooterView {
         self.labelUserName.text = "\(nameArr[0]) \(nameArr[1])"
         self.labelUserBox.text = String(nameArr[0].remove(at: nameArr[0].startIndex))
     }
-    
+
     private func buildHierarchy() {
         self.addSubview(stackBase)
         stackBase.addArrangedSubview(stackRow)
@@ -143,25 +143,25 @@ class DrawerHeader: UITableViewHeaderFooterView {
         viewUserBox.addSubview(labelUserBox)
         stackUser.addArrangedSubview(labelUserName)
         stackRow.addArrangedSubview(buttonClose)
-        
+
         stackBase.addArrangedSubview(labelBank)
     }
-    
+
     private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: self.topAnchor),
             stackBase.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32),
             stackBase.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
             stackBase.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
-            
+
             viewUserBoxContainer.widthAnchor.constraint(equalToConstant: 45),
             viewUserBox.widthAnchor.constraint(equalToConstant: 45),
             viewUserBox.heightAnchor.constraint(equalToConstant: 45),
             viewUserBox.centerXAnchor.constraint(equalTo: viewUserBoxContainer.centerXAnchor),
             viewUserBox.centerYAnchor.constraint(equalTo: viewUserBoxContainer.centerYAnchor),
-            
+
             labelUserBox.centerXAnchor.constraint(equalTo: viewUserBox.centerXAnchor),
-            labelUserBox.centerYAnchor.constraint(equalTo: viewUserBox.centerYAnchor),
+            labelUserBox.centerYAnchor.constraint(equalTo: viewUserBox.centerYAnchor)
         ])
     }
 }

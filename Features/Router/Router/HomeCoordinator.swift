@@ -17,21 +17,21 @@ class HomeCoordinator: Coordinator {
     weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
-    
+
     weak var delegate: LogoutCoordinatorDelegate?
-    
+
     var accountId: String?
-    
+
     // MARK: - Init
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-    
+
     // MARK: - Methods
     func start() {
         settingNav()
     }
-    
+
     func start(customerId: String, accountId: String) {
         self.start()
 
@@ -40,9 +40,11 @@ class HomeCoordinator: Coordinator {
         initialViewController.coordinatorDelegate = self
         self.navigationController.setViewControllers([initialViewController], animated: false)
     }
-    
+
     private func settingNav() {
-        self.navigationController.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "Text") ?? .label]
+        self.navigationController.navigationBar.titleTextAttributes = [
+            .foregroundColor: UIColor(named: "Text") ?? .label
+        ]
         self.navigationController.navigationBar.tintColor = UIColor(named: "Text")
     }
 }
@@ -56,17 +58,17 @@ extension HomeCoordinator: HomeCoordinatorDelegate {
         drawerVC.modalPresentationStyle = .fullScreen
         self.navigationController.present(drawerVC, animated: true, completion: nil)
     }
-    
+
     func closeDrawerMenu() {
         self.navigationController.dismiss(animated: true, completion: nil)
     }
-    
+
     func logoff() {
         self.navigationController.popToRootViewController(animated: true)
         self.parentCoordinator?.childDidFinish(self)
         self.delegate?.coordinatorDidLogout()
     }
-    
+
     func goToCard(hasCard: Bool) {
         let coordinator = CardCoordinator(navigationController: navigationController)
         coordinator.parentCoordinator = self

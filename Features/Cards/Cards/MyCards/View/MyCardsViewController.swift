@@ -9,15 +9,15 @@ import UIKit
 import Common
 
 public class MyCardsViewController: UIViewController {
-    // MARK: - Constrants
+    // MARK: - Constraints
     private let viewModel = MyCardsViewModel()
-    
+
     // MARK: - Variables
     public weak var coordinatorDelegate: CardCoordinatorDelegate?
     public var accountId: String?
     private var physicalCards: [CardModel] = []
     private var virtualCards: [CardModel] = []
-    
+
     // MARK: - Components
     private let stackBase: UIStackView = {
         let stack = UIStackView()
@@ -27,13 +27,13 @@ public class MyCardsViewController: UIViewController {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
+
     private let viewLabelContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private let labelSection: UILabel = {
         let label = UILabel()
         label.text = "Meus Cartões"
@@ -42,7 +42,7 @@ public class MyCardsViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let tableViewCards: UITableView = {
         let table = UITableView()
         table.bounces = false
@@ -51,33 +51,39 @@ public class MyCardsViewController: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
-    
+
     // MARK: - Lifecycle
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupVC()
     }
-    
+
     // MARK: - Setup
     fileprivate func setupVC() {
         view.backgroundColor = UIColor(named: "Background")
         self.title = "Lista de cartões"
-        
+
         settingClosures()
         getCards()
-        
+
         buildHierarchy()
         buildConstraints()
         setupTableView()
     }
-    
+
     func setupTableView() {
         tableViewCards.delegate = self
         tableViewCards.dataSource = self
-        tableViewCards.register(MyCardsTableViewCell.self, forCellReuseIdentifier: MyCardsTableViewCell.resuseIdentifier)
-        tableViewCards.register(VirtualCardFooter.self, forHeaderFooterViewReuseIdentifier: VirtualCardFooter.resuseIdentifier)
+        tableViewCards.register(
+            MyCardsTableViewCell.self,
+            forCellReuseIdentifier: MyCardsTableViewCell.reuseIdentifier
+        )
+        tableViewCards.register(
+            VirtualCardFooter.self,
+            forHeaderFooterViewReuseIdentifier: VirtualCardFooter.reuseIdentifier
+        )
     }
-    
+
     // MARK: - Methods
     private func getCards() {
         guard let accountId = accountId else {
@@ -88,7 +94,7 @@ public class MyCardsViewController: UIViewController {
             await self.viewModel.getCards(accountId: accountId)
         }
     }
-    
+
     private func settingClosures() {
         self.viewModel.finishGetCards = { physicalCards, virtualCards in
             DispatchQueue.main.async {
@@ -98,24 +104,24 @@ public class MyCardsViewController: UIViewController {
             }
         }
     }
-    
+
     fileprivate func buildHierarchy() {
         view.addSubview(stackBase)
         stackBase.addArrangedSubview(viewLabelContainer)
         viewLabelContainer.addSubview(labelSection)
         stackBase.addArrangedSubview(tableViewCards)
     }
-    
+
     fileprivate func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             stackBase.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             stackBase.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             stackBase.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            
+
             viewLabelContainer.heightAnchor.constraint(equalToConstant: 30),
             labelSection.leadingAnchor.constraint(equalTo: viewLabelContainer.leadingAnchor, constant: 16),
-            labelSection.centerYAnchor.constraint(equalTo: viewLabelContainer.centerYAnchor),
+            labelSection.centerYAnchor.constraint(equalTo: viewLabelContainer.centerYAnchor)
         ])
     }
 }
@@ -136,52 +142,62 @@ extension MyCardsViewController: UITableViewDataSource {
     public func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-    
+
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return physicalCards.count
         }
         return virtualCards.count
     }
-    
+    // swiftlint:disable force_cast
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: MyCardsTableViewCell.resuseIdentifier, for: indexPath) as! MyCardsTableViewCell
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: MyCardsTableViewCell.reuseIdentifier,
+                for: indexPath
+            ) as! MyCardsTableViewCell
             cell.settingView(card: self.physicalCards[indexPath.row])
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             return cell
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: MyCardsTableViewCell.resuseIdentifier, for: indexPath) as! MyCardsTableViewCell
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: MyCardsTableViewCell.reuseIdentifier, for: indexPath
+            ) as! MyCardsTableViewCell
         cell.settingView(card: self.virtualCards[indexPath.row])
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         return cell
     }
-    
+    // swiftlint:enable force_cast
+
     public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             return "Cartões físicos"
         }
         return "Cartões virtuais"
     }
-    
+
     public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == 0 {
             return 0
         }
         return 56
     }
-    
+
+    // swiftlint:disable force_cast
     public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 0 {
             return nil
         }
-        
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: VirtualCardFooter.resuseIdentifier) as! VirtualCardFooter
+
+        let view = tableView.dequeueReusableHeaderFooterView(
+            withIdentifier: VirtualCardFooter.reuseIdentifier
+        ) as! VirtualCardFooter
         view.delegate = self
         return view
     }
+    // swiftlint:enable force_cast
 }
 
 // MARK: - extension VirtualCardFooterDelegate

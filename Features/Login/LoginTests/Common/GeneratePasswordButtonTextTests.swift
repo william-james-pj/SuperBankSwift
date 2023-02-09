@@ -23,7 +23,7 @@ class GeneratePasswordButtonTextTests: XCTestCase {
         let generatePasswordButtonText = GeneratePasswordButtonText()
         // When
         let buttons = generatePasswordButtonText.generationText()
-        
+
         // Then
         XCTAssertEqual(buttons.count, 5)
     }

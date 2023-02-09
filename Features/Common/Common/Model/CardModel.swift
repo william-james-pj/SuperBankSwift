@@ -8,8 +8,8 @@
 import Foundation
 
 public enum ECardType: String {
-    case physical = "physical"
-    case virtual = "virtual"
+    case physical
+    case virtual
 }
 
 public struct CardModel {
@@ -20,10 +20,10 @@ public struct CardModel {
     public let cvc: String
     public let expireDate: String
     public let isEnabled: Bool
-    public let isInternationPurchasesEnabled: Bool
+    public let isInternationalPurchasesEnabled: Bool
     public let cardType: ECardType
     public let nickname: String
-    
+
     public var dictionary: [String: Any] {
         return [
             "accountId": accountId,
@@ -32,13 +32,24 @@ public struct CardModel {
             "cvc": cvc,
             "expireDate": expireDate,
             "isEnabled": isEnabled,
-            "isInternationPurchasesEnabled": isInternationPurchasesEnabled,
+            "isInternationalPurchasesEnabled": isInternationalPurchasesEnabled,
             "cardType": cardType.rawValue,
-            "nickname": nickname,
+            "nickname": nickname
         ]
     }
-    
-    public init(cardId: String?, accountId: String, cardName: String, cardNumber: String, cvc: String, expireDate: String, isEnabled: Bool, isInternationPurchasesEnabled: Bool, cardType: ECardType, nickname: String) {
+
+    public init(
+        cardId: String?,
+        accountId: String,
+        cardName: String,
+        cardNumber: String,
+        cvc: String,
+        expireDate: String,
+        isEnabled: Bool,
+        isInternationalPurchasesEnabled: Bool,
+        cardType: ECardType,
+        nickname: String
+    ) {
         self.cardId = cardId
         self.accountId = accountId
         self.cardName = cardName
@@ -46,7 +57,7 @@ public struct CardModel {
         self.cvc = cvc
         self.expireDate = expireDate
         self.isEnabled = isEnabled
-        self.isInternationPurchasesEnabled = isInternationPurchasesEnabled
+        self.isInternationalPurchasesEnabled = isInternationalPurchasesEnabled
         self.cardType = cardType
         self.nickname = nickname
     }

@@ -8,8 +8,8 @@
 import UIKit
 
 class BalanceHomeTableViewCell: UITableViewCell {
-    // MARK: - Constrants
-    static let resuseIdentifier: String = "BalanceHomeTableViewCell"
+    // MARK: - Constraints
+    static let reuseIdentifier: String = "BalanceHomeTableViewCell"
 
     // MARK: - Variables
     // MARK: - Components
@@ -21,7 +21,7 @@ class BalanceHomeTableViewCell: UITableViewCell {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
+
     private let labelTitle: UILabel = {
         let label = UILabel()
         label.text = "Saldo"
@@ -30,7 +30,7 @@ class BalanceHomeTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let labelValue: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .bold)
@@ -39,7 +39,7 @@ class BalanceHomeTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let textFildeMoney: UITextField = {
         let textField = UITextField()
         textField.textColor = UIColor(named: "Text")
@@ -80,30 +80,30 @@ class BalanceHomeTableViewCell: UITableViewCell {
     // MARK: - Methods
     func settingCell(_ value: String, isHide: Bool) {
         self.labelValue.text = "R$ " + value
-        
+
         if isHide {
             self.textFildeMoney.isHidden = false
             self.labelValue.isHidden = true
             return
         }
-        
+
         self.textFildeMoney.isHidden = true
         self.labelValue.isHidden = false
     }
-    
+
     private func buildHierarchy() {
         contentView.addSubview(stackBase)
         stackBase.addArrangedSubview(labelTitle)
         stackBase.addArrangedSubview(labelValue)
         stackBase.addArrangedSubview(textFildeMoney)
     }
-    
+
     private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: self.topAnchor),
             stackBase.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             stackBase.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            stackBase.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            stackBase.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
 }

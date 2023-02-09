@@ -15,12 +15,12 @@ public protocol CardCoordinatorDelegate: AnyObject {
     func goToCardPin()
     func goToCardTerm()
     func goToRequestCardResume()
-    func goToCompledRequestCard()
+    func goToCompletedRequestCard()
     func finalizeRequest()
-    
+
     func goToMyCards()
     func goToCardDetails(_ card: CardModel, delegate: CardDetailsVCDelegate)
-    
+
     func goToNewVirtualCard(_ delegate: NewVirtualCardVCDelegate)
     func finalizeSavingCard()
 }

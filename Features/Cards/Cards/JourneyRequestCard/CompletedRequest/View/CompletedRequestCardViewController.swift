@@ -8,10 +8,10 @@
 import UIKit
 
 public class CompletedRequestCardViewController: UIViewController {
-    // MARK: - Constrants
+    // MARK: - Constraints
     // MARK: - Variables
     public weak var coordinatorDelegate: CardCoordinatorDelegate?
-    
+
     // MARK: - Components
     private let stackBase: UIStackView = {
         let stack = UIStackView()
@@ -21,19 +21,19 @@ public class CompletedRequestCardViewController: UIViewController {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
+
     private let viewStackAux: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private let viewImageContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private let imageViewDelivery: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "delivery")
@@ -41,12 +41,16 @@ public class CompletedRequestCardViewController: UIViewController {
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
-    
+
     private let labelTitle: UILabel = {
         let attrString = NSMutableAttributedString(string: "Seu novo cartão já\nestá a caminho")
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3
-        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+        attrString.addAttribute(
+            NSAttributedString.Key.paragraphStyle,
+            value: paragraphStyle,
+            range: NSRange(location: 0, length: attrString.length)
+        )
 
         let label = UILabel()
         label.numberOfLines = 2
@@ -57,12 +61,16 @@ public class CompletedRequestCardViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let labelPath: UILabel = {
         let attrString = NSMutableAttributedString(string: "Acompanhe o trajeto pelo\naplicativo")
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3
-        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+        attrString.addAttribute(
+            NSAttributedString.Key.paragraphStyle,
+            value: paragraphStyle,
+            range: NSRange(location: 0, length: attrString.length)
+        )
 
         let label = UILabel()
         label.numberOfLines = 2
@@ -73,34 +81,34 @@ public class CompletedRequestCardViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    private let buttonNext: ButtonPrimary = {
+
+    private lazy var buttonNext: ButtonPrimary = {
         let button = ButtonPrimary()
         button.settingTitle("Finalizar")
-        button.addTarget(self, action: #selector(NextButtonTapped(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     // MARK: - Lifecycle
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupVC()
     }
-    
+
     // MARK: - Setup
     private func setupVC() {
         view.backgroundColor = UIColor(named: "Background")
-        
+
         buildHierarchy()
         buildConstraints()
     }
-    
+
     // MARK: - Actions
-    @IBAction func NextButtonTapped(_ sender: UIButton) {
+    @IBAction func nextButtonTapped(_ sender: UIButton) {
         self.coordinatorDelegate?.finalizeRequest()
     }
-    
+
     // MARK: - Methods
     private func buildHierarchy() {
         view.addSubview(stackBase)
@@ -109,26 +117,26 @@ public class CompletedRequestCardViewController: UIViewController {
         stackBase.addArrangedSubview(labelTitle)
         stackBase.addArrangedSubview(labelPath)
         stackBase.addArrangedSubview(viewStackAux)
-        
+
         view.addSubview(buttonNext)
     }
-    
+
     private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             stackBase.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             stackBase.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             stackBase.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            
+
             viewImageContainer.heightAnchor.constraint(equalToConstant: 150),
             imageViewDelivery.centerXAnchor.constraint(equalTo: viewImageContainer.centerXAnchor),
             imageViewDelivery.centerYAnchor.constraint(equalTo: viewImageContainer.centerYAnchor, constant: 32),
             imageViewDelivery.widthAnchor.constraint(equalToConstant: 182),
             imageViewDelivery.heightAnchor.constraint(equalToConstant: 80),
-            
+
             buttonNext.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             buttonNext.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            buttonNext.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            buttonNext.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }

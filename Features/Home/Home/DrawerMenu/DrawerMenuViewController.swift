@@ -8,13 +8,13 @@
 import UIKit
 
 public class DrawerMenuViewController: UIViewController {
-    // MARK: - Constrants
+    // MARK: - Constraints
     private let items: [DrawerTableViewCellType] = [.profile, .logoff]
-    
+
     // MARK: - Variables
     public weak var coordinatorDelegate: HomeCoordinatorDelegate?
     public var customerName: String?
-    
+
     // MARK: - Components
     private let tableView: UITableView = {
         let table = UITableView()
@@ -24,40 +24,40 @@ public class DrawerMenuViewController: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
-    
+
     // MARK: - Lifecycle
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupVC()
     }
-    
+
     // MARK: - Setup
     private func setupVC() {
         view.backgroundColor = UIColor(named: "Background")
-        
+
         setupTableView()
         buildHierarchy()
         buildConstraints()
     }
-    
+
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(DrawerTableViewCell.self, forCellReuseIdentifier: DrawerTableViewCell.resuseIdentifier)
-        tableView.register(DrawerHeader.self, forHeaderFooterViewReuseIdentifier: DrawerHeader.resuseIdentifier)
+        tableView.register(DrawerTableViewCell.self, forCellReuseIdentifier: DrawerTableViewCell.reuseIdentifier)
+        tableView.register(DrawerHeader.self, forHeaderFooterViewReuseIdentifier: DrawerHeader.reuseIdentifier)
     }
-    
+
     // MARK: - Methods
     private func buildHierarchy() {
         view.addSubview(tableView)
     }
-    
+
     private func buildConstraints() {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }
@@ -65,12 +65,16 @@ public class DrawerMenuViewController: UIViewController {
 // MARK: - extension UITableViewDelegate
 extension DrawerMenuViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: DrawerHeader.resuseIdentifier) as! DrawerHeader
+        // swiftlint:disable force_cast
+        let view = tableView.dequeueReusableHeaderFooterView(
+            withIdentifier: DrawerHeader.reuseIdentifier
+        ) as! DrawerHeader
+        // swiftlint:enable force_cast
         view.settingView(customerName: customerName)
         view.delegate = self
         return view
     }
-    
+
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let aux = self.items[indexPath.row]
         switch aux {
@@ -88,18 +92,22 @@ extension DrawerMenuViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
-    
+
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: DrawerTableViewCell.resuseIdentifier, for: indexPath) as! DrawerTableViewCell
+        // swiftlint:disable force_cast
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: DrawerTableViewCell.reuseIdentifier, for: indexPath
+        ) as! DrawerTableViewCell
+        // swiftlint:enable force_cast
         cell.settingCell(items[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }
-    
+
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 100.0
     }
-    
+
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60.0
     }

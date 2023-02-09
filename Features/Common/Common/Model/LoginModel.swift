@@ -12,7 +12,7 @@ public struct LoginModel {
     public let customerId: String
     public let accountNumber: String
     public let password: String
-    
+
     public var dictionary: [String: Any] {
         return [
             "accountId": accountId,
@@ -21,7 +21,7 @@ public struct LoginModel {
             "password": password
         ]
     }
-    
+
     public init(accountId: String, customerId: String, accountNumber: String, password: String) {
         self.accountId = accountId
         self.customerId = customerId

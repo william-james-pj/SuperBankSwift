@@ -12,16 +12,16 @@ public class InvoiceModel {
     public let dueDate: String
     public let limitTotal: Double
     public let limitUsed: Double
-    
+
     public var dictionary: [String: Any] {
         return [
             "accountId": accountId,
             "dueDate": dueDate,
             "limitTotal": limitTotal,
-            "limitUsed": limitUsed,
+            "limitUsed": limitUsed
         ]
     }
-    
+
     public init(accountId: String, dueDate: String, limitTotal: Double, limitUsed: Double) {
         self.accountId = accountId
         self.dueDate = dueDate

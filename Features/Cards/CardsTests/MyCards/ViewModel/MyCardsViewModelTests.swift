@@ -11,7 +11,7 @@ import XCTest
 import Common
 
 class MyCardsViewModelTests: XCTestCase {
-    
+
     var viewModel: MyCardsViewModel!
 
     override func setUpWithError() throws {
@@ -25,31 +25,31 @@ class MyCardsViewModelTests: XCTestCase {
     func testGetCards_WhenAccountIdProvided_ShouldGetOnePysicalCard() async {
         // Given
         let accountId = ""
-        
+
         var cards: [CardModel] = []
         viewModel.finishGetCards = { physicalCards, _ in
             cards = physicalCards
         }
-        
+
         // When
         await viewModel.getCards(accountId: accountId)
-        
+
         // Then
         XCTAssertEqual(cards.count, 1)
     }
-    
+
     func testGetCards_WhenAccountIdProvided_ShouldGetOneVirtualCard() async {
         // Given
         let accountId = ""
-        
+
         var cards: [CardModel] = []
         viewModel.finishGetCards = { _, virtualCards in
             cards = virtualCards
         }
-        
+
         // When
         await viewModel.getCards(accountId: accountId)
-        
+
         // Then
         XCTAssertEqual(cards.count, 1)
     }

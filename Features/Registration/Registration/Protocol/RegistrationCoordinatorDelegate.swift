@@ -15,6 +15,6 @@ public protocol RegistrationCoordinatorDelegate: AnyObject {
     func goToPhoneNumber()
     func goToEmail()
     func goToRepeatEmail()
-    func goToCompletedRegistration(login : LoginModel)
+    func goToCompletedRegistration(login: LoginModel)
     func didFinishRegistration()
 }

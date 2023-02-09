@@ -16,52 +16,57 @@ public enum LoginError: Error {
 }
 
 public class LoginService: LoginNetwork {
-    // MARK: - Constrants
-    private let db = Firestore.firestore()
-    
+    // MARK: - Constraints
+    private let dataBase = Firestore.firestore()
+
     // MARK: - Init
     public init() {
     }
-    
+
     // MARK: - Methods
     public func getLogin(_ accountNumber: String) async throws -> LoginModel {
-        let q = db.collection("login").whereField("accountNumber", isEqualTo: accountNumber)
-        let documents = try? await q.getDocuments()
-        
+        let query = dataBase.collection("login").whereField("accountNumber", isEqualTo: accountNumber)
+        let documents = try? await query.getDocuments()
+
         guard let documents = documents else {
             throw LoginError.invalidDocument
         }
-        
+
         if documents.documents.isEmpty {
             throw LoginError.invalidAccount
         }
-        
+
         let data = documents.documents[0].data()
         let accountId = data["accountId"] as? String ?? ""
         let customerId = data["customerId"] as? String ?? ""
         let accountNumber = data["accountNumber"] as? String ?? ""
         let password = data["password"] as? String ?? ""
-        
-        let login = LoginModel(accountId: accountId, customerId: customerId, accountNumber: accountNumber, password: password)
+
+        let login = LoginModel(
+            accountId: accountId,
+            customerId: customerId,
+            accountNumber: accountNumber,
+            password: password
+        )
         return login
     }
-    
+
     public func getCustomerName(_ customerId: String) async throws -> String {
-        let q = db.collection("customers").document(customerId)
-        let document = try? await q.getDocument()
-        
+        let query = dataBase.collection("customers").document(customerId)
+        let document = try? await query.getDocument()
+
         guard let document = document else {
             throw LoginError.invalidDocument
         }
-        
+
         if !document.exists {
             throw LoginError.invalidDocument
         }
-        
+
         let data = document.data()
-        
+
         let customerName = data?["fullName"] as? String ?? ""
-        
+
         return customerName
     }
 }

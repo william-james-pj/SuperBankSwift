@@ -8,12 +8,14 @@
 import UIKit
 
 public class CardTermViewController: UIViewController {
-    // MARK: - Constrants
-    private let terms: [CardTermModel] = [CardTermModel(title: "Contrato do cartão", subTitle: "Não há cobrança de anuidade")]
-    
+    // MARK: - Constraints
+    private let terms: [CardTermModel] = [
+        CardTermModel(title: "Contrato do cartão", subTitle: "Não há cobrança de anuidade")
+    ]
+
     // MARK: - Variables
     public weak var coordinatorDelegate: CardCoordinatorDelegate?
-    
+
     // MARK: - Components
     private let stackBase: UIStackView = {
         let stack = UIStackView()
@@ -23,7 +25,7 @@ public class CardTermViewController: UIViewController {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
+
     private let stackContent: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -32,12 +34,16 @@ public class CardTermViewController: UIViewController {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
+
     private let labelSection: UILabel = {
         let attrString = NSMutableAttributedString(string: "Assinatura dos Contratos")
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3
-        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+        attrString.addAttribute(
+            NSAttributedString.Key.paragraphStyle,
+            value: paragraphStyle,
+            range: NSRange(location: 0, length: attrString.length)
+        )
 
         let label = UILabel()
         label.numberOfLines = 2
@@ -47,7 +53,7 @@ public class CardTermViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let tableViewTerms: UITableView = {
         let table = UITableView()
         table.bounces = false
@@ -56,51 +62,54 @@ public class CardTermViewController: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
-    
+
     private let viewTerm: CheckTerm = {
         let view = CheckTerm()
         view.settingView("Declaro que li e concordo com todos os\ntermos e contratos acima.")
         return view
     }()
-    
-    private let buttonNext: ButtonPrimary = {
+
+    private lazy var  buttonNext: ButtonPrimary = {
         let button = ButtonPrimary()
-        button.addTarget(self, action: #selector(NextButtonTapped(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     // MARK: - Lifecycle
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupVC()
     }
-    
+
     // MARK: - Setup
     private func setupVC() {
         view.backgroundColor = UIColor(named: "Background")
         self.title = "Termos do contrato"
-        
+
         self.viewTerm.delegate = self
-        
+
         settingButtonNext(isDisabled: true)
-        
+
         buildHierarchy()
         buildConstraints()
         setupTableView()
     }
-    
+
     func setupTableView() {
         tableViewTerms.delegate = self
         tableViewTerms.dataSource = self
-        tableViewTerms.register(CardTermTableViewCell.self, forCellReuseIdentifier: CardTermTableViewCell.resuseIdentifier)
+        tableViewTerms.register(
+            CardTermTableViewCell.self,
+            forCellReuseIdentifier: CardTermTableViewCell.reuseIdentifier
+        )
     }
-    
+
     // MARK: - Actions
-    @IBAction func NextButtonTapped(_ sender: UIButton) {
+    @IBAction func nextButtonTapped(_ sender: UIButton) {
         self.coordinatorDelegate?.goToRequestCardResume()
     }
-    
+
     // MARK: - Methods
     private func settingButtonNext(isDisabled: Bool) {
         if isDisabled {
@@ -109,24 +118,24 @@ public class CardTermViewController: UIViewController {
         }
         self.buttonNext.settingDisabled(false, text: "Avançar")
     }
-    
+
     private func buildHierarchy() {
         view.addSubview(stackBase)
         stackBase.addArrangedSubview(stackContent)
         stackContent.addArrangedSubview(labelSection)
         stackContent.addArrangedSubview(tableViewTerms)
-        
+
         stackBase.addArrangedSubview(viewTerm)
-        
+
         stackBase.addArrangedSubview(buttonNext)
     }
-    
+
     private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             stackBase.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             stackBase.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            stackBase.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            stackBase.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }
@@ -143,9 +152,13 @@ extension CardTermViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.terms.count
     }
-    
+
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CardTermTableViewCell.resuseIdentifier, for: indexPath) as! CardTermTableViewCell
+        // swiftlint:disable force_cast
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: CardTermTableViewCell.reuseIdentifier, for: indexPath
+        ) as! CardTermTableViewCell
+        // swiftlint:enable force_cast        
         cell.selectionStyle = .none
         cell.settingCell(self.terms[indexPath.row])
         return cell
@@ -161,5 +174,5 @@ extension CardTermViewController: CheckTermDelegate {
         }
         self.settingButtonNext(isDisabled: true)
     }
-    
+
 }

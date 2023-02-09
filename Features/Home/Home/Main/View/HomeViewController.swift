@@ -9,22 +9,22 @@ import UIKit
 import Common
 
 public class HomeViewController: UIViewController {
-    // MARK: - Constrants
+    // MARK: - Constraints
     private let viewModel = HomeViewModel()
     private let refreshControl = UIRefreshControl()
-    
+
     // MARK: - Variables
     public weak var coordinatorDelegate: HomeCoordinatorDelegate?
-    
+
     private var fullName: String = ""
     private var balance: Double = 0
     private var accountHasCard: Bool = false
     private var moneyIsHide: Bool = false
     private var isLoading: Bool = true
 
-    private var accounthasCardDelivery = false
+    private var accountHasCardDelivery = false
     private var cardDelivery: CardDeliveryModel?
-    
+
     // MARK: - Components
     private let tableView: UITableView = {
         let table = UITableView()
@@ -33,13 +33,13 @@ public class HomeViewController: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
-    
+
     // MARK: - Lifecycle
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupVC()
     }
-    
+
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -49,35 +49,53 @@ public class HomeViewController: UIViewController {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    
+
     // MARK: - Setup
     private func setupVC() {
         view.backgroundColor = UIColor(named: "Background")
-        
+
         settingClosures()
         self.viewModel.getMoneyIsHide()
-        
+
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         refreshControl.tintColor = UIColor(named: "Primary")
-        
+
         setupTableView()
         buildHierarchy()
         buildConstraints()
     }
-    
+
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.refreshControl = refreshControl
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        tableView.register(HeaderHomeTableViewCell.self, forCellReuseIdentifier: HeaderHomeTableViewCell.resuseIdentifier)
-        tableView.register(BalanceHomeTableViewCell.self, forCellReuseIdentifier: BalanceHomeTableViewCell.resuseIdentifier)
-        tableView.register(OptionsHomeTableViewCell.self, forCellReuseIdentifier: OptionsHomeTableViewCell.resuseIdentifier)
-        tableView.register(CardDeliveryTableViewCell.self, forCellReuseIdentifier: CardDeliveryTableViewCell.resuseIdentifier)
-        tableView.register(RequestCardHomeTableViewCell.self, forCellReuseIdentifier: RequestCardHomeTableViewCell.resuseIdentifier)
-        tableView.register(CreditInvoiceHomeTableViewCell.self, forCellReuseIdentifier: CreditInvoiceHomeTableViewCell.resuseIdentifier)
+        tableView.register(
+            HeaderHomeTableViewCell.self,
+            forCellReuseIdentifier: HeaderHomeTableViewCell.reuseIdentifier
+        )
+        tableView.register(
+            BalanceHomeTableViewCell.self,
+            forCellReuseIdentifier: BalanceHomeTableViewCell.reuseIdentifier
+        )
+        tableView.register(
+            OptionsHomeTableViewCell.self,
+            forCellReuseIdentifier: OptionsHomeTableViewCell.reuseIdentifier
+        )
+        tableView.register(
+            CardDeliveryTableViewCell.self,
+            forCellReuseIdentifier: CardDeliveryTableViewCell.reuseIdentifier
+        )
+        tableView.register(
+            RequestCardHomeTableViewCell.self,
+            forCellReuseIdentifier: RequestCardHomeTableViewCell.reuseIdentifier
+        )
+        tableView.register(
+            CreditInvoiceHomeTableViewCell.self,
+            forCellReuseIdentifier: CreditInvoiceHomeTableViewCell.reuseIdentifier
+        )
     }
-    
+
     // MARK: - Actions
     @objc private func refreshData(_ sender: Any) {
         Task {
@@ -87,20 +105,20 @@ public class HomeViewController: UIViewController {
             }
         }
     }
-    
+
     // MARK: - Methods
     public func loaderData(customerId: String, accountId: String) {
         Task {
             await self.viewModel.getData(customerId: customerId, accountId: accountId)
         }
     }
-    
+
     public func reloadTableHome() {
         Task {
             await self.viewModel.reloadAccount()
         }
     }
-    
+
     private func settingClosures() {
         self.viewModel.updateCustomerUI = { customer in
             DispatchQueue.main.async {
@@ -108,22 +126,22 @@ public class HomeViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
-        
+
         self.viewModel.updateAccountUI = { account in
             DispatchQueue.main.async {
                 self.balance = account.balance
                 self.accountHasCard = account.hasCard
-                self.accounthasCardDelivery = account.hasCardDelivery
+                self.accountHasCardDelivery = account.hasCardDelivery
                 self.isLoading = false
                 self.tableView.reloadData()
             }
         }
-        
+
         self.viewModel.updateHideMoney = { isHide in
             self.moneyIsHide = isHide
             self.tableView.reloadData()
         }
-        
+
         self.viewModel.updateCardDelivery = { cardDelivery in
             DispatchQueue.main.async {
                 self.cardDelivery = cardDelivery
@@ -131,17 +149,17 @@ public class HomeViewController: UIViewController {
             }
         }
     }
-    
+
     private func buildHierarchy() {
         view.addSubview(tableView)
     }
-    
+
     private func buildConstraints() {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }
@@ -156,24 +174,24 @@ extension HomeViewController: UITableViewDataSource {
     public func numberOfSections(in tableView: UITableView) -> Int {
         return 5
     }
-    
+
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-    
+
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         default:
             return 0
         }
     }
-    
+
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 0:
             return nil
         case 3: // CardDelivery
-            if accounthasCardDelivery {
+            if accountHasCardDelivery {
                 let headerView = UIView()
                 headerView.backgroundColor = UIColor.clear
                 return headerView
@@ -185,56 +203,75 @@ extension HomeViewController: UITableViewDataSource {
             return headerView
         }
     }
-    
+
     public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
-    
+
     // Cells
+    // swiftlint:disable force_cast
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0: // Header
-            let cell = tableView.dequeueReusableCell(withIdentifier: HeaderHomeTableViewCell.resuseIdentifier, for: indexPath) as! HeaderHomeTableViewCell
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: HeaderHomeTableViewCell.reuseIdentifier,
+                for: indexPath
+            ) as! HeaderHomeTableViewCell
             cell.settingView(fullName: self.fullName)
             cell.settingMoneyIsHide(to: self.moneyIsHide)
             cell.delegate = self
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             return cell
-        case 1: //Balance
-            let cell = tableView.dequeueReusableCell(withIdentifier: BalanceHomeTableViewCell.resuseIdentifier, for: indexPath) as! BalanceHomeTableViewCell
+        case 1: // Balance
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: BalanceHomeTableViewCell.reuseIdentifier,
+                for: indexPath
+            ) as! BalanceHomeTableViewCell
             cell.settingCell("\(self.balance)", isHide: self.moneyIsHide)
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             return cell
         case 2: // Options
-            let cell = tableView.dequeueReusableCell(withIdentifier: OptionsHomeTableViewCell.resuseIdentifier, for: indexPath) as! OptionsHomeTableViewCell
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: OptionsHomeTableViewCell.reuseIdentifier,
+                for: indexPath
+            ) as! OptionsHomeTableViewCell
             cell.options = [.pix, .transfer, .pay, .card, .edit]
             cell.delegate = self
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             return cell
         case 3: // CardDelivery
-            if accounthasCardDelivery {
-                let cell = tableView.dequeueReusableCell(withIdentifier: CardDeliveryTableViewCell.resuseIdentifier, for: indexPath) as! CardDeliveryTableViewCell
+            if accountHasCardDelivery {
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: CardDeliveryTableViewCell.reuseIdentifier,
+                    for: indexPath
+                ) as! CardDeliveryTableViewCell
                 cell.settingCell(cardDelivery)
                 cell.backgroundColor = .clear
                 cell.selectionStyle = .none
                 return cell
             }
-            
+
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
             cell.isHidden = true
             return cell
-        case 4: // ResquestCard and CreditInvoice
+        case 4: // RequestCard and CreditInvoice
             if accountHasCard {
-                let cell = tableView.dequeueReusableCell(withIdentifier: CreditInvoiceHomeTableViewCell.resuseIdentifier, for: indexPath) as! CreditInvoiceHomeTableViewCell
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: CreditInvoiceHomeTableViewCell.reuseIdentifier,
+                    for: indexPath
+                ) as! CreditInvoiceHomeTableViewCell
                 cell.backgroundColor = .clear
                 cell.selectionStyle = .none
                 return cell
             }
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: RequestCardHomeTableViewCell.resuseIdentifier, for: indexPath) as! RequestCardHomeTableViewCell
+
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: RequestCardHomeTableViewCell.reuseIdentifier,
+                for: indexPath
+            ) as! RequestCardHomeTableViewCell
             cell.delegate = self
             cell.isHidden = self.isLoading
             cell.backgroundColor = .clear
@@ -246,21 +283,22 @@ extension HomeViewController: UITableViewDataSource {
             return cell
         }
     }
-    
+    // swiftlint:enable force_cast
+
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0: // Header
             return 40
-        case 1: //Balance
+        case 1: // Balance
             return 45
         case 2: // Options
             return 120
         case 3: // CardDelivery
-            if accounthasCardDelivery {
+            if accountHasCardDelivery {
                 return 135
             }
             return 0
-        case 4: // ResquestCard and CreditInvoice
+        case 4: // RequestCard and CreditInvoice
             if accountHasCard {
                 return 92
             }
@@ -276,7 +314,7 @@ extension HomeViewController: HeaderHomeTableViewCellDelegate {
     func setMoneyHide(to isHide: Bool) {
         self.viewModel.setMoneyIsHide(to: isHide)
     }
-    
+
     func openDrawerMenu() {
         self.coordinatorDelegate?.goToDrawerMenu(customerName: fullName)
     }

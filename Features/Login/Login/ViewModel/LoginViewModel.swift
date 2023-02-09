@@ -10,35 +10,35 @@ import Common
 import FirebaseService
 
 class LoginViewModel {
-    // MARK: - Constrants
+    // MARK: - Constraints
     private let firebaseService: LoginNetwork!
-    
+
     // MARK: - Variables
     private var loginSaved: LoginModel?
     private var typedPassword: [ButtonPasswordText] = []
-    
+
     // MARK: - Closures
     var updateAccountUI: ((_ customerName: String, _ accountNumber: String) -> Void)?
     var updatePasswordTextField: ((_ isRemoving: Bool) -> Void)?
     var finalizedPassword: (() -> Void)?
     var loggedIn: ((_ customerId: String, _ accountId: String) -> Void)?
     var invalidPassword: (() -> Void)?
-    
+
     // MARK: - Init
     init(service: LoginNetwork = LoginService()) {
         self.firebaseService = service
     }
-    
+
     // MARK: - Methods
     func setTypedPassword(_ character: ButtonPasswordText) {
         self.typedPassword.append(character)
         self.updatePasswordTextField?(false)
-        
+
         if typedPassword.count == 5 {
             self.finalizedPassword?()
         }
     }
-    
+
     func removeLastTypedPassword() {
         if self.typedPassword.count == 0 {
             return
@@ -46,39 +46,39 @@ class LoginViewModel {
         self.typedPassword.removeLast()
         self.updatePasswordTextField?(true)
     }
-    
+
     func formatAccountMask(_ text: String) -> String {
         let cleanAccount = text.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
         let mask = "#######"
         var result = ""
         var index = cleanAccount.startIndex
-        for ch in mask where index < cleanAccount.endIndex {
-            if ch == "#" {
+        for char in mask where index < cleanAccount.endIndex {
+            if char == "#" {
                 result.append(cleanAccount[index])
                 index = cleanAccount.index(after: index)
             } else {
-                result.append(ch)
+                result.append(char)
             }
         }
         return result
     }
-    
+
     func logIn() {
         let isLoggedIn = self.validatePassword()
-        
+
         if !isLoggedIn {
             self.invalidPassword?()
             self.typedPassword = []
             return
         }
-        
+
         guard let loginSaved = loginSaved else {
             return
         }
-        
+
         self.loggedIn?(loginSaved.customerId, loginSaved.accountId)
     }
-    
+
     func getAccount(_ accountNumber: String) async {
         self.loginSaved = nil
         do {
@@ -86,22 +86,20 @@ class LoginViewModel {
             let fullName = try await self.firebaseService.getCustomerName(login.customerId)
             self.updateAccountUI?(fullName, login.accountNumber)
             self.loginSaved = login
-        }
-        catch LoginError.invalidAccount {
+        } catch LoginError.invalidAccount {
             print("invalidAccount")
-        }
-        catch {
+        } catch {
             print("Unexpected error: \(error).")
         }
     }
-    
+
     private func validatePassword() -> Bool {
         guard let correctPassword = self.loginSaved?.password else {
             return false
         }
-        
+
         var isCorrect: [Bool] = []
-        
+
         for (index, char) in correctPassword.enumerated() {
             if String(char) == "\(typedPassword[index].first)"
                 || String(char) == "\(typedPassword[index].second)" {
@@ -110,7 +108,7 @@ class LoginViewModel {
             }
             isCorrect.append(false)
         }
-        
+
         return !isCorrect.contains(false)
     }
 }

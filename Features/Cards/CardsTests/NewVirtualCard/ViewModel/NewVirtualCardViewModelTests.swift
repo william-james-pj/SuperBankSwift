@@ -9,7 +9,7 @@ import XCTest
 @testable import Cards
 
 class NewVirtualCardViewModelTests: XCTestCase {
-    
+
     var viewModel: NewVirtualCardViewModel!
 
     override func setUpWithError() throws {
@@ -19,20 +19,20 @@ class NewVirtualCardViewModelTests: XCTestCase {
     override func tearDownWithError() throws {
         viewModel = nil
     }
-    
+
     func testCreateVirtualCard_WhenValidCardProvided_ShouldCallFinishSavingCard() async {
         // Given
         let accountId = "11111"
         let nickName = ""
-        
+
         var hasCalled = false
         viewModel.finishSavingCard = {
             hasCalled = true
         }
-        
+
         // When
         await viewModel.createVirtualCard(accountId: accountId, nickname: nickName)
-        
+
         // Then
         XCTAssertTrue(hasCalled)
     }
@@ -41,15 +41,15 @@ class NewVirtualCardViewModelTests: XCTestCase {
         // Given
         let accountId = ""
         let nickName = ""
-        
+
         var hasCalled = false
         viewModel.finishSavingCard = {
             hasCalled = true
         }
-        
+
         // When
         await viewModel.createVirtualCard(accountId: accountId, nickname: nickName)
-        
+
         // Then
         XCTAssertFalse(hasCalled)
     }

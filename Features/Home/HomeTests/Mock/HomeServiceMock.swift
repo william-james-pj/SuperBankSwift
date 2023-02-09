@@ -14,19 +14,35 @@ class HomeServiceMock: HomeNetwork {
         if id == "" {
             throw HomeError.invalidCustomer
         }
-        
+
         return CustomerModel(birthDate: "", cpf: "", email: "", fullName: "", phoneNumber: "")
     }
-    
+
     func getAccount(_ id: String) async throws -> AccountModel {
         if id == "" {
             throw HomeError.invalidAccount
         }
-        
+
         if id == "2222" {
-            return AccountModel(accountNumber: "", balance: 0, customerId: "", openDate: "", hasCard: true, cardPin: "", hasCardDelivery: false)
+            return AccountModel(
+                accountNumber: "",
+                balance: 0,
+                customerId: "",
+                openDate: "",
+                hasCard: true,
+                cardPin: "",
+                hasCardDelivery: false
+            )
         }
-        
-        return AccountModel(accountNumber: "", balance: 0, customerId: "", openDate: "", hasCard: true, cardPin: "", hasCardDelivery: true)
+
+        return AccountModel(
+            accountNumber: "",
+            balance: 0,
+            customerId: "",
+            openDate: "",
+            hasCard: true,
+            cardPin: "",
+            hasCardDelivery: true
+        )
     }
 }

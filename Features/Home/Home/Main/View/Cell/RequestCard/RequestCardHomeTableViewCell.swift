@@ -7,18 +7,17 @@
 
 import UIKit
 
-protocol RequestCardHomeTableViewCellDelegate {
+protocol RequestCardHomeTableViewCellDelegate: AnyObject {
     func onPress()
 }
 
-
 class RequestCardHomeTableViewCell: UITableViewCell {
-    // MARK: - Constrants
-    static let resuseIdentifier: String = "RequestCardHomeTableViewCell"
+    // MARK: - Constraints
+    static let reuseIdentifier: String = "RequestCardHomeTableViewCell"
 
     // MARK: - Variables
-    var delegate: RequestCardHomeTableViewCellDelegate?
-    
+    weak var delegate: RequestCardHomeTableViewCellDelegate?
+
     // MARK: - Components
     private let stackBase: UIStackView = {
         let stack = UIStackView()
@@ -28,12 +27,12 @@ class RequestCardHomeTableViewCell: UITableViewCell {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
+
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 0
-        
+
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .clear
@@ -65,12 +64,15 @@ class RequestCardHomeTableViewCell: UITableViewCell {
         buildConstraints()
         setupCollection()
     }
-    
+
     private func setupCollection() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        
-        collectionView.register(RequestCardCollectionViewCell.self, forCellWithReuseIdentifier: RequestCardCollectionViewCell.resuseIdentifier)
+
+        collectionView.register(
+            RequestCardCollectionViewCell.self,
+            forCellWithReuseIdentifier: RequestCardCollectionViewCell.reuseIdentifier
+        )
     }
 
     // MARK: - Methods
@@ -78,13 +80,13 @@ class RequestCardHomeTableViewCell: UITableViewCell {
         contentView.addSubview(stackBase)
         stackBase.addArrangedSubview(collectionView)
     }
-    
+
     private func buildConstraints() {
-        NSLayoutConstraint.activate([            
+        NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: self.topAnchor),
             stackBase.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             stackBase.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            stackBase.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            stackBase.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
 }
@@ -101,16 +103,28 @@ extension RequestCardHomeTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RequestCardCollectionViewCell.resuseIdentifier, for: indexPath) as! RequestCardCollectionViewCell
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        // swiftlint:disable force_cast
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: RequestCardCollectionViewCell.reuseIdentifier,
+            for: indexPath
+        ) as! RequestCardCollectionViewCell
+        // swiftlint:enable force_cast
         return cell
     }
 }
 
 // MARK: - extension CollectionViewDelegateFlowLayout
 extension RequestCardHomeTableViewCell: UICollectionViewDelegateFlowLayout {
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
         let width = collectionView.frame.width
         let height = collectionView.frame.height
         return CGSize(width: width, height: height)

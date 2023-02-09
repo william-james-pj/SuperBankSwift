@@ -14,32 +14,34 @@ class CardCoordinator: NSObject, Coordinator {
     weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
-    
+
     var accountId: String?
-    
+
     // MARK: - Init
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-    
+
     // MARK: - Methods
     func start() {
         self.navigationController.delegate = self
         settingNav()
     }
-    
+
     func start(hasCard: Bool) {
         self.start()
-        
+
         if hasCard {
             goToMyCards()
             return
         }
         goToPresentCard()
     }
-    
+
     private func settingNav() {
-        self.navigationController.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "Text") ?? .label]
+        self.navigationController.navigationBar.titleTextAttributes = [
+            .foregroundColor: UIColor(named: "Text") ?? .label
+        ]
         self.navigationController.navigationBar.tintColor = UIColor(named: "Text")
     }
 }
@@ -51,58 +53,58 @@ extension CardCoordinator: CardCoordinatorDelegate {
         presentCardVC.coordinatorDelegate = self
         self.navigationController.pushViewController(presentCardVC, animated: true)
     }
-    
+
     func goToCreditLimit() {
         let creditLimitVC = CreditLimitViewController()
         creditLimitVC.coordinatorDelegate = self
         self.navigationController.pushViewController(creditLimitVC, animated: true)
     }
-    
+
     func goToInvoiceDueDate() {
         let invoiceDueDateVC = InvoiceDueDateViewController()
         invoiceDueDateVC.coordinatorDelegate = self
         self.navigationController.pushViewController(invoiceDueDateVC, animated: true)
     }
-    
+
     func goToCardPin() {
         let cardPinVC = CardPinViewController()
         cardPinVC.coordinatorDelegate = self
         self.navigationController.pushViewController(cardPinVC, animated: true)
     }
-    
+
     func goToCardTerm() {
         let cardTermVC = CardTermViewController()
         cardTermVC.coordinatorDelegate = self
         self.navigationController.pushViewController(cardTermVC, animated: true)
     }
-    
+
     func goToRequestCardResume() {
         let resumeVC = RequestCardResumeViewController()
         resumeVC.coordinatorDelegate = self
         resumeVC.settingAccountId(accountId)
         self.navigationController.pushViewController(resumeVC, animated: true)
     }
-    
-    func goToCompledRequestCard() {
+
+    func goToCompletedRequestCard() {
         self.navigationController.popToRootViewController(animated: false)
-        
+
         let completedRequestVC = CompletedRequestCardViewController()
         completedRequestVC.coordinatorDelegate = self
         self.navigationController.pushViewController(completedRequestVC, animated: true)
     }
-    
+
     func finalizeRequest() {
         self.navigationController.popToRootViewController(animated: true)
         self.parentCoordinator?.childDidFinish(self)
     }
-    
+
     func goToMyCards() {
         let myCards = MyCardsViewController()
         myCards.coordinatorDelegate = self
         myCards.accountId = self.accountId
         self.navigationController.pushViewController(myCards, animated: true)
     }
-    
+
     func goToCardDetails(_ card: CardModel, delegate: CardDetailsVCDelegate) {
         let cardDetails = CardDetailsViewController()
         cardDetails.coordinatorDelegate = self
@@ -110,7 +112,7 @@ extension CardCoordinator: CardCoordinatorDelegate {
         cardDetails.card = card
         self.navigationController.pushViewController(cardDetails, animated: true)
     }
-    
+
     func goToNewVirtualCard(_ delegate: NewVirtualCardVCDelegate) {
         let newVirtualCard = NewVirtualCardViewController()
         newVirtualCard.coordinatorDelegate = self
@@ -118,16 +120,20 @@ extension CardCoordinator: CardCoordinatorDelegate {
         newVirtualCard.accountId = self.accountId
         self.navigationController.pushViewController(newVirtualCard, animated: true)
     }
-    
+
     func finalizeSavingCard() {
         self.navigationController.popViewController(animated: true)
     }
-    
+
 }
 
 // MARK: - extension UINavigationControllerDelegate
 extension CardCoordinator: UINavigationControllerDelegate {
-    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+    func navigationController(
+        _ navigationController: UINavigationController,
+        didShow viewController: UIViewController,
+        animated: Bool
+    ) {
         guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
             return
         }
@@ -136,17 +142,17 @@ extension CardCoordinator: UINavigationControllerDelegate {
             return
         }
 
-        if let _ = fromViewController as? PresentCardViewController {
+        if fromViewController as? PresentCardViewController != nil {
             self.parentCoordinator?.childDidFinish(self)
         }
-        
-        if let _ = fromViewController as? CompletedRequestCardViewController {
+
+        if fromViewController as? CompletedRequestCardViewController != nil {
             self.parentCoordinator?.childDidFinish(self)
         }
-        
-        if let _ = fromViewController as? MyCardsViewController {
+
+        if fromViewController as? MyCardsViewController != nil {
             self.parentCoordinator?.childDidFinish(self)
         }
-        
+
     }
 }

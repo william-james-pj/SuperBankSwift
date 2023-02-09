@@ -17,14 +17,14 @@ class LoginCoordinator: Coordinator {
     weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
-    
+
     weak var delegate: AuthenticationCoordinatorDelegate?
-    
+
     // MARK: - Init
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-    
+
     // MARK: - Methods
     func start() {
         settingNav()
@@ -32,9 +32,11 @@ class LoginCoordinator: Coordinator {
         initialViewController.coordinatorDelegate = self
         self.navigationController.setViewControllers([initialViewController], animated: false)
     }
-    
+
     private func settingNav() {
-        self.navigationController.navigationBar.titleTextAttributes = [.foregroundColor: UIColor(named: "Text") ?? .label]
+        self.navigationController.navigationBar.titleTextAttributes = [
+            .foregroundColor: UIColor(named: "Text") ?? .label
+        ]
         self.navigationController.navigationBar.tintColor = UIColor(named: "Text")
     }
 }
@@ -47,7 +49,7 @@ extension LoginCoordinator: LoginCoordinatorDelegate {
         childCoordinators.append(coordinator)
         coordinator.start()
     }
-    
+
     func didAuthenticate(customerId: String, accountId: String) {
         self.navigationController.popToRootViewController(animated: true)
         self.parentCoordinator?.childDidFinish(self)

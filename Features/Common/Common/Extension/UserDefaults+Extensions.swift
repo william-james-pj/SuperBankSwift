@@ -11,7 +11,7 @@ public enum ObjectSavableError: String, LocalizedError {
     case unableToEncode = "Unable to encode object into data"
     case noValue = "No data object found for the given key"
     case unableToDecode = "Unable to decode object into given type"
-    
+
     public var errorDescription: String? {
         rawValue
     }
@@ -32,7 +32,7 @@ extension UserDefaults: ObjectSavable {
             throw ObjectSavableError.unableToEncode
         }
     }
-    
+
     public func getObject<Object>(forKey: String, castTo type: Object.Type) throws -> Object where Object: Decodable {
         guard let data = data(forKey: forKey) else { throw ObjectSavableError.noValue }
         let decoder = JSONDecoder()

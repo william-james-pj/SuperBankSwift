@@ -17,9 +17,8 @@ enum OptionHomeType {
 
 class OptionHomeCollectionViewCell: UICollectionViewCell {
     // MARK: - Constants
-    static let resuseIdentifier: String = "OptionHomeCollectionViewCell"
-    
-    // MARK: - Constrants
+    static let reuseIdentifier: String = "OptionHomeCollectionViewCell"
+
     // MARK: - Variables
     // MARK: - Components
     private let stackBase: UIStackView = {
@@ -30,13 +29,13 @@ class OptionHomeCollectionViewCell: UICollectionViewCell {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
+
     private let viewBoxContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private let viewBox: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(named: "Card")
@@ -45,14 +44,14 @@ class OptionHomeCollectionViewCell: UICollectionViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private let imageViewItem: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
+
     private let labelTitle: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .regular)
@@ -61,23 +60,23 @@ class OptionHomeCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupVC()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Setup
     private func setupVC() {
         buildHierarchy()
         buildConstraints()
     }
-    
+
     // MARK: - Methods
     func settingCell(_ type: OptionHomeType) {
         switch type {
@@ -98,15 +97,15 @@ class OptionHomeCollectionViewCell: UICollectionViewCell {
             settingEditButton()
         }
     }
-    
+
     private func settingEditButton () {
-        self.viewBox.backgroundColor = UIColor(named: "Backgroud")
+        self.viewBox.backgroundColor = UIColor(named: "Background")
         self.viewBox.layer.borderWidth = 1
         self.viewBox.layer.borderColor = UIColor(named: "Disabled")?.cgColor
         self.imageViewItem.tintColor = UIColor(named: "Primary")
         self.imageViewItem.image = UIImage(systemName: "plus")
     }
-    
+
     private func buildHierarchy() {
         self.addSubview(stackBase)
         stackBase.addArrangedSubview(viewBoxContainer)
@@ -114,22 +113,22 @@ class OptionHomeCollectionViewCell: UICollectionViewCell {
         viewBox.addSubview(imageViewItem)
         stackBase.addArrangedSubview(labelTitle)
     }
-    
+
     private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: self.topAnchor),
             stackBase.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             stackBase.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             stackBase.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            
+
             viewBox.leadingAnchor.constraint(equalTo: self.viewBoxContainer.leadingAnchor),
             viewBox.trailingAnchor.constraint(equalTo: self.viewBoxContainer.trailingAnchor),
             viewBox.centerYAnchor.constraint(equalTo: viewBoxContainer.centerYAnchor),
-            
+
             imageViewItem.topAnchor.constraint(equalTo: viewBox.topAnchor, constant: 20),
             imageViewItem.leadingAnchor.constraint(equalTo: viewBox.leadingAnchor, constant: 20),
             imageViewItem.trailingAnchor.constraint(equalTo: viewBox.trailingAnchor, constant: -20),
-            imageViewItem.bottomAnchor.constraint(equalTo: viewBox.bottomAnchor, constant: -20),
+            imageViewItem.bottomAnchor.constraint(equalTo: viewBox.bottomAnchor, constant: -20)
         ])
     }
 }

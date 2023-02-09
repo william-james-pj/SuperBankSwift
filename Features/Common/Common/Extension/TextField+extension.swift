@@ -8,7 +8,7 @@
 import UIKit
 
 extension UITextField {
-    public func addBottomBorder(color: UIColor?, height: CGFloat){
+    public func addBottomBorder(color: UIColor?, height: CGFloat) {
         let borderView = UIView()
         borderView.backgroundColor = color
         borderView.translatesAutoresizingMaskIntoConstraints = false
@@ -22,14 +22,14 @@ extension UITextField {
             ]
         )
     }
-    
-    public func setLeftPaddingPoints(_ amount:CGFloat){
+
+    public func setLeftPaddingPoints(_ amount: CGFloat) {
             let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
             self.leftView = paddingView
             self.leftViewMode = .always
         }
-    
-    public func setRightPaddingPoints(_ amount:CGFloat) {
+
+    public func setRightPaddingPoints(_ amount: CGFloat) {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
         self.rightView = paddingView
         self.rightViewMode = .always

@@ -10,25 +10,24 @@ import Common
 import FirebaseService
 
 class CardDetailsViewModel {
-    // MARK: - Constrants
+    // MARK: - ConstraintsCharacters
     private let firebaseService: CardNetwork!
-    
+
     // MARK: - Variables
     // MARK: - Closures
     var finishUpdateCard: (() -> Void)?
-    
+
     // MARK: - Init
     init(service: CardNetwork = CardService()) {
         self.firebaseService = service
     }
-    
+
     // MARK: - Methods
     func updateBlockerCard(cardId: String, keyName: String, value: Bool) async {
         do {
             try await self.firebaseService.updateBlockers(cardId: cardId, keyName: keyName, value: value)
             self.finishUpdateCard?()
-        }
-        catch {
+        } catch {
             print("Unexpected error: \(error).")
         }
     }

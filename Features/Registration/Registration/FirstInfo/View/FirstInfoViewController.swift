@@ -8,10 +8,10 @@
 import UIKit
 
 public class FirstInfoViewController: UIViewController {
-    // MARK: - Constrants
+    // MARK: - Constraints
     // MARK: - Variables
     public weak var coordinatorDelegate: RegistrationCoordinatorDelegate?
-    
+
     // MARK: - Components
     private let stackBase: UIStackView = {
         let stack = UIStackView()
@@ -21,13 +21,13 @@ public class FirstInfoViewController: UIViewController {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
+
     private let viewImageContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private let imageViewInfo: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "registrationInfo")
@@ -35,7 +35,7 @@ public class FirstInfoViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
+
     private let stackText: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -44,12 +44,16 @@ public class FirstInfoViewController: UIViewController {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
+
     private let labelOpenAccount: UILabel = {
         let attrString = NSMutableAttributedString(string: "Abra sua conta\ngratuitamente")
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3
-        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+        attrString.addAttribute(
+            NSAttributedString.Key.paragraphStyle,
+            value: paragraphStyle,
+            range: NSRange(location: 0, length: attrString.length)
+        )
 
         let label = UILabel()
         label.numberOfLines = 2
@@ -60,12 +64,18 @@ public class FirstInfoViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let labelStart: UILabel = {
-        let attrString = NSMutableAttributedString(string: "Você está preste a dar o primeiro passo em\nbusca da evolução financeira!.")
+        let attrString = NSMutableAttributedString(
+            string: "Você está preste a dar o primeiro passo em\nbusca da evolução financeira!."
+        )
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3
-        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+        attrString.addAttribute(
+            NSAttributedString.Key.paragraphStyle,
+            value: paragraphStyle,
+            range: NSRange(location: 0, length: attrString.length)
+            )
 
         let label = UILabel()
         label.numberOfLines = 0
@@ -76,12 +86,18 @@ public class FirstInfoViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let labelDocument: UILabel = {
-        let attrString = NSMutableAttributedString(string: "Para facilitar seu cadrastro, tenha em mãos um dos\nseus documentos de identidade: RG, CNH ou RNE.")
+        let attrString = NSMutableAttributedString(
+            string: "Para facilitar seu cadrastro, tenha em mãos um dos\nseus documentos de identidade: RG, CNH ou RNE."
+        )
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3
-        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+        attrString.addAttribute(
+            NSAttributedString.Key.paragraphStyle,
+            value: paragraphStyle,
+            range: NSRange(location: 0, length: attrString.length)
+        )
 
         let label = UILabel()
         label.numberOfLines = 0
@@ -92,22 +108,22 @@ public class FirstInfoViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    private let buttonOpenAccount: ButtonPrimary = {
+
+    private lazy var buttonOpenAccount: ButtonPrimary = {
         let button = ButtonPrimary()
         button.settingTitle("ABRIR CONTA")
         button.accessibilityIdentifier = "FirstInfo_Button_OpenAccount"
-        button.addTarget(self, action: #selector(OpenAccountButtonTapped(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(openAccountButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     // MARK: - Lifecycle
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupVC()
     }
-    
+
     // MARK: - Setup
     private func setupVC() {
         view.accessibilityIdentifier = "Registration_VC_FirstInfo"
@@ -115,39 +131,38 @@ public class FirstInfoViewController: UIViewController {
         buildHierarchy()
         buildConstraints()
     }
-    
+
     // MARK: - Methods
-    @IBAction private func OpenAccountButtonTapped(_ sender: UIButton) {
+    @IBAction private func openAccountButtonTapped(_ sender: UIButton) {
         self.coordinatorDelegate?.goToFullName()
     }
-    
+
     private func buildHierarchy() {
         view.addSubview(stackBase)
-        
+
         stackBase.addArrangedSubview(stackText)
         stackText.addArrangedSubview(viewImageContainer)
         viewImageContainer.addSubview(imageViewInfo)
         stackText.addArrangedSubview(labelOpenAccount)
         stackText.addArrangedSubview(labelStart)
         stackText.addArrangedSubview(labelDocument)
-        
+
         stackBase.addArrangedSubview(buttonOpenAccount)
     }
-    
+
     private func buildConstraints() {
         NSLayoutConstraint.activate([
             stackBase.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             stackBase.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             stackBase.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             stackBase.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            
+
             viewImageContainer.heightAnchor.constraint(equalToConstant: 240),
-            
+
             imageViewInfo.centerXAnchor.constraint(equalTo: viewImageContainer.centerXAnchor),
             imageViewInfo.bottomAnchor.constraint(equalTo: viewImageContainer.bottomAnchor, constant: -16),
             imageViewInfo.widthAnchor.constraint(equalToConstant: 140),
-            imageViewInfo.heightAnchor.constraint(equalToConstant: 140),
+            imageViewInfo.heightAnchor.constraint(equalToConstant: 140)
         ])
     }
 }
-

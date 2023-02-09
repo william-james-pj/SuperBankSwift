@@ -7,18 +7,18 @@
 
 import UIKit
 
-protocol OptionsHomeTableViewCellDelegate {
+protocol OptionsHomeTableViewCellDelegate: AnyObject {
     func onPress(option: OptionHomeType)
 }
 
 class OptionsHomeTableViewCell: UITableViewCell {
-    // MARK: - Constrants
-    static let resuseIdentifier: String = "OptionsHomeTableViewCell"
+    // MARK: - Constraints
+    static let reuseIdentifier: String = "OptionsHomeTableViewCell"
 
     // MARK: - Variables
     var options: [OptionHomeType] = []
-    var delegate: OptionsHomeTableViewCellDelegate?
-    
+    weak var delegate: OptionsHomeTableViewCellDelegate?
+
     // MARK: - Components
     private let stackBase: UIStackView = {
         let stack = UIStackView()
@@ -28,7 +28,7 @@ class OptionsHomeTableViewCell: UITableViewCell {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
+
     private let stackHeader: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
@@ -37,7 +37,7 @@ class OptionsHomeTableViewCell: UITableViewCell {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
+
     private let labelSection: UILabel = {
         let label = UILabel()
         label.text = "Seus atalhos"
@@ -46,12 +46,12 @@ class OptionsHomeTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 24
-        
+
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .clear
@@ -87,16 +87,19 @@ class OptionsHomeTableViewCell: UITableViewCell {
     private func setupCollection() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        
-        collectionView.register(OptionHomeCollectionViewCell.self, forCellWithReuseIdentifier: OptionHomeCollectionViewCell.resuseIdentifier)
+
+        collectionView.register(
+            OptionHomeCollectionViewCell.self,
+            forCellWithReuseIdentifier: OptionHomeCollectionViewCell.reuseIdentifier
+        )
     }
-    
+
     // MARK: - Methods
     private func buildHierarchy() {
         contentView.addSubview(stackBase)
         stackBase.addArrangedSubview(stackHeader)
         stackHeader.addArrangedSubview(labelSection)
-        
+
         stackBase.addArrangedSubview(collectionView)
     }
 
@@ -106,8 +109,8 @@ class OptionsHomeTableViewCell: UITableViewCell {
             stackBase.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             stackBase.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             stackBase.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            
-            collectionView.heightAnchor.constraint(equalToConstant: 90),
+
+            collectionView.heightAnchor.constraint(equalToConstant: 90)
         ])
     }
 }
@@ -124,9 +127,17 @@ extension OptionsHomeTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return options.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OptionHomeCollectionViewCell.resuseIdentifier, for: indexPath) as! OptionHomeCollectionViewCell
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        // swiftlint:disable force_cast
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: OptionHomeCollectionViewCell.reuseIdentifier,
+            for: indexPath
+        ) as! OptionHomeCollectionViewCell
+        // swiftlint:enable force_cast
         cell.settingCell(options[indexPath.row])
         return cell
     }
@@ -134,7 +145,11 @@ extension OptionsHomeTableViewCell: UICollectionViewDataSource {
 
 // MARK: - extension CollectionViewDelegateFlowLayout
 extension OptionsHomeTableViewCell: UICollectionViewDelegateFlowLayout {
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
 //        let width = collectionView.frame.width
         let height = collectionView.frame.height
         return CGSize(width: 60, height: height)

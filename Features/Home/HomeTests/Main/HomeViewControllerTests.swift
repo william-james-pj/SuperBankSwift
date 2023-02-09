@@ -19,6 +19,5 @@ class HomeViewControllerTests: XCTestCase {
     override func tearDownWithError() throws {
         sut = nil
     }
-    
-    
+
 }

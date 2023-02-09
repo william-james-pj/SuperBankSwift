@@ -13,17 +13,17 @@ public struct CustomerModel {
     public let email: String
     public let fullName: String
     public let phoneNumber: String
-    
+
     public var dictionary: [String: Any] {
         return [
             "birthDate": birthDate,
             "cpf": cpf,
             "email": email,
             "fullName": fullName,
-            "phoneNumber": phoneNumber,
+            "phoneNumber": phoneNumber
         ]
     }
-    
+
     public init(birthDate: String, cpf: String, email: String, fullName: String, phoneNumber: String) {
         self.birthDate = birthDate
         self.cpf = cpf

@@ -18,13 +18,13 @@ public class UtilityHideMoney {
             return true
         }
     }
-    
+
     static public func setIsHide(to isHide: Bool) {
         let userDefaults = UserDefaults.standard
         do {
             try userDefaults.setObject(isHide, forKey: "moneyIsHide")
         } catch {
-            print("Error savin moneyIsHide")
+            print("Error saving moneyIsHide")
         }
     }
 }

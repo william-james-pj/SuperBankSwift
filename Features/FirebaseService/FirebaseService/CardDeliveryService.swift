@@ -17,36 +17,35 @@ public enum CardDeliveryError: Error {
 }
 
 public class CardDeliveryService: CardDeliveryNetwork {
-    // MARK: - Constrants
-    private let db = Firestore.firestore()
-    
+    // MARK: - Constraints
+    private let dataBase = Firestore.firestore()
+
     // MARK: - Init
     public init() {
     }
-    
+
     // MARK: - Methods
     public func createDeliveryCard(accountId: String) async throws {
         do {
             try await saveDelivery(accountId: accountId)
             try await saveAccountHasCardDelivery(accountId: accountId)
-        }
-        catch {
+        } catch {
             throw error
         }
     }
-    
+
     public func getDeliveryCard(accountId: String) async throws -> CardDeliveryModel {
-        let q = db.collection("cardDelivery").whereField("accountId", isEqualTo: accountId)
-        let documents = try? await q.getDocuments()
-        
+        let query = dataBase.collection("cardDelivery").whereField("accountId", isEqualTo: accountId)
+        let documents = try? await query.getDocuments()
+
         guard let documents = documents else {
             throw CardDeliveryError.invalidDocument
         }
-        
+
         if documents.documents.isEmpty {
             throw CardDeliveryError.invalidAccount
         }
-        
+
         var aux: [CardDeliveryModel] = []
         for document in documents.documents {
             let data = document.data()
@@ -57,34 +56,32 @@ public class CardDeliveryService: CardDeliveryNetwork {
             let newObj = CardDeliveryModel(accountId: accountId, deliveryDate: deliveryDate, status: statusEnum)
             aux.append(newObj)
         }
-        
+
         return aux[0]
     }
-    
+
     private func saveDelivery(accountId: String) async throws {
         do {
             let date = UtilityCardDelivery.generateDeliveryDate(by: 5)
-            
+
             guard let date = date else {
                 throw CardDeliveryError.errorDeliveryDate
             }
-            
+
             let cardDelivery = CardDeliveryModel(accountId: accountId, deliveryDate: date, status: .production)
-            
-            let newObjRef = db.collection("cardDelivery").document()
+
+            let newObjRef = dataBase.collection("cardDelivery").document()
             try await newObjRef.setData(cardDelivery.dictionary)
-        }
-        catch {
+        } catch {
             throw CardDeliveryError.errorSaving
         }
     }
-    
+
     private func saveAccountHasCardDelivery(accountId: String) async throws {
         do {
-            let newObjRef = db.collection("accounts").document(accountId)
+            let newObjRef = dataBase.collection("accounts").document(accountId)
             try await newObjRef.updateData(["hasCardDelivery": true])
-        }
-        catch {
+        } catch {
             throw CardDeliveryError.errorSaving
         }
     }

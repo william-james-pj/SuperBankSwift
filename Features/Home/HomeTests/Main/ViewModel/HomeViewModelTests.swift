@@ -9,7 +9,7 @@ import XCTest
 @testable import Home
 
 class HomeViewModelTests: XCTestCase {
-    
+
     var viewModel: HomeViewModel!
 
     override func setUpWithError() throws {
@@ -28,11 +28,11 @@ class HomeViewModelTests: XCTestCase {
         }
         // When
         await viewModel.getData(customerId: "1111", accountId: "1111")
-        
+
         // Then
         XCTAssertTrue(hasCalled)
     }
-    
+
     func testGetData_WhenInvalidAccountProvided_ShouldNotCallUpdateAccountUI() async {
         // Given
         var hasCalled = false
@@ -41,11 +41,11 @@ class HomeViewModelTests: XCTestCase {
         }
         // When
         await viewModel.getData(customerId: "1111", accountId: "")
-        
+
         // Then
         XCTAssertFalse(hasCalled)
     }
-    
+
     func testGetData_WhenInvalidCustomerProvided_ShouldNotCallUpdateCustomerUI() async {
         // Given
         var hasCalled = false
@@ -54,11 +54,11 @@ class HomeViewModelTests: XCTestCase {
         }
         // When
         await viewModel.getData(customerId: "", accountId: "1111")
-        
+
         // Then
         XCTAssertFalse(hasCalled)
     }
-    
+
     func testGetData_WhenCustomerHasNotCardDelivery_ShouldNotCallCardDelivery() async {
         // Given
         var hasCalled = false
@@ -67,11 +67,11 @@ class HomeViewModelTests: XCTestCase {
         }
         // When
         await viewModel.getData(customerId: "1111", accountId: "2222")
-        
+
         // Then
         XCTAssertFalse(hasCalled)
     }
-    
+
     func testSetMoneyIsHide_WhenSetToHide_ShouldReturnTrue() {
         // Given
         var hasHide = false
@@ -81,11 +81,11 @@ class HomeViewModelTests: XCTestCase {
         // When
         viewModel.setMoneyIsHide(to: true)
         viewModel.getMoneyIsHide()
-        
+
         // Then
         XCTAssertTrue(hasHide)
     }
-    
+
     func testSetMoneyIsHide_WhenSetToNotHide_ShouldReturnFalse() {
         // Given
         var hasHide = true
@@ -95,7 +95,7 @@ class HomeViewModelTests: XCTestCase {
         // When
         viewModel.setMoneyIsHide(to: false)
         viewModel.getMoneyIsHide()
-        
+
         // Then
         XCTAssertFalse(hasHide)
     }

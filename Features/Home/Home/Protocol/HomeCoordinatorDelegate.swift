@@ -11,6 +11,6 @@ public protocol HomeCoordinatorDelegate: AnyObject {
     func goToDrawerMenu(customerName: String)
     func closeDrawerMenu()
     func logoff()
-    
+
     func goToCard(hasCard: Bool)
 }
